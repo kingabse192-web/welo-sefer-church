@@ -8,5 +8,17 @@ export default defineConfig({
     port: 3000,
     strictPort: true,
     host: true
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
+          animation: ['framer-motion'],
+          icons: ['lucide-react']
+        }
+      }
+    }
   }
 });
