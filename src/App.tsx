@@ -1,18 +1,16 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import LoadingScreen from './components/LoadingScreen';
+import Home from './pages/Home';
+import HistoryPage from './pages/History';
+import GalleryPage from './pages/Gallery';
+import EventsPage from './pages/Events';
+import LocationPage from './pages/Location';
+import ContactPage from './pages/Contact';
+import DeveloperPage from './pages/Developer';
 import { Language } from './translations';
 import { AuthProvider } from './context/AuthContext';
-
-const Home = lazy(() => import('./pages/Home'));
-const HistoryPage = lazy(() => import('./pages/History'));
-const GalleryPage = lazy(() => import('./pages/Gallery'));
-const EventsPage = lazy(() => import('./pages/Events'));
-const LocationPage = lazy(() => import('./pages/Location'));
-const ContactPage = lazy(() => import('./pages/Contact'));
-const DeveloperPage = lazy(() => import('./pages/Developer'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -67,17 +65,15 @@ function App() {
           />
           
           <main className="flex-grow">
-            <Suspense fallback={<LoadingScreen />}>
-              <Routes>
-                <Route path="/" element={<Home lang={lang} />} />
-                <Route path="/history" element={<HistoryPage lang={lang} />} />
-                <Route path="/gallery" element={<GalleryPage lang={lang} />} />
-                <Route path="/events" element={<EventsPage lang={lang} />} />
-                <Route path="/location" element={<LocationPage lang={lang} />} />
-                <Route path="/contact" element={<ContactPage lang={lang} />} />
-                <Route path="/developer" element={<DeveloperPage lang={lang} />} />
-              </Routes>
-            </Suspense>
+            <Routes>
+              <Route path="/" element={<Home lang={lang} />} />
+              <Route path="/history" element={<HistoryPage lang={lang} />} />
+              <Route path="/gallery" element={<GalleryPage lang={lang} />} />
+              <Route path="/events" element={<EventsPage lang={lang} />} />
+              <Route path="/location" element={<LocationPage lang={lang} />} />
+              <Route path="/contact" element={<ContactPage lang={lang} />} />
+              <Route path="/developer" element={<DeveloperPage lang={lang} />} />
+            </Routes>
           </main>
 
           <Footer lang={lang} />
