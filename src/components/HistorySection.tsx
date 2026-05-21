@@ -91,14 +91,14 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
                     </div>
                   </div>
                   <div className="order-1 lg:order-2 rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800 transition-all duration-300 hover:scale-[1.02]">
-                    <img src="old church.jpg" alt="Original Church Design" className="w-full h-[350px] object-cover" referrerPolicy="no-referrer" />
+                    <img src="old church.jpg" alt="Original Church Design" className="w-full h-[350px] object-cover" referrerPolicy="no-referrer" loading="lazy" />
                   </div>
                 </div>
 
                 {/* Timeline - Stage 2 */}
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                   <div className="rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800 transition-all duration-300 hover:scale-[1.02]">
-                    <img src="curent church.PNG" alt="Current Church Building" className="w-full h-[350px] object-cover" referrerPolicy="no-referrer" />
+                    <img src="curent church.PNG" alt="Current Church Building" className="w-full h-[350px] object-cover" referrerPolicy="no-referrer" loading="lazy" />
                   </div>
                   <div className="space-y-6">
                     <div className="inline-block px-4 py-1.5 bg-church-blue/10 dark:bg-church-gold/10 rounded-full">
@@ -129,7 +129,7 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
                     </div>
                   </div>
                   <div className="order-1 lg:order-2 rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-slate-800 transition-all duration-300 hover:scale-[1.02]">
-                    <img src="new church.jpg" alt="Future Church Design" className="w-full h-[350px] object-cover" referrerPolicy="no-referrer" />
+                    <img src="new church.jpg" alt="Future Church Design" className="w-full h-[350px] object-cover" referrerPolicy="no-referrer" loading="lazy" />
                   </div>
                 </div>
               </motion.div>

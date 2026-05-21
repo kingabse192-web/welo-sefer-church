@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar as CalendarIcon, Clock, Users, ShieldCheck, Filter, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, Users, ShieldCheck, Filter, X, ChevronLeft, ChevronRight, Search } from 'lucide-react';
 
 import { Language, translations } from '../translations';
 
@@ -25,6 +25,7 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
   const t = translations[lang].events;
   const [typeFilter, setTypeFilter] = useState('All');
   const [categoryFilter, setCategoryFilter] = useState('All');
+  const [dateSearch, setDateSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
   const eventsPerPage = 8;
@@ -52,7 +53,8 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
   const filteredEvents = translatedEvents.filter(event => {
     const matchesType = typeFilter === 'All' || event.type === typeFilter;
     const matchesCategory = categoryFilter === 'All' || event.category === categoryFilter;
-    return matchesType && matchesCategory;
+    const matchesDate = !dateSearch || event.date.toLowerCase().includes(dateSearch.toLowerCase());
+    return matchesType && matchesCategory && matchesDate;
   });
 
   const totalPages = Math.ceil(filteredEvents.length / eventsPerPage);
@@ -117,6 +119,20 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* Date Search */}
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-widest font-bold opacity-50 flex items-center gap-1">
+                <Search className="w-3 h-3" /> {t.dateSearch}
+              </label>
+              <input
+                type="text"
+                value={dateSearch}
+                onChange={(e) => { setDateSearch(e.target.value); setCurrentPage(1); }}
+                placeholder={lang === 'am' ? 'ቀን ፈልግ...' : 'Search month...'}
+                className="bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-xs font-sans outline-none focus:border-church-gold/50 transition-colors w-28"
+              />
             </div>
 
             {/* Category Filter */}

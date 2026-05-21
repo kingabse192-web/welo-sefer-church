@@ -79,20 +79,20 @@ const LazyGalleryImage: React.FC<LazyGalleryImageProps> = ({
       ref={elementRef}
       className="relative w-full overflow-hidden rounded-2xl bg-gray-50 dark:bg-slate-900/40 min-h-[220px]"
     >
-      {/* Image Loader / Skeleton Placeholder using provided loader CSS with scale adjustments */}
+      {/* Shimmer skeleton placeholder */}
       {(!isLoaded || !inView) && (
-        <div className="absolute inset-0 bg-gray-100 dark:bg-slate-900/60 flex flex-col items-center justify-center p-6 min-h-[220px] aspect-[4/3] w-full z-10 transition-opacity duration-300">
-          <div 
-            className="loader text-lg md:text-xl text-church-gold tracking-widest whitespace-nowrap scale-75"
-            data-text={lang === 'am' ? 'በመጫን ላይ...' : 'Loading...'}
-            style={{ fontSize: '24px' }}
-          />
+        <div className="absolute inset-0 min-h-[220px] aspect-[4/3] w-full z-10 overflow-hidden bg-gray-200 dark:bg-slate-800">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-white/5 to-transparent animate-pulse" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-8 h-8 border-2 border-church-gold/20 border-t-church-gold rounded-full animate-spin" />
+          </div>
         </div>
       )}
       {inView ? (
         <motion.img 
           src={image.url} 
           alt={image.title} 
+          loading="lazy"
           initial={{ opacity: 0, scale: 0.94, filter: 'blur(8px)' }}
           animate={isLoaded ? { opacity: 1, scale: 1, filter: 'blur(0px)' } : { opacity: 0, scale: 0.94, filter: 'blur(8px)' }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}

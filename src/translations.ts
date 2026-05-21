@@ -73,6 +73,7 @@ export const translations = {
     events: {
       title: 'Event Calendar',
       subtitle: 'Join our vibrant community for spiritual growth and social fellowship. Stay updated with our upcoming services and events.',
+      dateSearch: 'Date',
       filterType: 'Filter By Type',
       category: 'Category',
       clearFilters: 'Clear Filters',
@@ -255,6 +256,7 @@ export const translations = {
     events: {
       title: 'የበዓላት እና የአገልግሎት መርሃ ግብር',
       subtitle: 'በመንፈሳዊ ሕይወትዎ እንዲያድጉ እና ከቤተ ክርስቲያን ማህበረሰብ ጋር እንዲቀራረቡ የተዘጋጁ መርሃ ግብሮች።',
+      dateSearch: 'ቀን',
       filterType: 'በዓይነት ይለዩ',
       category: 'ምድብ',
       clearFilters: 'ማጣሪያዎችን ያጽዱ',
