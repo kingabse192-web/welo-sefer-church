@@ -1,0 +1,368 @@
+export type Language = 'en' | 'am';
+
+export const translations = {
+  en: {
+    nav: {
+      history: 'History',
+      gallery: 'Gallery',
+      events: 'Events',
+      location: 'Location',
+      contact: 'Contact',
+      donation: 'Donation'
+    },
+    hero: {
+      strength: 'Strength',
+      inFaith: 'In Faith,',
+      peace: 'Peace',
+      inPrayer: 'In Prayer.',
+      subtitle: 'Welcome to the digital home of Welo Sefer St. Mary & St. Gabriel Churches. A sanctuary of spiritual devotion and local community heritage in the heart of Addis Ababa.',
+      ctaServices: 'Weekly Services',
+      ctaHistory: 'Explore History'
+    },
+    history: {
+      tag: 'Our Sacred Legacy',
+      title: 'Church History',
+      tabEvolution: 'Architectural Evolution',
+      tabMiracles: 'Miraculous Accounts',
+      tabSundaySchool: 'Sunday School',
+      evolutionSub: 'The church building has passed through three major historical stages:',
+      stage1Title: 'First Stage (Temporary Tabernacle)',
+      stage1Desc: 'Like most historical churches, the first building was made of wood and mud, roofed with corrugated iron sheets, following the tradition of the Ethiopian Orthodox Tewahedo Church.',
+      stage1Quote: 'The foundation stone was laid with prayer, and the walls were built with absolute devotion.',
+      stage2Title: 'Second Stage (Modern Sanctuary)',
+      stage2Desc: 'Due to local urban development and population growth, as the former building could not accommodate the growing congregation, a modern building with beautiful stained glass and internal sacred icons was built through dedicated contributions of professional engineers and the faithful.',
+      stage2Quote: 'A living testimony to God\'s grace in the heart of Bole.',
+      stage3Title: 'Infrastructure & Boundary Upgrades',
+      stage3Desc: 'Particularly during the Addis Ababa corridor development and the light rail construction projects, because of the church\'s prominent roadside location, the boundary walls and outer facades were upgraded in a modern architectural style. Sacred orthodox icons are beautifully visible on the walls.',
+      stage3Quote: 'Building not just for today, but for generations of faithful yet to come.',
+      miraclesSub: 'The faithful in this parish bear numerous testimonies regarding the blessings and miracles performed:',
+      healingTitle: 'The Miracle of Healing Holy Water',
+      healingDesc: 'The holy waters of St. Gabriel and Our Lady St. Mary located in the church compound are a source of miraculous recovery. Especially on the monthly feasts of the 19th (St. Gabriel) and 21st (St. Mary) nights, pilgrims healed of various chronic illnesses, spiritual bondages, and blindness gather rejoicing on feast days dressed in white garments of testimony.',
+      vowsTitle: 'Fulfillment of Vows & Divine Healing',
+      vowsDesc: 'Many who were afflicted with severe illness and spiritual torments, bedridden and without hope, have come to Welo Sefer St. Mary & St. Gabriel, bathed in the healing waters, held prayer vigils, and returned the following year completely free of pain and physical defects, carrying their beds to testify to their full restoration of health.',
+      youthTitle: 'Sunday School & Youth Success',
+      youthDesc: 'Our parish Sunday School is home to over 70+ students, featuring dedicated biblical studies, sacred liturgical hymn practice, and structured communal prayer programs.',
+      youthStats: '70+'
+    },
+    gallery: {
+      tag: 'Visual Journey',
+      title: 'Church Gallery',
+      clickToView: 'Click to view larger',
+      items: {
+        interior: { title: 'Monthly Saint Feasts', desc: 'Monthly Saint Feasts: Celebrating a specific saint\'s day every single month on the Ethiopian calendar celebrating St. Gabriel on the 19th.' },
+        icons: { title: 'Liturgical Icons', desc: 'Beautiful hand-painted icons representing sacred biblical scenes and saints, used to aid spiritual reflection.' },
+        education: { title: 'Corinth Church Overview', desc: 'Corinth Church Overview: Our church celebrates its establishment of 2.5 years of devoted service to the faithful.' },
+        procession: { title: 'Second Church Design', desc: 'Second Church Design: A projection and representation of the exquisite second architectural design chosen for our beautiful master sanctuary.' },
+        outreach: { title: 'Crowd & Devotion', desc: 'The 19th of Every Month (St. Gabriel): On this day, crowds gather to celebrate the Archangel Gabriel. He is revered as a powerful messenger and protector. The most famous, massive crowds happen during his annual festivals at the Kulubi Gabriel Church for detail.' },
+        youth: { title: 'Youth Assembly & Crowds', desc: 'Youth Assembly & Crowds: Vibrant gathering with massive Sunday school youth assemblies and congregations.' },
+        charity: { title: 'Saint Feasts (Monthly)', desc: 'Saint Feasts: Celebrating a specific saint\'s day every single month on the Ethiopian calenda celebrating St. Mary on the 21st .' },
+        blessing: { title: 'Monthly Saint Feasts', desc: 'Monthly Saint Feasts: Celebrating a specific saint\'s day every single month on the Ethiopian calendar celebrating St. Gabriel on the 19th .' },
+        hosaenaYouth: { title: 'Helpers of the Administrator', desc: 'Helpers of the Administrator: committed youth serving to assist the church administrator and liturgical services.' },
+        hosaenaTeachings: { title: 'Sacred Teachings at Hosaena', desc: 'Special sermons and teachings delivered during the holy week of Hosaena.' },
+        hosaenaIcon: { title: 'Administrator', desc: 'The Church Administrator leading the congregation with spiritual wisdom and organizational guidance.' },
+        hosaenaPalm: { title: 'Sunday School Students', desc: 'Sunday school students participating in the Hosaena (Palm Sunday) celebration.' },
+        spiritualTime: { title: 'Spiritual Hymns', desc: 'The clergy and deacons leading the congregation in sacred hymns during the liturgical service.' },
+        hosaenaCelebration: { title: 'Little Kid at Hosaena', desc: 'Little Kid at Hosaena: A little child holding Palm Sunday leaves, rejoicing in pure innocence and faith.' },
+        spiritualHymns2: { title: 'Spiritual Ceremony', desc: 'Spiritual Ceremony: Gathered clergy performing traditional chanting in a full holy spiritual ceremony and liturgical service.' },
+        bestChurchPerson: { title: 'Vibrant Hosaena Atmosphere', desc: 'Vibrant Hosaena Atmosphere: The energetic and joyful liturgical climate during Palm Sunday at our church with brief explanation.' },
+        powerOfTogether: { title: 'The Power of Togetherness', desc: 'Members of the congregation gather in unity and prayer, representing the strength of our community.' },
+        saturdayCeremony: { title: 'Saturday Morning Ceremony', desc: 'Saturday Morning Ceremony (Kidame Kidase): Weekly spiritual teachings, sacred praises, and holy traditional chants conducted by the church choir during Saturday hours with detailed spiritual liturgy.' },
+        moreComing: { title: 'More Coming Soon', desc: 'We are constantly capturing the beautiful moments of our church. Check back soon for more updates.' }
+      }
+    },
+    events: {
+      title: 'Event Calendar',
+      subtitle: 'Join our vibrant community for spiritual growth and social fellowship. Stay updated with our upcoming services and events.',
+      filterType: 'Filter By Type',
+      category: 'Category',
+      clearFilters: 'Clear Filters',
+      all: 'All',
+      noEvents: 'No events match the selected filters.',
+      spiritual: 'Spiritual',
+      community: 'Community',
+      regular: 'Regular',
+      majorFeast: 'Major Feast',
+      social: 'Social',
+      details: 'Details',
+      close: 'Close',
+      dateLabel: 'Date',
+      timeLabel: 'Time',
+      typeLabel: 'Type',
+      locationLabel: 'Location',
+      list: [
+        {
+          title: "Sunday Holy Liturgy (Kidase)",
+          date: "Every Sunday",
+          time: "6:00 AM - 9:00 AM",
+          location: "St. Mary Sanctuary",
+          category: "Regular",
+          description: "Join us for the central act of worship in the Ethiopian Orthodox Tewahedo Church. The Holy Liturgy is a divine service of praise, prayer, and communion, bringing the community together in spiritual unity and tradition."
+        },
+        {
+          title: "Feast of St. Gabriel",
+          date: "December 28 (Tahsas 19)",
+          time: "All Day",
+          location: "St. Gabriel Cathedral",
+          category: "Major Feast",
+          description: "One of the most significant annual celebrations at our church. Thousands of pilgrims and local faithful gather to honor the Archangel Gabriel. The day includes special liturgical services, colorful processions with the Tabot, and communal festivities."
+        },
+        {
+          title: "St. Mary's Monthly Feast",
+          date: "21st of Each Month (E.C)",
+          time: "5:30 AM - 10:00 AM",
+          location: "St. Mary Sanctuary",
+          category: "Major Feast",
+          description: "A monthly celebration dedicated to the Holy Virgin Mary (Kidist Mariam). This special service features extended hymns, special prayers for intercession, and a morning liturgy that draws the faithful for spiritual renewal."
+        },
+        {
+          title: "Evening Prayer (Yeserke Tselot)",
+          date: "Daily",
+          time: "5:30 PM - 6:30 PM",
+          location: "Main Cathedral",
+          category: "Regular",
+          description: "A peaceful daily gathering for evening intercession. These prayers offer a moment of reflection and spiritual connection as the day ends, featuring traditional Ethiopian Orthodox hymns and readings."
+        },
+        {
+          title: "Sunday School Program",
+          date: "Every Sunday",
+          time: "10:30 AM - 12:30 PM",
+          location: "Youth Center",
+          category: "Regular",
+          description: "Dedicated to the spiritual education of our youth. Children and young adults learn about the teachings of the Bible, church history, and the beautiful traditions of the Tewahedo faith in a welcoming environment."
+        },
+        {
+          title: "Bible Study (Tsehafe Guba'e)",
+          date: "Every Friday",
+          time: "5:00 PM - 6:30 PM",
+          location: "Church Hall",
+          category: "Regular",
+          description: "An in-depth exploration of Holy Scripture led by experienced teachers. This interactive session allows the community to deepen their understanding of spiritual texts and apply their wisdom to modern life."
+        }
+      ]
+    },
+    location: {
+      title: 'Location & Directions',
+      subtitle: 'Find us at the heart of Bole Welo Sefer. We are easily accessible via multiple modes of transportation.',
+      address: 'Address',
+      addressValue: 'XQQF+9GJ ወሎ ሰፈር ቅድስት ማርያም እና ቅዱስ ገብርኤል ቤተክርስቲያን, Addis Ababa, Ethiopia',
+      transit: 'Transit Options',
+      lightRail: 'Light Rail: Get off at Bole Welo Sefer Station',
+      bus: 'Anbessa Bus / Public Transport: Multiple lines stop directly at the intersection.',
+      car: 'Ride/Taxi: Use "Welo Sefer Mazoria" as your destination.'
+    },
+    contact: {
+      tag: 'Get In Touch',
+      title: 'Contact & Support',
+      name: 'Name',
+      email: 'Email',
+      message: 'Message',
+      send: 'Send Message',
+      devProfile: 'Developer Profile',
+      devRole: 'Full-Stack Developer',
+      devTeam: 'D/N ABSALEW BELAYNEH',
+      devAge: 'Age',
+      devExperience: 'Experience',
+      devAgeValue: '17 Years',
+      devExpValue: '3+ Years',
+      devToolsTitle: 'Built With Professional Tools',
+      devHub: 'Developer Hub',
+      devQuote: 'Crafting digital experiences rooted in tradition and propelled by modern technology.',
+      sendMessage: 'Send a Message',
+      messagePlaceholder: 'Describe your project or inquiry...',
+      sendApplication: 'Send Application',
+      statusSuccess: 'Opening email client to send your message to Developer Gmail...',
+      contactInfo: 'Contact Information',
+      devPhone: '+251 961 634 343',
+      donationTitle: 'Support Our Church (Donations)',
+      cbeTitle: 'Commercial Bank of Ethiopia (CBE)',
+      abayTitle: 'Abay Bank'
+    },
+    footer: {
+      desc: 'Serving the spiritual needs of our community through tradition, prayer, and social outreach. Join us as we walk the path of faith together.',
+      quickLinks: 'Quick Links',
+      copyright: '© 2024 Welo Sefer St. Mary & St. Gabriel Churches. All Rights Reserved.'
+    }
+  },
+  am: {
+    nav: {
+      history: 'የቤተ ክርስቲያኑ ታሪክ',
+      gallery: 'ጋለሪ',
+      events: 'በዓላት',
+      location: 'መገኛችን',
+      contact: 'አግኙን',
+      donation: 'ልገሳ'
+    },
+    hero: {
+      strength: 'በእምነት',
+      inFaith: 'መጽናት፣',
+      peace: 'በጸሎት',
+      inPrayer: 'መጽናናት።',
+      subtitle: 'ወደ ወሎ ሰፈር ቅድስት ማርያም እና ቅዱስ ገብርኤል አብያተ ክርስቲያናት ዲጂታል መነሻ በደኅና መጡ። በአዲስ አበባ እምብርት ውስጥ የሚገኝ የመንፈሳዊ ተባብሮ እና ታሪካዊ ቅርስ ማዕከል።',
+      ctaServices: 'የሳምንት መርሃ ግብሮች',
+      ctaHistory: 'ታሪክን ያስሱ'
+    },
+    history: {
+      tag: 'የተቀደሰ ቅርሳችን',
+      title: 'የቤተ ክርስቲያን ታሪክ',
+      tabEvolution: 'የሕንጻ ግንባታ ታሪክ',
+      tabMiracles: 'መንፈሳዊና ተአምራዊ ታሪኮች',
+      tabSundaySchool: 'የሰንበት ትምህርት ቤት',
+      evolutionSub: 'የቤተክርስቲያኑ ሕንጻ ሦስት ዋና ዋና ደረጃዎችን አልፏል፦',
+      stage1Title: 'የመጀመሪያው ደረጃ (ጊዜያዊው ማዕደር)',
+      stage1Desc: 'ልክ እንደ አብዛኞቹ ታሪካዊ አብያተ ክርስቲያናት፣ መጀመሪያው ሕንጻ በዕንጨትና በጭቃ ተሠርቶ በቆርቆሮ የተከደነ፣ የኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተክርስቲያንን የተከተለ ነበር።',
+      stage1Quote: 'የመሠረት ድንጋዩ በጸሎት ተቀመጠ፣ ግንቦቹም በሙሉ ታማኝነት ተገነቡ።',
+      stage2Title: 'የሁለተኛው ደረጃ ዘመናዊ ሕንጻ',
+      stage2Desc: 'በአካባቢው የከተማ ልማትና የሕዝብ ቁጥር መጨመር ምክንያት፣ የቀድሞው ሕንጻ ምዕመናንን ማስተናገድ ባለመቻሉ፣ በታዋቂ መሐንዲሶችና በምዕመናን ከፍተኛ መዋጮ ባለ ባለቀለም መስታወትና ውብ የውስጥ ሥዕላት ያሉት ሕንጻ ተገነባ።',
+      stage2Quote: 'በቦሌ እምብርት ውስጥ ለእግዚአብሔር ጸጋ ሕያው ምስክር።',
+      stage3Title: 'የመሠረተ ልማትና የቅጽር ማሻሻያ',
+      stage3Desc: 'በተለይ በአዲስ አበባ የኮሪደር ልማትና የቀላል ባቡር መስመር ግንባታ ወቅት፣ ቤተክርስቲያኑ በዋናው መንገድ ዳር በመገኘቱ የቅጽር ግንቡና የውጭው ገጽታ በዘመናዊ መልኩ እንዲሻሻል ተደርጓል። የቅዱሳኑ ሥዕላት በግድግዳው ላይ በግልጽ ይታያሉ።',
+      stage3Quote: 'ለዛሬ ብቻ ሳይሆን ለሚቀጥሉት ታማኝ ትውልዶች መገንባት።',
+      miraclesSub: 'ምዕመናን በዚህ ደብር ስለሚያገኟቸው ጸጋዎችና ስለሚፈጸሙ ተአምራት በርካታ ምስክርነቶችን ይሰጣሉ፦',
+      healingTitle: 'የፈውስ ጠበል ተአምር',
+      healingDesc: 'በግቢው ውስጥ የሚገኘው የቅዱስ ገብርኤልና የእመቤታችን ጸበል በርካታ ሕሙማን የሚፈወሱበት ነው። በተለይም በየወሩ በ19 (ገብርኤል) እና በ21 (ማርያም) ሌሊት በጸበሉ ተጠምቀው ከልዩ ልዩ ደዌ፣ ከርኩሳን መናፍስት እስራትና ከእውርነት የዳኑ ምዕመናን በበዓላቱ ዕለት የምስክርነት ልብስ (ነጭ ለብሰው) ሲያመሰግኑ ይታያሉ።',
+      vowsTitle: 'የስዕለት መፈጸም (የታመሙት መፈወስ)',
+      vowsDesc: 'በልዩ ልዩ ከባድ ደዌና በክፉ መናፍስት እስራት ተይዘው፣ ተስፋ ቆርጠውና አልጋ ላይ ውለው የነበሩ በርካታ በሽተኞች ወደ ወሎ ሰፈር ማርያምና ገብርኤል በመምጣት፣ በቅዱስ ጸበሉ ተጠምቀውና በዕለተ ንግሡ ሱባኤ ይዘው፣ በቀጣዩ ዓመት ያ የነበረባቸው በሽታና ስቃይ ሙሉ በሙሉ ጠፍቶ፣ ፈውሰ ሥጋና ፈውሰ ነፍስ አግኝተው፣ ፍጹም ጤናማ ሆነውና አልጋቸውን ተሸክመው ምስክርነት ሲሰጡ ማየት የተለመደ ተአምር ነው።',
+      youthTitle: '(የተማሪዎች ስኬት) የደብሩ ሰንበት ትምህርት ቤት ተማሪዎች',
+      youthDesc: 'የደብሩ ሰንበት ትምህርት ቤት ተማሪዎች ብዛት 70+ የሚሆን ሲሆን፣ የትምህርት ጊዜ፣ የመዝሙር ጊዜ፣ እንዲሁም ልዩ የጸሎት ፕሮግራም አላቸው።',
+      youthStats: '70+'
+    },
+    gallery: {
+      tag: 'የማኅበረሰባችን የጋለሪ ጉዞ',
+      title: 'የቤተ ክርስቲያናችን ጋለሪ',
+      clickToView: 'ለመመልከት ሥዕሉን ይጫኑ',
+      items: {
+        interior: { title: 'ወርሃዊ የቅዱሳን በዓላት', desc: 'ወርሃዊ የቅዱሳን በዓላት: በየወሩ በኢትዮጵያ ዘመን አቆጣጠር የሚከበረውን የቅዱሳን በዓል ማክበር، በ19 የቅዱስ ገብርኤልን በዓል ማክበር።' },
+        icons: { title: 'ቅዱሳን ሥዕላት', desc: 'ለመንፈሳዊ ትኩረታችን የሚረዱ፣ ገላጭ እና ውብ የሆኑ በእጅ የተሳሉ ቅዱሳን ሥዕላት።' },
+        education: { title: 'የኮሪንት ቤተ ክርስቲያን አጠቃላይ እይታ', desc: 'የኮሪንት ቤተ ክርስቲያን አጠቃላይ እይታ: ቤተ ክርስቲያናችን ለምዕመናን ታማኝ አገልግሎት መስጠት ከጀመረች 2 ዓመት ተኩል (2.5 ዓመታት) መሙላቷን የምታከብርበት መግለጫ።' },
+        procession: { title: 'ሁለተኛው የቤተ ክርስቲያን ንድፍ', desc: 'ሁለተኛው የቤተ ክርስቲያን ንድፍ: ለቤተ ክርስቲያናችን የወደፊት ካቴድራል የተዘጋጀው ሁለተኛው አስደናቂ የስነ-ሕንጻ ውበትና ንድፍ ማሳያ።' },
+        outreach: { title: 'የምዕመናን ብዛት እና ታላቅ እምነት', desc: 'በየወሩ በ19ኛው ቀን (የቅዱስ ገብርኤል በዓል): በዚህ ዕለት የቅዱስ ገብርኤልን በዓል ለማክበር በርካታ ምዕመናን ይሰበሰባሉ።' },
+        youth: { title: 'የወጣቶች ስብስብ እና ብዙ ቁጥር ያለው ምዕመናን', desc: 'የወጣቶች ስብስብ እና ብዙ ቁጥር ያለው ምዕመናን: በደስታ የተሞላ የሰንበት ትምህርት ቤት ወጣቶች እና የምዕመናን ጉባኤ ስብስብ።' },
+        charity: { title: 'የቅዱሳን በዓላት (ወርሃዊ)', desc: 'የቅዱሳን በዓላት: በየወሩ በኢትዮጵያ ዘመን አቆጣጠር የሚከበረውን የቅዱሳን በዓል ማክበር፣ በ21 የቅድስት ማርያምን በዓል ማክበር።' },
+        blessing: { title: 'ወርሃዊ የቅዱሳን በዓላት', desc: 'ወርሃዊ የቅዱሳን በዓላት: በየወሩ በኢትዮጵያ ዘመን አቆጣጠር የሚከበረውን የቅዱሳን በዓል ማክበር፣ በ19 የቅዱስ ገብርኤልን በዓል ማክበር።' },
+        hosaenaYouth: { title: 'የአስተዳዳሪው ረዳቶች', desc: 'የአስተዳዳሪው ረዳቶች: የቤተ ክርስቲያኑን አስተዳዳሪ ለመርዳትና ለአገልግሎት የተዘጋጁ ወጣቶች።' },
+        hosaenaTeachings: { title: 'የሆሳዕና ልዩ ትምህርቶች', desc: 'በተቀደሰው የሆሳዕና ሳምንት የሚሰጡ ልዩ ስብከቶችና መንፈሳዊ ትምህርቶች።' },
+        hosaenaIcon: { title: 'አስተዳዳሪ', desc: 'የቤተ ክርስቲያኑ አስተዳዳሪ ምዕመናንን በመንፈሳዊ ጥበብ እና በአደረጃጀት መመሪያ ሲመሩ።' },
+        hosaenaPalm: { title: 'የሰንበት ትምህርት ቤት ተማሪዎች', desc: 'የሰንበት ትምህርት ቤት ተማሪዎች በሆሳዕና (በዘንባባ እሁድ) በዓል ሥነ-ሥርዓት ላይ ሲሳተፉ።' },
+        spiritualTime: { title: 'መንፈሳዊ ዝማሬ ሰዓት', desc: 'ካህናትና ዲያቆናት በቅዳሴ አገልግሎት ወቅት ምዕመናንን በመንፈሳዊ ዜማ ሲመሩ።' },
+        hosaenaCelebration: { title: 'ትንሹ ሕፃን በሆሳዕና በዓል', desc: 'ትንሹ ሕፃን በሆሳዕና በዓል: በሆሳዕና በዓል ላይ የዘንባባ ቅጠል በመያዝ በንጽሕናና በእምነት የሚደሰት ሕፃን።' },
+        spiritualHymns2: { title: 'ቅዱስ መንፈሳዊ ሥነ-ሥርዓት', desc: 'ቅዱስ መንፈሳዊ ሥነ-ሥርዓት: የቤተ ክርስቲያን ካህናትና ዲያቆናት በቅዱስ ዝማሬ እና በጸሎት የሚያቀርቡት ሙሉ መንፈሳዊ ሥነ-ሥርዓት።' },
+        bestChurchPerson: { title: 'በቤተ ክርስቲያናችን የነበረው ደማቅ የሆሳዕና በዓል ድባብ', desc: 'ደማቅ የሆሳዕና በዓል ድባብ: በቤተ ክርስቲያናችን የነበረው ደማቅና እጅግ አስደሳች የሆሳዕና ድባብ አጭር ገለጻ።' },
+        powerOfTogether: { title: 'የአንድነት ኃይል', desc: 'ምዕመናን በአንድነትና በጸሎት ተሰብስበው፣ የማህበረሰባችንን ጥንካሬ ሲያሳዩ።' },
+        saturdayCeremony: { title: 'የቅዳሜ ጠዋት መርሃ ግብር', desc: 'የቅዳሜ ጠዋት መርሃ ግብር (የቅዳሜ ቅዳሴ)፦ በየሳምንቱ ቅዳሜ ጠዋት በቤተ ክርስቲያናችን የሚከናወን መንፈሳዊ ትምህርት፣ ስብከት፣ ቅዱስ ዝማሬ እና የጸሎት ሥነ-ሥርዓት ሙሉ መንፈሳዊ ማብራሪያ።' },
+        moreComing: { title: 'ተጨማሪ በቅርቡ ይመጣል', desc: 'የቤተ ክርስቲያናችንን ውብ አፍታዎች በየጊዜው እየቀረጽን ነው። ለተጨማሪ አዳዲስ መረጃዎች በቅርቡ ተመልሰው ይምጡ።' }
+      }
+    },
+    events: {
+      title: 'የበዓላት እና የአገልግሎት መርሃ ግብር',
+      subtitle: 'በመንፈሳዊ ሕይወትዎ እንዲያድጉ እና ከቤተ ክርስቲያን ማህበረሰብ ጋር እንዲቀራረቡ የተዘጋጁ መርሃ ግብሮች።',
+      filterType: 'በዓይነት ይለዩ',
+      category: 'ምድብ',
+      clearFilters: 'ማጣሪያዎችን ያጽዱ',
+      all: 'ሁሉም',
+      noEvents: 'ከተመረጡት ማጣሪያዎች ጋር የሚዛመድ መርሃ ግብር አልተገኘም።',
+      spiritual: 'መንፈሳዊ',
+      community: 'ማህበረሰባዊ',
+      regular: 'መደበኛ',
+      majorFeast: 'ታላቅ በዓል',
+      social: 'ማህበራዊ',
+      details: 'ዝርዝር',
+      close: 'ዝጋ',
+      dateLabel: 'ቀን',
+      timeLabel: 'ሰዓት',
+      typeLabel: 'ዓይነት',
+      locationLabel: 'ቦታ',
+      list: [
+        {
+          title: "የእሁድ ቅዳሴ",
+          date: "በየሳምንቱ እሁድ",
+          time: "ከጠዋቱ 12:00 - 3:00",
+          location: "በቅድስት ማርያም መቅደስ",
+          category: "Regular",
+          description: "በኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን ማዕከላዊ የአምልኮ ሥርዓት። ቅዳሴው የምስጋና፣ የጸሎት እና የቁርባን አገልግሎት ሲሆን ማህበረሰቡን በመንፈሳዊ አንድነት እና በወግ ያገናኛል።"
+        },
+        {
+          title: "የቅዱስ ገብርኤል ዓመታዊ በዓል",
+          date: "ታህሳስ 19",
+          time: "ቀኑን ሙሉ",
+          location: "በቅዱስ ገብርኤል ካቴድራል",
+          category: "Major Feast",
+          description: "በቤተ ክርስቲያናችን ውስጥ ካሉ ትልልቅ ዓመታዊ በዓላት አንዱ። በሺዎች የሚቆጠሩ ምዕመናን የመላእክቱን አለቃ ቅዱስ ገብርኤልን ለማክበር ይሰበሰባሉ። ዕለቱ ልዩ የቅዳሴ አገልግሎት፣ የታቦት ንግሥ እና የማህበረሰብ በዓላትን ያጠቃልላል።"
+        },
+        {
+          title: "የወርሃዊ ቅድስት ማርያም በዓል",
+          date: "በየወሩ በ21",
+          time: "ከጠዋቱ 11:30 - 4:00",
+          location: "በቅድስት ማርያም መቅደስ",
+          category: "Major Feast",
+          description: "ለቅድስት ድንግል ማርያም የተወሰነ ወርሃዊ በዓል። ይህ ልዩ አገልግሎት ረጅም ማህሌት፣ አማላጅነት ጸሎት እና ምዕመናንን ለመንፈሳዊ እድሳት የሚጠራ የጠዋት ቅዳሴን ያካትታል።"
+        },
+        {
+          title: "የሰርክ ጸሎት",
+          date: "በየቀኑ",
+          time: "ከምሽቱ 11:30 - 12:30",
+          location: "በዋናው ካቴድራል",
+          category: "Regular",
+          description: "ለሰርክ ጸሎት የሚደረግ ሰላማዊ ዕለታዊ ስብሰባ። እነዚህ ጸሎቶች ቀኑ ሲያልቅ የመረጋጋት እና ከመንፈሳዊ ዓለም ጋር የመገናኛ ጊዜን ይሰጣሉ፤ ባህላዊ የኢትዮጵያ ኦርቶዶክስ መዝሙሮች እና ንባቦችንም ያካትታሉ።"
+        },
+        {
+          title: "የሰንበት ትምህርት ቤት ፕሮግራም",
+          date: "በየሳምንቱ እሁድ",
+          time: "ከጠዋቱ 4:30 - 6:30",
+          location: "በወጣቶች ማዕከል",
+          category: "Regular",
+          description: "ለወጣቶች መንፈሳዊ ትምህርት የተወሰነ። ሕፃናት እና ወጣቶች ስለ መጽሐፍ ቅዱስ ትምህርት፣ ስለ ቤተ ክርስቲያን ታሪክ እና ስለ ውብ የተዋሕዶ ወጎች በሚመች ሁኔታ ይማራሉ።"
+        },
+        {
+          title: "የመጽሐፍ ቅዱስ ጥናት (ጻሐፌ ጉባኤ)",
+          date: "በየሳምንቱ አርብ",
+          time: "ከምሽቱ 11:00 - 12:30",
+          location: "በአዳራሹ",
+          category: "Regular",
+          description: "ልምድ ባላቸው መምህራን የሚመራ ጥልቅ የመጽሐፍ ቅዱስ ምርምር። ይህ መርሃ ግብር ማህበረሰቡ ስለ መንፈሳዊ ጽሑፎች ያላቸውን ግንዛቤ እንዲያሳድጉ እና ጥበባቸውን በዘመናዊ ሕይወት ውስጥ እንዲተገብሩ ያስችላቸዋል።"
+        }
+      ]
+    },
+    location: {
+      title: 'መገኛችን እና አድራሻችን',
+      subtitle: 'በቦሌ ወሎ ሰፈር እምብርት ያገኙናል:: በተለያዩ የመጓጓዣ መንገዶች በቀላሉ ተደራሽ ነን።',
+      address: 'አድራሻ',
+      addressValue: 'XQQF+9GJ ወሎ ሰፈር ቅድስት ማርያም እና ቅዱስ ገብርኤል ቤተክርስቲያን, አዲስ አበባ, ኢትዮጵያ',
+      transit: 'የመጓጓዣ አማራጮች',
+      lightRail: 'ቀላል ባቡር፡ ወሎ ሰፈር ጣቢያ ላይ ይውረዱ',
+      bus: 'አንበሳ አውቶቡስ / የሕዝብ ትራንስፖርት፡ ብዙ መስመሮች በቀጥታ በመገንጠያው ላይ ይቆማሉ።',
+      car: 'ራይድ/ታክሲ፡ መድረሻዎን "ወሎ ሰፈር ማዞሪያ" ብለው ይጠቀሙ።'
+    },
+    contact: {
+      tag: 'ይገናኙን',
+      title: 'ግንኙነት እና ድጋፍ',
+      name: 'ስም',
+      email: 'ኢሜል',
+      message: 'መልእክት',
+      send: 'መልእክት ይላኩ',
+      devProfile: 'የዲዛይነሩ መገለጫ',
+      devRole: 'ፈጣን የድረ-ገጽ አልሚ',
+      devTeam: 'ዲ/ን አብሳለው በላይነህ',
+      devAge: 'ዕድሜ',
+      devExperience: 'የስራ ልምድ',
+      devAgeValue: '17 ዓመት',
+      devExpValue: '3+ ዓመታት',
+      devToolsTitle: 'በሙያዊ መሣሪያዎች የተገነባ',
+      devHub: 'የአልሚው ማዕከል',
+      devQuote: 'በልማድ ላይ የተመሰረቱ እና በዘመናዊ ቴክኖሎጂ የተጎለበቱ ዲጂታል ተሞክሮዎችን መፍጠር።',
+      sendMessage: 'መልእክት ይላኩ',
+      messagePlaceholder: 'ስለ ፕሮጀክትዎ ወይም ጥያቄዎ ይግለጹ...',
+      sendApplication: 'መልእክቱን ላክ',
+      statusSuccess: 'መልእክትዎን ለመላክ የኢሜይል መተግበሪያ በመከፈት ላይ ነው...',
+      contactInfo: 'የመገናኛ መረጃ',
+      devPhone: '+251 961 634 343',
+      donationTitle: 'ቤተ ክርስቲያናችንን ይደግፉ (ልገሳ)',
+      cbeTitle: 'የኢትዮጵያ ንግድ ባንክ (CBE)',
+      abayTitle: 'የዓባይ ባንክ'
+    },
+    footer: {
+      desc: 'በወግ፣ በጸሎት እና በማህበራዊ አገልግሎት የማህበረሰባችንን መንፈሳዊ ፍላጎቶች ማገልገል። የእምነትን መንገድ አብረን ስንጓዝ ይቀላቀሉን።',
+      quickLinks: 'ፈጣን አገናኞች',
+      copyright: '© 2024 የወሎ ሰፈር ቅድስት ማርያም እና ቅዱስ ገብርኤል አብያተ ክርስቲያናት። መብቱ በሕግ የተጠበቀ ነው።'
+    }
+  }
+};
