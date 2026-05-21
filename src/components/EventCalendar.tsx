@@ -31,12 +31,12 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
 
   // Metadata mapping for the simplified translated list
   const eventMetadata = [
-    { type: "Spiritual", image: "/curent church.PNG" },
-    { type: "Spiritual", image: "/new church.jpg" },
-    { type: "Spiritual", image: "/1galery.PNG" },
-    { type: "Spiritual", image: "/old church.jpg" },
-    { type: "Community", image: "/2comuniy.jpg" },
-    { type: "Spiritual", image: "/2galery.PNG" },
+    { type: "Spiritual", image: "curent church.PNG" },
+    { type: "Spiritual", image: "new church.jpg" },
+    { type: "Spiritual", image: "1galery.PNG" },
+    { type: "Spiritual", image: "old church.jpg" },
+    { type: "Community", image: "2comuniy.jpg" },
+    { type: "Spiritual", image: "2galery.PNG" },
   ];
 
   const translatedEvents = (t.list || []).map((e, index) => {

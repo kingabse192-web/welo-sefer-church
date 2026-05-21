@@ -76,7 +76,7 @@ const LocationSection: React.FC<LocationSectionProps> = ({ lang }) => {
             {showMapItem && (
               <div className="absolute top-4 left-4 md:bottom-4 md:top-auto map-item bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm shadow-xl rounded-xl p-3 flex items-center gap-3 border border-church-gold/30 z-10 transition-all duration-300 hover:scale-[1.02]">
                 <img 
-                  src="/logo.png" 
+                  src="logo.png" 
                   alt="Welo Sefer" 
                   className="w-10 h-10 object-cover rounded-lg border border-church-gold/20 item-thumbnail" 
                   referrerPolicy="no-referrer"

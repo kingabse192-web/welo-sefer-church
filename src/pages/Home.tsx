@@ -15,7 +15,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
     <div className="pt-20">
       <section className="relative h-[85vh] flex items-center justify-center bg-church-blue dark:bg-black overflow-hidden transition-colors duration-500">
         <div className="absolute inset-0 z-0">
-          <img src="/new church.jpg" alt="Church Foreground" className="w-full h-full object-cover opacity-40 mix-blend-overlay" referrerPolicy="no-referrer" />
+          <img src="new church.jpg" alt="Church Foreground" className="w-full h-full object-cover opacity-40 mix-blend-overlay" referrerPolicy="no-referrer" />
           <div className="absolute inset-0 bg-gradient-to-b from-church-blue/80 via-church-blue/50 to-church-blue dark:from-black/90 dark:via-black/70 dark:to-black transition-colors"></div>
         </div>
         

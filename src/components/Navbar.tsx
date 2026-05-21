@@ -40,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <NavLink to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
           <div className="w-10 h-10 overflow-hidden rounded-full border-2 border-church-gold shadow-sm">
-            <img src="/logo.png" alt="Church Logo" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            <img src="logo.png" alt="Church Logo" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
           </div>
           <span className="font-serif font-bold text-xl tracking-tight text-church-blue dark:text-church-gold transition-colors">Welo Sefer Church</span>
         </NavLink>

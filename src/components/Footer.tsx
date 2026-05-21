@@ -60,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
           <p>{t.location.addressValue}</p>
           <p>Email: info@weloseferchurch.org<br />Tel: +251 (11) 612 3456</p>
           <Link to="/developer" className="flex items-center gap-4 pt-4 border-t border-church-gold/10 hover:opacity-80 transition-opacity">
-            <img src="/developer.jpg" alt="Developer" className="w-10 h-10 rounded-full object-cover border border-church-gold/30" referrerPolicy="no-referrer" />
+            <img src="developer.jpg" alt="Developer" className="w-10 h-10 rounded-full object-cover border border-church-gold/30" referrerPolicy="no-referrer" />
             <p className="text-[10px] leading-tight dark:text-gray-400 transition-colors uppercase tracking-wider">{t.contact.devRole}<br/><span className="text-church-blue dark:text-church-gold font-bold transition-colors">{t.contact.devTeam}</span></p>
           </Link>
         </div>

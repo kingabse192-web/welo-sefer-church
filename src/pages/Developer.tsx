@@ -117,7 +117,7 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
               <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-10">
                 <div className="relative shrink-0">
                   <div className="w-40 h-40 rounded-3xl overflow-hidden border-4 border-church-gold shadow-2xl relative z-10">
-                    <img src="/developer.jpg" alt="Developer" className="w-full h-full object-cover" />
+                    <img src="developer.jpg" alt="Developer" className="w-full h-full object-cover" />
                   </div>
                   <div className="absolute -bottom-4 -right-4 bg-church-blue dark:bg-church-gold p-4 rounded-2xl shadow-lg z-20">
                     <Code2 className="w-6 h-6 text-church-gold dark:text-church-blue" />
