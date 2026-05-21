@@ -39,6 +39,13 @@
       </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>
-    <script>document.getElementById('root').querySelector('#loading').style.display='flex'</script>
+    <script>
+      (function(){
+        var el = document.getElementById('loading');
+        setTimeout(function(){
+          if(el) { el.style.opacity = '0'; setTimeout(function(){ el.remove(); }, 400); }
+        }, 2500);
+      })();
+    </script>
   </body>
 </html>

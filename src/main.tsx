@@ -7,7 +7,7 @@ const root = document.getElementById('root')!;
 const loading = document.getElementById('loading');
 if (loading) {
   loading.style.opacity = '0';
-  setTimeout(() => loading.remove(), 500);
+  setTimeout(() => loading.remove(), 300);
 }
 
 ReactDOM.createRoot(root).render(
