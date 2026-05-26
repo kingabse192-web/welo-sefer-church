@@ -160,7 +160,7 @@ export const translations = {
       send: 'Send Message',
       devProfile: 'Developer Profile',
       devRole: 'Full-Stack Developer',
-      devTeam: 'D/N ABSALEW BELAYNEH',
+      devTeam: 'ABSALEW BELAYNEH',
       devAge: 'Age',
       devExperience: 'Experience',
       devAgeValue: '17 Years',
