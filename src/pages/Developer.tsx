@@ -103,133 +103,206 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left Side: Profile Card */}
+        <div className="grid lg:grid-cols-3 gap-8 items-start">
+          {/* Profile 1: D/N ABSALEW BELAYNEH */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 shadow-2xl shadow-church-blue/5 border border-church-gold/10 relative overflow-hidden"
+            className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl shadow-church-blue/5 border border-church-gold/10 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-40 h-40 bg-church-gold/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
             
             <div className="relative z-10">
-              <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-10">
-                <div className="relative shrink-0">
-                  <div className="w-40 h-40 rounded-3xl overflow-hidden border-4 border-church-gold shadow-2xl relative z-10">
+              <div className="flex flex-col items-center mb-6">
+                <div className="relative shrink-0 mb-4">
+                  <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-church-gold shadow-2xl relative z-10">
                     <img src="developer.jpg" alt="Developer" className="w-full h-full object-cover" />
                   </div>
-                  <div className="absolute -bottom-4 -right-4 bg-church-blue dark:bg-church-gold p-4 rounded-2xl shadow-lg z-20">
-                    <Code2 className="w-6 h-6 text-church-gold dark:text-church-blue" />
+                  <div className="absolute -bottom-3 -right-3 bg-church-blue dark:bg-church-gold p-3 rounded-2xl shadow-lg z-20">
+                    <Code2 className="w-5 h-5 text-church-gold dark:text-church-blue" />
                   </div>
                 </div>
                 
-                <div className="text-center md:text-left pt-4">
-                  <h2 className="text-3xl font-serif font-bold text-church-blue dark:text-white mb-2">{t.devTeam}</h2>
-                  <p className="text-church-gold font-bold text-sm underline decoration-church-gold/30 underline-offset-8 uppercase tracking-widest">{t.devRole}</p>
+                <div className="text-center">
+                  <h2 className="text-2xl font-serif font-bold text-church-blue dark:text-white mb-1">{t.devTeam}</h2>
+                  <p className="text-church-gold font-bold text-xs underline decoration-church-gold/30 underline-offset-8 uppercase tracking-widest">{t.devRole}</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-6 mb-10">
-                <div className="bg-church-blue/5 dark:bg-white/5 p-6 rounded-3xl border border-church-gold/10">
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-church-blue/5 dark:bg-white/5 p-4 rounded-2xl border border-church-gold/10">
                   <p className="text-[10px] uppercase font-bold text-gray-400 mb-1">{t.devAge}</p>
-                  <p className="text-2xl font-bold text-church-blue dark:text-gray-100">{t.devAgeValue}</p>
+                  <p className="text-xl font-bold text-church-blue dark:text-gray-100">{t.devAgeValue}</p>
                 </div>
-                <div className="bg-church-blue/5 dark:bg-white/5 p-6 rounded-3xl border border-church-gold/10">
+                <div className="bg-church-blue/5 dark:bg-white/5 p-4 rounded-2xl border border-church-gold/10">
                   <p className="text-[10px] uppercase font-bold text-gray-400 mb-1">{t.devExperience}</p>
-                  <p className="text-2xl font-bold text-church-blue dark:text-gray-100">{t.devExpValue}</p>
+                  <p className="text-xl font-bold text-church-blue dark:text-gray-100">{t.devExpValue}</p>
                 </div>
               </div>
 
-              {/* Robust Highlight 7-Day Update Guarantee Alert */}
-              <div className="mb-10 p-6 rounded-3xl border-2 border-dashed border-church-gold bg-church-gold/10 dark:bg-church-gold/5 shadow-[0_4px_24px_rgba(212,175,55,0.15)] relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-church-gold/15 rounded-full blur-xl group-hover:scale-125 transition-all"></div>
-                <div className="relative z-10 flex gap-4 items-center">
-                  <span className="w-3 h-3 rounded-full bg-church-gold shrink-0" />
-                  <div className="space-y-1">
-                    <p className="font-serif font-black text-xs md:text-sm text-church-blue dark:text-white uppercase tracking-wider leading-snug">
-                      {lang === 'am' ? (
-                        <>እኔ ሰመርጌታ በላይነህ በየ7 ቀኑ ይህንን ድረ-ገጽ አዘምነዋለሁ — ወቅታዊ ይሁኑ!</>
-                      ) : (
-                        <>I SEMERGETA BELAYNEH, will update this website every 7 days — stay updated.</>
-                      )}
+              <div className="mb-6 p-4 rounded-2xl border-2 border-dashed border-church-gold bg-church-gold/10 dark:bg-church-gold/5">
+                <div className="flex gap-3 items-center">
+                  <span className="w-2.5 h-2.5 rounded-full bg-church-gold shrink-0" />
+                  <div className="space-y-0.5">
+                    <p className="font-serif font-black text-[11px] text-church-blue dark:text-white uppercase tracking-wider leading-snug">
+                      {lang === 'am' ? 'እኔ D/N አብሳለው በላይነህ በየ7 ቀኑ አዘምነዋለሁ' : 'I D/N ABSALEW BELAYNEH, updates every 7 days'}
                     </p>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-church-gold/80">
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-church-gold/80">
                       {lang === 'am' ? 'ባለቤት እና አልሚ ዋስትና' : 'Developer Guarantee Status: Active'}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <div>
-                  <p className="text-[10px] uppercase font-bold text-gray-400 mb-4 tracking-widest">{t.devToolsTitle}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {['front end developer', 'webui desiner', 'informationgather'].map((tool) => (
-                      <span key={tool} className="px-3 py-1.5 bg-church-gold/5 text-[11px] font-bold text-church-gold border border-church-gold/20 rounded-lg hover:bg-church-gold/20 transition-colors">
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
+              <div>
+                <p className="text-[10px] uppercase font-bold text-gray-400 mb-3 tracking-widest">{t.devToolsTitle}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {['React 18', 'TypeScript', 'Vite', 'Tailwind', 'Framer Motion', 'Lucide', 'D3.js', 'Recharts'].map((tool) => (
+                    <span key={tool} className="px-2.5 py-1 bg-church-gold/5 text-[10px] font-bold text-church-gold border border-church-gold/20 rounded-lg">
+                      {tool}
+                    </span>
+                  ))}
                 </div>
+              </div>
 
-                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 sm:gap-6 pt-6 border-t border-church-gold/10">
-                  <a href="mailto:absalew1234@gmail.com" className="flex items-center gap-3 text-sm text-church-blue/70 dark:text-gray-400 hover:text-church-gold transition-colors">
-                    <Mail className="w-4 h-4 text-church-gold" />
-                    absalew1234@gmail.com
-                  </a>
-                  <div className="flex items-center gap-3 text-sm text-church-blue/70 dark:text-gray-400">
-                    <Phone className="w-4 h-4 text-church-gold" />
-                    {t.devPhone}
-                  </div>
-                  <a href="https://www.instagram.com/pablo_11_2001/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-church-blue/70 dark:text-gray-400 hover:text-church-gold transition-colors">
-                    <Instagram className="w-4 h-4 text-church-gold" />
-                    Instagram
-                  </a>
+              <div className="flex flex-col gap-2 pt-4 mt-4 border-t border-church-gold/10 text-xs text-church-blue/70 dark:text-gray-400">
+                <a href="mailto:absalew1234@gmail.com" className="flex items-center gap-2 hover:text-church-gold transition-colors">
+                  <Mail className="w-3.5 h-3.5 text-church-gold" />
+                  absalew1234@gmail.com
+                </a>
+                <div className="flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5 text-church-gold" />
+                  {t.devPhone}
                 </div>
+                <a href="https://www.instagram.com/pablo_11_2001/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-church-gold transition-colors">
+                  <Instagram className="w-3.5 h-3.5 text-church-gold" />
+                  Instagram
+                </a>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Side: Message Form */}
+          {/* Profile 2: SEMERGETA BELAYNEH */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl shadow-church-blue/5 border border-church-gold/10 relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-40 h-40 bg-church-gold/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+            
+            <div className="relative z-10">
+              <div className="flex flex-col items-center mb-6">
+                <div className="relative shrink-0 mb-4">
+                  <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-church-gold shadow-2xl relative z-10 bg-church-gold/5 flex items-center justify-center">
+                    <span className="text-5xl font-serif font-bold text-church-gold">S</span>
+                  </div>
+                  <div className="absolute -bottom-3 -right-3 bg-church-blue dark:bg-church-gold p-3 rounded-2xl shadow-lg z-20">
+                    <Code2 className="w-5 h-5 text-church-gold dark:text-church-blue" />
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <h2 className="text-2xl font-serif font-bold text-church-blue dark:text-white mb-1">
+                    {lang === 'am' ? 'ሰመርጌታ በላይነህ' : 'SEMERGETA BELAYNEH'}
+                  </h2>
+                  <p className="text-church-gold font-bold text-xs underline decoration-church-gold/30 underline-offset-8 uppercase tracking-widest">
+                    {lang === 'am' ? 'የድረ-ገጽ ዲዛይነር' : 'Web UI Designer'}
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-church-blue/5 dark:bg-white/5 p-4 rounded-2xl border border-church-gold/10">
+                  <p className="text-[10px] uppercase font-bold text-gray-400 mb-1">{t.devAge}</p>
+                  <p className="text-xl font-bold text-church-blue dark:text-gray-100">19 Years</p>
+                </div>
+                <div className="bg-church-blue/5 dark:bg-white/5 p-4 rounded-2xl border border-church-gold/10">
+                  <p className="text-[10px] uppercase font-bold text-gray-400 mb-1">{t.devExperience}</p>
+                  <p className="text-xl font-bold text-church-blue dark:text-gray-100">2+ Years</p>
+                </div>
+              </div>
+
+              <div className="mb-6 p-4 rounded-2xl border-2 border-dashed border-church-gold bg-church-gold/10 dark:bg-church-gold/5">
+                <div className="flex gap-3 items-center">
+                  <span className="w-2.5 h-2.5 rounded-full bg-church-gold shrink-0" />
+                  <div className="space-y-0.5">
+                    <p className="font-serif font-black text-[11px] text-church-blue dark:text-white uppercase tracking-wider leading-snug">
+                      {lang === 'am' ? 'እኔ ሰመርጌታ በላይነህ በየ7 ቀኑ አዘምነዋለሁ' : 'I SEMERGETA BELAYNEH, updates every 7 days'}
+                    </p>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-church-gold/80">
+                      {lang === 'am' ? 'ባለቤት እና አልሚ ዋስትና' : 'Developer Guarantee Status: Active'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-[10px] uppercase font-bold text-gray-400 mb-3 tracking-widest">{t.devToolsTitle}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {['front end developer', 'webui desiner', 'informationgather'].map((tool) => (
+                    <span key={tool} className="px-2.5 py-1 bg-church-gold/5 text-[10px] font-bold text-church-gold border border-church-gold/20 rounded-lg">
+                      {tool.toLowerCase()}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2 pt-4 mt-4 border-t border-church-gold/10 text-xs text-church-blue/70 dark:text-gray-400">
+                <a href="mailto:absalew1234@gmail.com" className="flex items-center gap-2 hover:text-church-gold transition-colors">
+                  <Mail className="w-3.5 h-3.5 text-church-gold" />
+                  absalew1234@gmail.com
+                </a>
+                <div className="flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5 text-church-gold" />
+                  {t.devPhone}
+                </div>
+                <a href="https://www.instagram.com/pablo_11_2001/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-church-gold transition-colors">
+                  <Instagram className="w-3.5 h-3.5 text-church-gold" />
+                  Instagram
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Message Form */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
-            className="bg-church-blue dark:bg-black rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden"
+            className="bg-church-blue dark:bg-black rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden"
           >
             <div className="absolute -top-12 -left-12 w-64 h-64 bg-church-gold/10 rounded-full blur-3xl"></div>
             
             <div className="relative z-10 h-full flex flex-col">
-              <div className="mb-8">
-                <h3 className="text-2xl font-serif font-bold text-church-gold mb-2">{t.sendMessage}</h3>
-                <p className="text-white/60 text-sm font-light">{t.devQuote}</p>
+              <div className="mb-6">
+                <h3 className="text-xl font-serif font-bold text-church-gold mb-1">{t.sendMessage}</h3>
+                <p className="text-white/60 text-xs font-light">{t.devQuote}</p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6 flex-1">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-church-gold uppercase tracking-[0.2em] ml-1">{t.name}</label>
-                    <input 
-                      type="text" 
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white focus:border-church-gold/50 focus:ring-1 focus:ring-church-gold/50 outline-none transition-all font-sans" 
-                      placeholder={t.name}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-church-gold uppercase tracking-[0.2em] ml-1">{t.email}</label>
-                    <input 
-                      type="email" 
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white focus:border-church-gold/50 focus:ring-1 focus:ring-church-gold/50 outline-none transition-all font-sans" 
-                      placeholder={t.email}
-                    />
-                  </div>
+              <form onSubmit={handleSubmit} className="space-y-4 flex-1">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold text-church-gold uppercase tracking-[0.2em] ml-1">{t.name}</label>
+                  <input 
+                    type="text" 
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white focus:border-church-gold/50 outline-none transition-all font-sans text-sm" 
+                    placeholder={t.name}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold text-church-gold uppercase tracking-[0.2em] ml-1">{t.email}</label>
+                  <input 
+                    type="email" 
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white focus:border-church-gold/50 outline-none transition-all font-sans text-sm" 
+                    placeholder={t.email}
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold text-church-gold uppercase tracking-[0.2em] ml-1">{t.message}</label>
@@ -237,8 +310,8 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    rows={6}
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white focus:border-church-gold/50 focus:ring-1 focus:ring-church-gold/50 outline-none transition-all font-sans resize-none" 
+                    rows={5}
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white focus:border-church-gold/50 outline-none transition-all font-sans resize-none text-sm" 
                     placeholder={t.messagePlaceholder}
                   ></textarea>
                 </div>
@@ -246,7 +319,7 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-church-gold text-white font-black py-5 rounded-2xl shadow-xl shadow-church-gold/20 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:scale-100 disabled:hover:scale-100 transition-all flex items-center justify-center gap-3 group"
+                  className="w-full bg-church-gold text-white font-black py-4 rounded-2xl shadow-xl shadow-church-gold/20 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 transition-all flex items-center justify-center gap-3 group"
                 >
                   <span className="uppercase tracking-[0.2em] text-xs">
                     {isSubmitting ? (lang === 'am' ? 'በመላክ ላይ...' : 'Sending...') : t.sendApplication}
@@ -258,7 +331,7 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
                   <motion.p 
                     initial={{ opacity: 0 }} 
                     animate={{ opacity: 1 }} 
-                    className="text-church-gold text-center text-sm font-sans italic pt-4"
+                    className="text-church-gold text-center text-xs font-sans italic pt-2"
                   >
                     {status}
                   </motion.p>
