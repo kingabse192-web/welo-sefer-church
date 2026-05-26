@@ -157,27 +157,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
   
   useEffect(() => {
     const intervalTime = 16; // Update roughly aligned with animation frames
-    const totalDuration = 800; // Fast loading duration of 0.8 seconds
-    const step = (intervalTime / totalDuration) * 100;
-    
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return prev + step;
-      });
-    }, intervalTime);
-
-    const timer = setTimeout(() => {
-      setIsPageLoading(false);
-    }, 800);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timer);
-    };
+    setIsPageLoading(false);
   }, []);
   
   useEffect(() => {
