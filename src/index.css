@@ -56,30 +56,6 @@
   grid-template-columns: repeat(7, 1fr);
 }
 
-/* Custom CSS Loaders provided by user */
-.loader {
-  width: fit-content;
-  font-size: 40px;
-  line-height: 1.5;
-  font-family: var(--font-sans), system-ui, sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #0000;
-  -webkit-text-stroke: 1px #CFB53B;
-  background:
-    radial-gradient(1.13em at 50% 1.6em, #CFB53B 99%, #0000 101%) calc(50% - 1.6em) 0/3.2em 100% text,
-    radial-gradient(1.13em at 50% -0.8em, #0000 99%, #CFB53B 101%) 50% .8em/3.2em 100% repeat-x text;
-  animation: l9 2s linear infinite;
-  background-clip: text;
-  -webkit-background-clip: text;
-}
-.loader:before {
-  content: attr(data-text);
-}
-@keyframes l9 {
-  to {background-position: calc(50% + 1.6em) 0, calc(50% + 3.2em) .8em}
-}
-
 /* Custom map overlay item stylesheet */
 .map-item {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);

@@ -7,27 +7,17 @@ import { Language, translations } from '../translations';
 interface LazyGalleryImageProps {
   image: { url: string; title: string; description: string };
   lang: Language;
-  loadedImages: Record<string, boolean>;
-  setLoadedImages: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
 }
 
-const LazyGalleryImage: React.FC<LazyGalleryImageProps> = ({ 
-  image, 
-  lang, 
-  loadedImages, 
-  setLoadedImages 
-}) => {
+const LazyGalleryImage: React.FC<LazyGalleryImageProps> = ({ image, lang }) => {
   const [inView, setInView] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
   const imgUrl = image.url;
-  const isLoaded = loadedImages[imgUrl];
 
   useEffect(() => {
     if (!('IntersectionObserver' in window)) {
-      const timer = setTimeout(() => {
-        setInView(true);
-      }, 0);
-      return () => clearTimeout(timer);
+      setInView(true);
+      return;
     }
 
     const observer = new IntersectionObserver(
@@ -39,70 +29,32 @@ const LazyGalleryImage: React.FC<LazyGalleryImageProps> = ({
           }
         });
       },
-      {
-        rootMargin: '150px 0px', // start preloading slightly before entering the viewport
-        threshold: 0.01,
-      }
+      { rootMargin: '150px 0px', threshold: 0.01 }
     );
 
     const currentElem = elementRef.current;
-    if (currentElem) {
-      observer.observe(currentElem);
-    }
+    if (currentElem) observer.observe(currentElem);
 
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, [imgUrl]);
-
-  // In-memory pre-loading to ensure smooth rendering and zero layout shift
-  useEffect(() => {
-    if (!inView || isLoaded) return;
-
-    let active = true;
-    const imgPreloader = new Image();
-    imgPreloader.src = imgUrl;
-    imgPreloader.referrerPolicy = 'no-referrer';
-    imgPreloader.onload = () => {
-      if (active) {
-        setLoadedImages(prev => ({ ...prev, [imgUrl]: true }));
-      }
-    };
-
-    return () => {
-      active = false;
-    };
-  }, [inView, imgUrl, isLoaded, setLoadedImages]);
 
   return (
     <div 
       ref={elementRef}
       className="relative w-full overflow-hidden rounded-2xl bg-gray-50 dark:bg-slate-900/40 min-h-[220px]"
     >
-      {/* Shimmer skeleton placeholder */}
-      {(!isLoaded || !inView) && (
-        <div className="absolute inset-0 min-h-[220px] aspect-[4/3] w-full z-10 overflow-hidden bg-gray-200 dark:bg-slate-800">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-white/5 to-transparent animate-pulse" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-8 h-8 border-2 border-church-gold/20 border-t-church-gold rounded-full animate-spin" />
-          </div>
-        </div>
-      )}
       {inView ? (
-        <motion.img 
+        <img 
           src={image.url} 
           alt={image.title} 
           loading="lazy"
-          initial={{ opacity: 0, scale: 0.94, filter: 'blur(8px)' }}
-          animate={isLoaded ? { opacity: 1, scale: 1, filter: 'blur(0px)' } : { opacity: 0, scale: 0.94, filter: 'blur(8px)' }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
           referrerPolicy="no-referrer"
         />
       ) : (
         <div className="w-full h-[220px] aspect-[4/3]" />
       )}
-      {isLoaded && inView && (
+      {inView && (
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-900/45 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6">
           <div className="translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-black/45 backdrop-blur-xs p-4 rounded-xl border border-white/10">
             <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-bold text-church-gold tracking-widest mb-1">
@@ -149,8 +101,6 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
-  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
-  const [modalImageLoaded, setModalImageLoaded] = useState(false);
   const [cols, setCols] = useState(4);
   
   useEffect(() => {
@@ -194,7 +144,6 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
   };
 
   const handleSelectImage = (image: typeof galleryImages[0] | null) => {
-    setModalImageLoaded(false);
     setSelectedImage(image);
   };
 
@@ -248,7 +197,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
                           {image.isComingSoon ? (
                             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
                               <div className="w-12 h-12 rounded-full bg-church-gold/10 flex items-center justify-center mb-4 text-church-gold">
-                                 <ChevronRight className="w-6 h-6 animate-pulse" />
+                                 <ChevronRight className="w-6 h-6" />
                               </div>
                               <h4 className="text-church-blue dark:text-church-gold font-serif font-bold text-lg mb-2">{image.title}</h4>
                               <p className="text-church-blue/50 dark:text-white/40 text-xs hidden md:block">{image.description}</p>
@@ -257,8 +206,6 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
                             <LazyGalleryImage 
                               image={image}
                               lang={lang}
-                              loadedImages={loadedImages}
-                              setLoadedImages={setLoadedImages}
                             />
                           )}
                         </motion.div>
@@ -341,28 +288,15 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
 
               <div className="w-full bg-black flex items-center justify-center p-4 h-[50vh] min-h-[250px] relative">
                 {selectedImage.url ? (
-                  <>
-                    {!modalImageLoaded && (
-                      <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center space-y-4 z-10">
-                        <div 
-                          className="loader text-2xl md:text-4xl text-church-gold tracking-widest whitespace-nowrap"
-                          data-text={lang === 'am' ? 'ምስሉ በመጫን ላይ...' : 'Loading image...'}
-                        />
-                      </div>
-                    )}
-                    <img 
-                      src={selectedImage.url} 
-                      alt={selectedImage.title}
-                      className={`max-w-full max-h-full object-contain rounded-lg transition-all duration-500 ${
-                        modalImageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                      }`}
-                      referrerPolicy="no-referrer"
-                      onLoad={() => setModalImageLoaded(true)}
-                    />
-                  </>
+                  <img 
+                    src={selectedImage.url} 
+                    alt={selectedImage.title}
+                    className="max-w-full max-h-full object-contain rounded-lg"
+                    referrerPolicy="no-referrer"
+                  />
                 ) : (
                   <div className="flex flex-col items-center text-white/20">
-                    <ChevronRight className="w-20 h-20 animate-pulse" />
+                    <ChevronRight className="w-20 h-20" />
                     <p className="font-serif text-xl">Capturing more moments...</p>
                   </div>
                 )}

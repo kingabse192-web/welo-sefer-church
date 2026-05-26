@@ -170,7 +170,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
             <div className="pt-8 border-t border-church-gold/20 space-y-6">
               <div>
                 <h3 className="text-xl font-serif font-bold text-church-blue dark:text-church-gold uppercase tracking-wider border-b border-church-gold/20 pb-2 flex items-center gap-2">
-                  <Landmark className="w-5 h-5 text-church-gold animate-pulse" />
+                  <Landmark className="w-5 h-5 text-church-gold" />
                   {(t as Record<string, string>).donationTitle || 'Support Our Church'}
                 </h3>
               </div>

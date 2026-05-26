@@ -145,7 +145,7 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
               <div className="mb-10 p-6 rounded-3xl border-2 border-dashed border-church-gold bg-church-gold/10 dark:bg-church-gold/5 shadow-[0_4px_24px_rgba(212,175,55,0.15)] relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-church-gold/15 rounded-full blur-xl group-hover:scale-125 transition-all"></div>
                 <div className="relative z-10 flex gap-4 items-center">
-                  <span className="w-3 h-3 rounded-full bg-church-gold animate-ping shrink-0" />
+                  <span className="w-3 h-3 rounded-full bg-church-gold shrink-0" />
                   <div className="space-y-1">
                     <p className="font-serif font-black text-xs md:text-sm text-church-blue dark:text-white uppercase tracking-wider leading-snug">
                       {lang === 'am' ? (
