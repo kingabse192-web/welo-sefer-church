@@ -152,13 +152,6 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const [modalImageLoaded, setModalImageLoaded] = useState(false);
   const [cols, setCols] = useState(4);
-  const [isPageLoading, setIsPageLoading] = useState(true);
-  const [progress, setProgress] = useState(0);
-  
-  useEffect(() => {
-    const intervalTime = 16; // Update roughly aligned with animation frames
-    setIsPageLoading(false);
-  }, []);
   
   useEffect(() => {
     const updateColumns = () => {
@@ -221,60 +214,12 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
           <div className="w-24 h-1.5 bg-church-gold mx-auto rounded-full"></div>
         </motion.div>
 
-        <AnimatePresence mode="wait">
-          {isPageLoading ? (
-            <motion.div
-              key="loader"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center py-24 min-h-[500px] border-2 border-dashed border-church-gold/15 dark:border-church-gold/5 rounded-3xl bg-gray-50/40 dark:bg-slate-900/10 backdrop-blur-xs relative overflow-hidden"
-            >
-              {/* Corner decorative orthodox crosses to accent the layout */}
-              <div className="absolute top-4 left-4 text-church-gold/15 text-xl font-bold select-none">☦</div>
-              <div className="absolute top-4 right-4 text-church-gold/15 text-xl font-bold select-none">☦</div>
-              <div className="absolute bottom-4 left-4 text-church-gold/15 text-xl font-bold select-none">☦</div>
-              <div className="absolute bottom-4 right-4 text-church-gold/15 text-xl font-bold select-none">☦</div>
-
-              {/* Custom text-shimmer loader requested */}
-              <div className="flex items-center justify-center p-6">
-                <div 
-                  className="loader text-3xl md:text-5xl text-church-gold tracking-widest"
-                  data-text={lang === 'am' ? 'በመጫን ላይ...' : 'Loading...'}
-                />
-              </div>
-
-              {/* Loading caption and interactive progress bar */}
-              <div className="mt-8 flex flex-col items-center space-y-3 px-6 text-center">
-                <span className="text-sm font-serif font-black tracking-[0.2em] text-church-blue dark:text-church-gold uppercase animate-pulse">
-                  {lang === 'am' ? 'የፎቶ ጋለሪ በመጫን ላይ...' : 'LOADING SANCTUARY MEMORIES...'}
-                </span>
-                
-                {/* Visual Progress Bar */}
-                <div className="relative w-64 md:w-80 h-1.5 bg-gray-200/80 dark:bg-slate-800/80 rounded-full overflow-hidden shadow-inner">
-                  <div 
-                    className="absolute top-0 left-0 h-full bg-church-gold rounded-full transition-all duration-75"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-
-                <div className="flex items-center gap-2 text-xs font-mono font-medium text-church-blue/50 dark:text-church-gold/50">
-                  <span className="animate-pulse text-church-gold">●</span>
-                  <span>{lang === 'am' ? 'እባክዎ ለጥቂት ሰከንድ ይጠብቁ...' : 'Preparing gallery pages...'}</span>
-                  <span className="bg-church-gold/10 dark:bg-church-gold/20 text-church-gold px-2 py-0.5 rounded-md font-bold text-[10px] ml-1">
-                    {Math.min(100, Math.round(progress))}%
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="gallery-content"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start">
                 {columnsData.map((colItems, colIdx) => (
                   <div key={colIdx} className="flex flex-col gap-6">
@@ -367,8 +312,6 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
                 </div>
               )}
             </motion.div>
-          )}
-        </AnimatePresence>
       </div>
 
       <AnimatePresence>
