@@ -143,15 +143,13 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
               <div className="grid grid-cols-2 gap-3 mb-6">
                 <div className="bg-gradient-to-br from-church-blue/5 to-church-blue/10 dark:from-white/5 dark:to-white/10 p-4 rounded-2xl border border-church-gold/10 hover:border-church-gold/30 transition-all duration-300">
                   <p className="text-[10px] uppercase font-bold text-gray-400 mb-1 tracking-widest">{t.devAge}</p>
-                  <p className="text-xl font-bold text-church-blue dark:text-gray-100 flex items-center gap-2">
-                    <span className="text-church-gold text-lg">★</span>
+                  <p className="text-xl font-bold text-church-gold flex items-center gap-2">
                     {t.devAgeValue}
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-church-blue/5 to-church-blue/10 dark:from-white/5 dark:to-white/10 p-4 rounded-2xl border border-church-gold/10 hover:border-church-gold/30 transition-all duration-300">
                   <p className="text-[10px] uppercase font-bold text-gray-400 mb-1 tracking-widest">{t.devExperience}</p>
-                  <p className="text-xl font-bold text-church-blue dark:text-gray-100 flex items-center gap-2">
-                    <span className="text-church-gold text-lg">✦</span>
+                  <p className="text-xl font-bold text-church-gold flex items-center gap-2">
                     {t.devExpValue}
                   </p>
                 </div>
@@ -245,15 +243,13 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
               <div className="grid grid-cols-2 gap-3 mb-6">
                 <div className="bg-gradient-to-br from-church-blue/5 to-church-blue/10 dark:from-white/5 dark:to-white/10 p-4 rounded-2xl border border-church-gold/10 hover:border-church-gold/30 transition-all duration-300">
                   <p className="text-[10px] uppercase font-bold text-gray-400 mb-1 tracking-widest">{t.devAge}</p>
-                  <p className="text-xl font-bold text-church-blue dark:text-gray-100 flex items-center gap-2">
-                    <span className="text-church-gold text-lg">★</span>
+                  <p className="text-xl font-bold text-church-gold flex items-center gap-2">
                     19 Years
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-church-blue/5 to-church-blue/10 dark:from-white/5 dark:to-white/10 p-4 rounded-2xl border border-church-gold/10 hover:border-church-gold/30 transition-all duration-300">
                   <p className="text-[10px] uppercase font-bold text-gray-400 mb-1 tracking-widest">{t.devExperience}</p>
-                  <p className="text-xl font-bold text-church-blue dark:text-gray-100 flex items-center gap-2">
-                    <span className="text-church-gold text-lg">✦</span>
+                  <p className="text-xl font-bold text-church-gold flex items-center gap-2">
                     2+ Years
                   </p>
                 </div>
