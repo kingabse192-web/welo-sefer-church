@@ -149,9 +149,9 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
                   <div className="space-y-1">
                     <p className="font-serif font-black text-xs md:text-sm text-church-blue dark:text-white uppercase tracking-wider leading-snug">
                       {lang === 'am' ? (
-                        <>እኔ አብሳለው በላይነህ በየ7 ቀኑ ይህንን ድረ-ገጽ አዘምነዋለሁ — ወቅታዊ ይሁኑ!</>
+                        <>እኔ ሰመርጌታ በላይነህ በየ7 ቀኑ ይህንን ድረ-ገጽ አዘምነዋለሁ — ወቅታዊ ይሁኑ!</>
                       ) : (
-                        <>I ABSALEW BELAYNEH, will update this website every 7 days — stay updated.</>
+                        <>I SEMERGETA BELAYNEH, will update this website every 7 days — stay updated.</>
                       )}
                     </p>
                     <p className="text-[10px] font-bold uppercase tracking-widest text-church-gold/80">
@@ -165,7 +165,7 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
                 <div>
                   <p className="text-[10px] uppercase font-bold text-gray-400 mb-4 tracking-widest">{t.devToolsTitle}</p>
                   <div className="flex flex-wrap gap-2">
-                    {['React 18', 'TypeScript', 'Vite', 'Tailwind', 'Framer Motion', 'Lucide', 'D3.js', 'Recharts'].map((tool) => (
+                    {['front end developer', 'webui desiner', 'informationgather'].map((tool) => (
                       <span key={tool} className="px-3 py-1.5 bg-church-gold/5 text-[11px] font-bold text-church-gold border border-church-gold/20 rounded-lg hover:bg-church-gold/20 transition-colors">
                         {tool}
                       </span>
