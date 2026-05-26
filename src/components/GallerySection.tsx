@@ -102,6 +102,12 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
   const [cols, setCols] = useState(4);
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowLoader(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
   
   useEffect(() => {
     const updateColumns = () => {
@@ -163,10 +169,14 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
           <div className="w-24 h-1.5 bg-church-gold mx-auto rounded-full"></div>
         </motion.div>
 
+        {showLoader ? (
+          <div className="flex items-center justify-center py-32 min-h-[400px]">
+            <div className="loader" />
+          </div>
+        ) : (
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start">
@@ -259,6 +269,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
                 </div>
               )}
             </motion.div>
+          )}
       </div>
 
       <AnimatePresence>
