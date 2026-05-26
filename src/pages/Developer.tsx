@@ -109,47 +109,66 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl shadow-church-blue/5 border border-church-gold/10 relative overflow-hidden"
+            className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl shadow-church-blue/5 border border-church-gold/10 relative overflow-hidden group hover:shadow-church-gold/10 hover:shadow-2xl transition-all duration-500"
           >
-            <div className="absolute top-0 right-0 w-40 h-40 bg-church-gold/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(212,175,55,0.06),transparent_70%)] pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-48 h-48 bg-church-gold/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl group-hover:scale-150 transition-all duration-700"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-church-blue/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl"></div>
+            <div className="absolute top-4 left-4 text-church-gold/5 text-6xl font-serif font-black select-none pointer-events-none">{"{"}</div>
+            <div className="absolute bottom-4 right-4 text-church-gold/5 text-6xl font-serif font-black select-none pointer-events-none">{"}"}</div>
             
             <div className="relative z-10">
               <div className="flex flex-col items-center mb-6">
-                <div className="relative shrink-0 mb-4">
-                  <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-church-gold shadow-2xl relative z-10">
+                <div className="relative shrink-0 mb-4 group">
+                  <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-church-gold shadow-2xl relative z-10 transition-transform duration-500 group-hover:scale-105">
                     <img src="developer.jpg" alt="Developer" className="w-full h-full object-cover" />
                   </div>
-                  <div className="absolute -bottom-3 -right-3 bg-church-blue dark:bg-church-gold p-3 rounded-2xl shadow-lg z-20">
-                    <Code2 className="w-5 h-5 text-church-gold dark:text-church-blue" />
+                  <div className="absolute -bottom-3 -right-3 bg-gradient-to-br from-church-gold to-amber-600 p-3 rounded-2xl shadow-lg z-20 group-hover:scale-110 transition-all duration-300">
+                    <Code2 className="w-5 h-5 text-white" />
                   </div>
+                  <div className="absolute -top-2 -left-2 w-8 h-8 bg-church-gold/10 rounded-full blur-sm"></div>
                 </div>
                 
                 <div className="text-center">
                   <h2 className="text-2xl font-serif font-bold text-church-blue dark:text-white mb-1">{t.devTeam}</h2>
-                  <p className="text-church-gold font-bold text-xs underline decoration-church-gold/30 underline-offset-8 uppercase tracking-widest">{t.devRole}</p>
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <span className="w-6 h-px bg-church-gold/40"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-church-gold"></span>
+                    <span className="w-6 h-px bg-church-gold/40"></span>
+                  </div>
+                  <p className="text-church-gold font-bold text-xs uppercase tracking-[0.25em]">{t.devRole}</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-church-blue/5 dark:bg-white/5 p-4 rounded-2xl border border-church-gold/10">
-                  <p className="text-[10px] uppercase font-bold text-gray-400 mb-1">{t.devAge}</p>
-                  <p className="text-xl font-bold text-church-blue dark:text-gray-100">{t.devAgeValue}</p>
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <div className="bg-gradient-to-br from-church-blue/5 to-church-blue/10 dark:from-white/5 dark:to-white/10 p-4 rounded-2xl border border-church-gold/10 hover:border-church-gold/30 transition-all duration-300">
+                  <p className="text-[10px] uppercase font-bold text-gray-400 mb-1 tracking-widest">{t.devAge}</p>
+                  <p className="text-xl font-bold text-church-blue dark:text-gray-100 flex items-center gap-2">
+                    <span className="text-church-gold text-lg">★</span>
+                    {t.devAgeValue}
+                  </p>
                 </div>
-                <div className="bg-church-blue/5 dark:bg-white/5 p-4 rounded-2xl border border-church-gold/10">
-                  <p className="text-[10px] uppercase font-bold text-gray-400 mb-1">{t.devExperience}</p>
-                  <p className="text-xl font-bold text-church-blue dark:text-gray-100">{t.devExpValue}</p>
+                <div className="bg-gradient-to-br from-church-blue/5 to-church-blue/10 dark:from-white/5 dark:to-white/10 p-4 rounded-2xl border border-church-gold/10 hover:border-church-gold/30 transition-all duration-300">
+                  <p className="text-[10px] uppercase font-bold text-gray-400 mb-1 tracking-widest">{t.devExperience}</p>
+                  <p className="text-xl font-bold text-church-blue dark:text-gray-100 flex items-center gap-2">
+                    <span className="text-church-gold text-lg">✦</span>
+                    {t.devExpValue}
+                  </p>
                 </div>
               </div>
 
-              <div className="mb-6 p-4 rounded-2xl border-2 border-dashed border-church-gold bg-church-gold/10 dark:bg-church-gold/5">
+              <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-church-gold/10 via-church-gold/5 to-transparent dark:from-church-gold/10 dark:via-church-gold/5 border border-church-gold/20 hover:border-church-gold/40 transition-all duration-300">
                 <div className="flex gap-3 items-center">
-                  <span className="w-2.5 h-2.5 rounded-full bg-church-gold shrink-0" />
+                  <div className="relative">
+                    <span className="w-3 h-3 rounded-full bg-church-gold block shadow-lg shadow-church-gold/30"></span>
+                    <span className="absolute inset-0 w-3 h-3 rounded-full bg-church-gold animate-ping opacity-30"></span>
+                  </div>
                   <div className="space-y-0.5">
                     <p className="font-serif font-black text-[11px] text-church-blue dark:text-white uppercase tracking-wider leading-snug">
-                      {lang === 'am' ? 'እኔ D/N አብሳለው በላይነህ በየ7 ቀኑ አዘምነዋለሁ' : 'I D/N ABSALEW BELAYNEH, updates every 7 days'}
+                      {lang === 'am' ? 'በየ7 ቀኑ ይዘት ይዘምናል' : 'Updates every 7 days'}
                     </p>
-                    <p className="text-[9px] font-bold uppercase tracking-widest text-church-gold/80">
-                      {lang === 'am' ? 'ባለቤት እና አልሚ ዋስትና' : 'Developer Guarantee Status: Active'}
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-church-gold">
+                      {lang === 'am' ? 'ዋስትና ንቁ ነው' : 'Guarantee Status: Active'}
                     </p>
                   </div>
                 </div>
@@ -159,7 +178,7 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
                 <p className="text-[10px] uppercase font-bold text-gray-400 mb-3 tracking-widest">{t.devToolsTitle}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {['React 18', 'TypeScript', 'Vite', 'Tailwind', 'Framer Motion', 'Lucide', 'D3.js', 'Recharts'].map((tool) => (
-                    <span key={tool} className="px-2.5 py-1 bg-church-gold/5 text-[10px] font-bold text-church-gold border border-church-gold/20 rounded-lg">
+                    <span key={tool} className="px-2.5 py-1 bg-church-gold/5 text-[10px] font-bold text-church-gold border border-church-gold/20 rounded-lg hover:bg-church-gold hover:text-white transition-all duration-300 cursor-default">
                       {tool}
                     </span>
                   ))}
@@ -167,16 +186,16 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
               </div>
 
               <div className="flex flex-col gap-2 pt-4 mt-4 border-t border-church-gold/10 text-xs text-church-blue/70 dark:text-gray-400">
-                <a href="mailto:absalew1234@gmail.com" className="flex items-center gap-2 hover:text-church-gold transition-colors">
-                  <Mail className="w-3.5 h-3.5 text-church-gold" />
+                <a href="mailto:absalew1234@gmail.com" className="flex items-center gap-2 hover:text-church-gold transition-colors group">
+                  <Mail className="w-3.5 h-3.5 text-church-gold group-hover:scale-110 transition-transform" />
                   absalew1234@gmail.com
                 </a>
-                <div className="flex items-center gap-2">
-                  <Phone className="w-3.5 h-3.5 text-church-gold" />
+                <div className="flex items-center gap-2 group">
+                  <Phone className="w-3.5 h-3.5 text-church-gold group-hover:scale-110 transition-transform" />
                   {t.devPhone}
                 </div>
-                <a href="https://www.instagram.com/pablo_11_2001/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-church-gold transition-colors">
-                  <Instagram className="w-3.5 h-3.5 text-church-gold" />
+                <a href="https://www.instagram.com/pablo_11_2001/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-church-gold transition-colors group">
+                  <Instagram className="w-3.5 h-3.5 text-church-gold group-hover:scale-110 transition-transform" />
                   Instagram
                 </a>
               </div>
@@ -188,51 +207,70 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
-            className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl shadow-church-blue/5 border border-church-gold/10 relative overflow-hidden"
+            className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 shadow-2xl shadow-church-blue/5 border border-church-gold/10 relative overflow-hidden group hover:shadow-church-gold/10 hover:shadow-2xl transition-all duration-500"
           >
-            <div className="absolute top-0 right-0 w-40 h-40 bg-church-gold/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(212,175,55,0.06),transparent_70%)] pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-48 h-48 bg-church-gold/5 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl group-hover:scale-150 transition-all duration-700"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full translate-y-1/2 translate-x-1/2 blur-2xl"></div>
+            <div className="absolute top-4 right-4 text-church-gold/5 text-6xl font-serif font-black select-none pointer-events-none">&lt;/&gt;</div>
+            <div className="absolute bottom-4 left-4 text-church-gold/5 text-6xl font-serif font-black select-none pointer-events-none">&lt;/&gt;</div>
             
             <div className="relative z-10">
               <div className="flex flex-col items-center mb-6">
-                <div className="relative shrink-0 mb-4">
-                  <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-church-gold shadow-2xl relative z-10 bg-church-gold/5 flex items-center justify-center">
+                <div className="relative shrink-0 mb-4 group">
+                  <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-church-gold shadow-2xl relative z-10 bg-gradient-to-br from-church-gold/10 to-amber-500/10 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
                     <span className="text-5xl font-serif font-bold text-church-gold">S</span>
                   </div>
-                  <div className="absolute -bottom-3 -right-3 bg-church-blue dark:bg-church-gold p-3 rounded-2xl shadow-lg z-20">
-                    <Code2 className="w-5 h-5 text-church-gold dark:text-church-blue" />
+                  <div className="absolute -bottom-3 -right-3 bg-gradient-to-br from-church-gold to-amber-600 p-3 rounded-2xl shadow-lg z-20 group-hover:scale-110 transition-all duration-300">
+                    <Code2 className="w-5 h-5 text-white" />
                   </div>
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-church-gold/10 rounded-full blur-sm"></div>
                 </div>
                 
                 <div className="text-center">
                   <h2 className="text-2xl font-serif font-bold text-church-blue dark:text-white mb-1">
                     {lang === 'am' ? 'ሰመርጌታ በላይነህ' : 'SEMERGETA BELAYNEH'}
                   </h2>
-                  <p className="text-church-gold font-bold text-xs underline decoration-church-gold/30 underline-offset-8 uppercase tracking-widest">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <span className="w-6 h-px bg-church-gold/40"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-church-gold"></span>
+                    <span className="w-6 h-px bg-church-gold/40"></span>
+                  </div>
+                  <p className="text-church-gold font-bold text-xs uppercase tracking-[0.25em]">
                     {lang === 'am' ? 'የድረ-ገጽ ዲዛይነር' : 'Web UI Designer'}
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-church-blue/5 dark:bg-white/5 p-4 rounded-2xl border border-church-gold/10">
-                  <p className="text-[10px] uppercase font-bold text-gray-400 mb-1">{t.devAge}</p>
-                  <p className="text-xl font-bold text-church-blue dark:text-gray-100">19 Years</p>
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <div className="bg-gradient-to-br from-church-blue/5 to-church-blue/10 dark:from-white/5 dark:to-white/10 p-4 rounded-2xl border border-church-gold/10 hover:border-church-gold/30 transition-all duration-300">
+                  <p className="text-[10px] uppercase font-bold text-gray-400 mb-1 tracking-widest">{t.devAge}</p>
+                  <p className="text-xl font-bold text-church-blue dark:text-gray-100 flex items-center gap-2">
+                    <span className="text-church-gold text-lg">★</span>
+                    19 Years
+                  </p>
                 </div>
-                <div className="bg-church-blue/5 dark:bg-white/5 p-4 rounded-2xl border border-church-gold/10">
-                  <p className="text-[10px] uppercase font-bold text-gray-400 mb-1">{t.devExperience}</p>
-                  <p className="text-xl font-bold text-church-blue dark:text-gray-100">2+ Years</p>
+                <div className="bg-gradient-to-br from-church-blue/5 to-church-blue/10 dark:from-white/5 dark:to-white/10 p-4 rounded-2xl border border-church-gold/10 hover:border-church-gold/30 transition-all duration-300">
+                  <p className="text-[10px] uppercase font-bold text-gray-400 mb-1 tracking-widest">{t.devExperience}</p>
+                  <p className="text-xl font-bold text-church-blue dark:text-gray-100 flex items-center gap-2">
+                    <span className="text-church-gold text-lg">✦</span>
+                    2+ Years
+                  </p>
                 </div>
               </div>
 
-              <div className="mb-6 p-4 rounded-2xl border-2 border-dashed border-church-gold bg-church-gold/10 dark:bg-church-gold/5">
+              <div className="mb-6 p-4 rounded-2xl bg-gradient-to-r from-transparent via-church-gold/5 to-church-gold/10 dark:from-transparent dark:via-church-gold/5 border border-church-gold/20 hover:border-church-gold/40 transition-all duration-300">
                 <div className="flex gap-3 items-center">
-                  <span className="w-2.5 h-2.5 rounded-full bg-church-gold shrink-0" />
+                  <div className="relative">
+                    <span className="w-3 h-3 rounded-full bg-church-gold block shadow-lg shadow-church-gold/30"></span>
+                    <span className="absolute inset-0 w-3 h-3 rounded-full bg-church-gold animate-ping opacity-30"></span>
+                  </div>
                   <div className="space-y-0.5">
                     <p className="font-serif font-black text-[11px] text-church-blue dark:text-white uppercase tracking-wider leading-snug">
-                      {lang === 'am' ? 'እኔ ሰመርጌታ በላይነህ በየ7 ቀኑ አዘምነዋለሁ' : 'I SEMERGETA BELAYNEH, updates every 7 days'}
+                      {lang === 'am' ? 'በየ7 ቀኑ ይዘት ይዘምናል' : 'Updates every 7 days'}
                     </p>
-                    <p className="text-[9px] font-bold uppercase tracking-widest text-church-gold/80">
-                      {lang === 'am' ? 'ባለቤት እና አልሚ ዋስትና' : 'Developer Guarantee Status: Active'}
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-church-gold">
+                      {lang === 'am' ? 'ዋስትና ንቁ ነው' : 'Guarantee Status: Active'}
                     </p>
                   </div>
                 </div>
@@ -242,7 +280,7 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
                 <p className="text-[10px] uppercase font-bold text-gray-400 mb-3 tracking-widest">{t.devToolsTitle}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {['front end developer', 'webui desiner', 'informationgather'].map((tool) => (
-                    <span key={tool} className="px-2.5 py-1 bg-church-gold/5 text-[10px] font-bold text-church-gold border border-church-gold/20 rounded-lg">
+                    <span key={tool} className="px-2.5 py-1 bg-church-gold/5 text-[10px] font-bold text-church-gold border border-church-gold/20 rounded-lg hover:bg-church-gold hover:text-white transition-all duration-300 cursor-default">
                       {tool.toLowerCase()}
                     </span>
                   ))}
@@ -250,16 +288,16 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
               </div>
 
               <div className="flex flex-col gap-2 pt-4 mt-4 border-t border-church-gold/10 text-xs text-church-blue/70 dark:text-gray-400">
-                <a href="mailto:absalew1234@gmail.com" className="flex items-center gap-2 hover:text-church-gold transition-colors">
-                  <Mail className="w-3.5 h-3.5 text-church-gold" />
+                <a href="mailto:absalew1234@gmail.com" className="flex items-center gap-2 hover:text-church-gold transition-colors group">
+                  <Mail className="w-3.5 h-3.5 text-church-gold group-hover:scale-110 transition-transform" />
                   absalew1234@gmail.com
                 </a>
-                <div className="flex items-center gap-2">
-                  <Phone className="w-3.5 h-3.5 text-church-gold" />
+                <div className="flex items-center gap-2 group">
+                  <Phone className="w-3.5 h-3.5 text-church-gold group-hover:scale-110 transition-transform" />
                   {t.devPhone}
                 </div>
-                <a href="https://www.instagram.com/pablo_11_2001/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-church-gold transition-colors">
-                  <Instagram className="w-3.5 h-3.5 text-church-gold" />
+                <a href="https://www.instagram.com/pablo_11_2001/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-church-gold transition-colors group">
+                  <Instagram className="w-3.5 h-3.5 text-church-gold group-hover:scale-110 transition-transform" />
                   Instagram
                 </a>
               </div>
