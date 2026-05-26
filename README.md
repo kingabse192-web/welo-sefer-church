@@ -42,62 +42,18 @@ The project is actively deployed and can be viewed live at:
 
 ```text
 welo-sefer-church/
-├── index.html                 # Main entry point
-├── vite.config.ts             # Vite build config (base path, code splitting)
-├── tailwind.config.js         # Tailwind CSS (custom colors, fonts)
-├── tsconfig.json              # TypeScript config
-├── tsconfig.node.json         # TypeScript Node config
-├── eslint.config.js           # ESLint config
-├── postcss.config.js          # PostCSS config
-├── package.json               # Dependencies & scripts
-├── README.md                  # This file
-│
-├── public/                    # Static assets (copied to dist/)
-│   ├── logo.png               # Favicon
-│   ├── developer.jpg           # Developer profile photo
-│   ├── new church.jpg          # Hero background
-│   ├── old church.jpg          # History section
-│   ├── curent church.PNG       # Current church image
-│   ├── galery.PNG / 1-5galery.PNG  # Gallery images
-│   ├── comuniy.jpg / 2-3comuniy.jpg
-│   ├── hosaena.jpg / hosaena galery (1-4).jpg
-│   ├── best church person.jpg
-│   ├── power of together.jpg
-│   ├── speritual time-1.jpg
-│   ├── suterday seremony.jpg
-│   └── ... (other image assets)
-│
+├── index.html / vite.config.ts / tailwind.config.js / tsconfig.json
+├── public/             # Static images (gallery, hero, icons)
 ├── src/
-│   ├── main.tsx               # React entry point
-│   ├── App.tsx                # Root component (router, layout, theme)
-│   ├── index.css              # Tailwind, fonts, custom CSS
-│   ├── firebase.ts            # Firebase initialization
-│   ├── translations.ts        # English & Amharic text
-│   │
+│   ├── main.tsx / App.tsx / index.css / firebase.ts / translations.ts
 │   ├── context/
-│   │   └── AuthContext.tsx     # Firebase auth provider
-│   │
+│   │   └── AuthContext.tsx
 │   ├── components/
-│   │   ├── Navbar.tsx          # Responsive nav (scroll blur, lang/theme toggle)
-│   │   ├── Footer.tsx          # 3-column footer with social links
-│   │   ├── AuthModal.tsx       # Sign-in/sign-up modal (Google + email)
-│   │   ├── ContactSection.tsx  # Contact form + bank donation info
-│   │   ├── EventCalendar.tsx   # Filterable events with pagination
-│   │   ├── GallerySection.tsx  # Masonry gallery + lightbox
-│   │   ├── HistorySection.tsx  # Tabbed church history (3 stages)
-│   │   └── LocationSection.tsx # Map embed + address + transit
-│   │
+│   │   ├── Navbar.tsx / Footer.tsx / AuthModal.tsx
+│   │   ├── ContactSection.tsx / EventCalendar.tsx
+│   │   ├── GallerySection.tsx / HistorySection.tsx / LocationSection.tsx
 │   └── pages/
-│       ├── Home.tsx            # Hero + featured cards
-│       ├── History.tsx         # Wraps HistorySection
-│       ├── Gallery.tsx         # Wraps GallerySection
-│       ├── Events.tsx          # Wraps EventCalendar
-│       ├── Location.tsx        # Wraps LocationSection
-│       ├── Contact.tsx         # Wraps ContactSection
-│       └── Developer.tsx       # Developer profile page
-│
-├── firebase-applet-config.json  # Firebase service account
-├── firebase-blueprint.json
-├── firestore.rules
-└── metadata.json
+│       ├── Home.tsx / History.tsx / Gallery.tsx / Events.tsx
+│       └── Location.tsx / Contact.tsx / Developer.tsx
+└── package.json / eslint.config.js / postcss.config.js
 ```
