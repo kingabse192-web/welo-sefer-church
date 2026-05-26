@@ -144,7 +144,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                 {t.contactInfo}
               </h3>
               <p className="text-church-blue/60 dark:text-gray-400 text-sm leading-relaxed">
-                We are here to support your spiritual journey. Reach out to us through any of these channels or visit us in person.
+                Rooted in truth, living in community. Get to know the people and the history behind our church.
               </p>
             </div>
 

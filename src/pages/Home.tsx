@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, Calendar, Users, BookOpen, Clock, MapPin } from 'lucide-react';
 import { Language, translations } from '../translations';
 import { Link } from 'react-router-dom';
 
@@ -8,8 +8,33 @@ interface HomeProps {
   lang: Language;
 }
 
+const programTabs = [
+  { id: 'sunday', icon: Calendar, label: { en: 'Sunday Service', am: 'የእሁድ አገልግሎት' } },
+  { id: 'youth', icon: Users, label: { en: 'Youth Ministry', am: 'የወጣቶች አገልግሎት' } },
+  { id: 'midweek', icon: BookOpen, label: { en: 'Midweek Prayer', am: 'የሳምንቱ አጋማሽ ጸሎት' } },
+];
+
+const programData: Record<string, { time: string; activity: { en: string; am: string } }[]> = {
+  sunday: [
+    { time: '6:00 AM - 9:00 AM', activity: { en: 'Holy Liturgy (Kidase)', am: 'ቅዳሴ' } },
+    { time: '9:30 AM - 10:30 AM', activity: { en: 'Sunday School', am: 'የሰንበት ትምህርት ቤት' } },
+    { time: '10:30 AM - 12:30 PM', activity: { en: 'Fellowship & Coffee', am: 'ኅብረት እና ቡና' } },
+  ],
+  youth: [
+    { time: '4:00 PM - 5:00 PM', activity: { en: 'Bible Study', am: 'የመጽሐፍ ቅዱስ ጥናት' } },
+    { time: '5:00 PM - 6:00 PM', activity: { en: 'Music & Choir Practice', am: 'የሙዚቃ እና የመዘምራን ልምምድ' } },
+    { time: '6:00 PM - 7:00 PM', activity: { en: 'Community Service', am: 'የማህበረሰብ አገልግሎት' } },
+  ],
+  midweek: [
+    { time: '5:30 PM - 6:30 PM', activity: { en: 'Evening Prayer (Yeserke Tselot)', am: 'የሰርክ ጸሎት' } },
+    { time: '6:30 PM - 7:30 PM', activity: { en: 'Scripture Reading', am: 'የመጽሐፍ ቅዱስ ንባብ' } },
+    { time: '7:30 PM - 8:00 PM', activity: { en: 'Intercessory Prayer', am: 'የምልጃ ጸሎት' } },
+  ],
+};
+
 const Home: React.FC<HomeProps> = ({ lang }) => {
   const t = translations[lang];
+  const [activeTab, setActiveTab] = useState('sunday');
 
   return (
     <div className="pt-20">
@@ -53,6 +78,82 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
         >
           <ChevronDown className="w-8 h-8" />
         </motion.div>
+      </section>
+
+      {/* Dynamic Program Guide */}
+      <section className="py-20 px-6 bg-slate-50 dark:bg-slate-900 transition-colors">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="text-center mb-12"
+          >
+            <span className="text-amber-600 font-semibold tracking-wider text-sm uppercase">Weekly Schedule</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mt-3">
+              {lang === 'am' ? 'የአገልግሎት መርሃ ግብር' : 'Service Schedule'}
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden"
+          >
+            <div className="flex border-b border-slate-200 dark:border-slate-700">
+              {programTabs.map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex-1 flex items-center justify-center gap-2 px-4 py-4 text-sm font-medium transition-all ${
+                    activeTab === tab.id
+                      ? 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 border-b-2 border-amber-600'
+                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50'
+                  }`}
+                >
+                  <tab.icon className="w-4 h-4" />
+                  <span className="hidden sm:inline">{tab.label[lang]}</span>
+                  <span className="sm:hidden">{tab.label[lang].split(' ')[0]}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="p-6">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-4"
+                >
+                  {programData[activeTab].map((item, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-700"
+                    >
+                      <div className="bg-amber-100 dark:bg-amber-900/30 text-amber-600 p-2.5 rounded-lg shrink-0">
+                        <Clock className="w-5 h-5" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-slate-900 dark:text-white text-sm">
+                          {item.activity[lang]}
+                        </p>
+                        <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">
+                          {item.time}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Featured Sections Quick Access */}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Globe, Sun, Moon, Menu, X, Landmark, LogOut } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -33,10 +33,21 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
   const authTrans = navAuthTranslations[lang];
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { user, logout } = useAuth();
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 w-full z-50 bg-church-cream/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-church-gold/10 px-6 py-4 transition-colors">
+    <nav className={`fixed top-0 w-full z-50 px-6 py-4 transition-all duration-300 ${
+      scrolled
+        ? 'bg-church-cream/85 dark:bg-slate-900/85 backdrop-blur-xl border-b border-church-gold/10 shadow-lg'
+        : 'bg-transparent border-transparent'
+    }`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <NavLink to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
           <div className="w-10 h-10 overflow-hidden rounded-full border-2 border-church-gold shadow-sm">
