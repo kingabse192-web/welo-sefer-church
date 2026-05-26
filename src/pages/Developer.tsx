@@ -123,7 +123,7 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
                   <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-church-gold shadow-2xl relative z-10 transition-transform duration-500 group-hover:scale-105">
                     <img src="developer.jpg" alt="Developer" className="w-full h-full object-cover" />
                   </div>
-                  <div className="absolute -bottom-3 -right-3 bg-gradient-to-br from-church-gold to-amber-600 p-3 rounded-2xl shadow-lg z-20 group-hover:scale-110 transition-all duration-300">
+                  <div className="absolute -bottom-3 -right-3 bg-gradient-to-br from-church-gold to-church-gold p-3 rounded-2xl shadow-lg z-20 group-hover:scale-110 transition-all duration-300">
                     <Code2 className="w-5 h-5 text-white" />
                   </div>
                   <div className="absolute -top-2 -left-2 w-8 h-8 bg-church-gold/10 rounded-full blur-sm"></div>
@@ -211,17 +211,17 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(212,175,55,0.06),transparent_70%)] pointer-events-none"></div>
             <div className="absolute top-0 left-0 w-48 h-48 bg-church-gold/5 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl group-hover:scale-150 transition-all duration-700"></div>
-            <div className="absolute bottom-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full translate-y-1/2 translate-x-1/2 blur-2xl"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-church-gold/5 rounded-full translate-y-1/2 translate-x-1/2 blur-2xl"></div>
             <div className="absolute top-4 right-4 text-church-gold/5 text-6xl font-serif font-black select-none pointer-events-none">&lt;/&gt;</div>
             <div className="absolute bottom-4 left-4 text-church-gold/5 text-6xl font-serif font-black select-none pointer-events-none">&lt;/&gt;</div>
             
             <div className="relative z-10">
               <div className="flex flex-col items-center mb-6">
                 <div className="relative shrink-0 mb-4 group">
-                  <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-church-gold shadow-2xl relative z-10 bg-gradient-to-br from-church-gold/10 to-amber-500/10 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+                  <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-church-gold shadow-2xl relative z-10 bg-gradient-to-br from-church-gold/10 to-church-gold/10 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
                     <span className="text-5xl font-serif font-bold text-church-gold">S</span>
                   </div>
-                  <div className="absolute -bottom-3 -right-3 bg-gradient-to-br from-church-gold to-amber-600 p-3 rounded-2xl shadow-lg z-20 group-hover:scale-110 transition-all duration-300">
+                  <div className="absolute -bottom-3 -right-3 bg-gradient-to-br from-church-gold to-church-gold p-3 rounded-2xl shadow-lg z-20 group-hover:scale-110 transition-all duration-300">
                     <Code2 className="w-5 h-5 text-white" />
                   </div>
                   <div className="absolute -top-2 -right-2 w-8 h-8 bg-church-gold/10 rounded-full blur-sm"></div>
