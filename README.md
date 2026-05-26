@@ -40,40 +40,64 @@ The project is actively deployed and can be viewed live at:
 
 ## 📁 Project Structure
 
-Here is a quick overview of how the project files are organized:
 ```text
 welo-sefer-church/
-├── index.html              # Main entry point
-├── logo.png                # Browser tab favicon icon
-├── curent church.PNG       # Banner image asset
+├── index.html                 # Main entry point
+├── vite.config.ts             # Vite build config (base path, code splitting)
+├── tailwind.config.js         # Tailwind CSS (custom colors, fonts)
+├── tsconfig.json              # TypeScript config
+├── tsconfig.node.json         # TypeScript Node config
+├── eslint.config.js           # ESLint config
+├── postcss.config.js          # PostCSS config
+├── package.json               # Dependencies & scripts
+├── README.md                  # This file
+│
+├── public/                    # Static assets (copied to dist/)
+│   ├── logo.png               # Favicon
+│   ├── developer.jpg           # Developer profile photo
+│   ├── new church.jpg          # Hero background
+│   ├── old church.jpg          # History section
+│   ├── curent church.PNG       # Current church image
+│   ├── galery.PNG / 1-5galery.PNG  # Gallery images
+│   ├── comuniy.jpg / 2-3comuniy.jpg
+│   ├── hosaena.jpg / hosaena galery (1-4).jpg
+│   ├── best church person.jpg
+│   ├── power of together.jpg
+│   ├── speritual time-1.jpg
+│   ├── suterday seremony.jpg
+│   └── ... (other image assets)
+│
 ├── src/
-│   ├── main.tsx            # React app entry point
-│   ├── App.tsx             # Root component with routing
-│   ├── index.css           # Global styles and Tailwind imports
-│   ├── firebase.ts         # Firebase configuration
-│   ├── translations.ts     # Multi-language translations
+│   ├── main.tsx               # React entry point
+│   ├── App.tsx                # Root component (router, layout, theme)
+│   ├── index.css              # Tailwind, fonts, custom CSS
+│   ├── firebase.ts            # Firebase initialization
+│   ├── translations.ts        # English & Amharic text
+│   │
 │   ├── context/
-│   │   └── AuthContext.tsx  # Authentication context
+│   │   └── AuthContext.tsx     # Firebase auth provider
+│   │
 │   ├── components/
-│   │   ├── Navbar.tsx       # Navigation bar
-│   │   ├── Footer.tsx       # Footer section
-│   │   ├── AuthModal.tsx    # Login/signup modal
-│   │   ├── ContactSection.tsx
-│   │   ├── EventCalendar.tsx
-│   │   ├── GallerySection.tsx
-│   │   ├── HistorySection.tsx
-│   │   └── LocationSection.tsx
+│   │   ├── Navbar.tsx          # Responsive nav (scroll blur, lang/theme toggle)
+│   │   ├── Footer.tsx          # 3-column footer with social links
+│   │   ├── AuthModal.tsx       # Sign-in/sign-up modal (Google + email)
+│   │   ├── ContactSection.tsx  # Contact form + bank donation info
+│   │   ├── EventCalendar.tsx   # Filterable events with pagination
+│   │   ├── GallerySection.tsx  # Masonry gallery + lightbox
+│   │   ├── HistorySection.tsx  # Tabbed church history (3 stages)
+│   │   └── LocationSection.tsx # Map embed + address + transit
+│   │
 │   └── pages/
-│       ├── Home.tsx
-│       ├── Contact.tsx
-│       ├── Events.tsx
-│       ├── Gallery.tsx
-│       ├── History.tsx
-│       ├── Location.tsx
-│       └── Developer.tsx
-├── package.json            # Dependencies and scripts
-├── vite.config.ts          # Vite configuration
-├── tailwind.config.js      # Tailwind CSS configuration
-├── tsconfig.json           # TypeScript configuration
-└── eslint.config.js        # ESLint configuration
+│       ├── Home.tsx            # Hero + featured cards
+│       ├── History.tsx         # Wraps HistorySection
+│       ├── Gallery.tsx         # Wraps GallerySection
+│       ├── Events.tsx          # Wraps EventCalendar
+│       ├── Location.tsx        # Wraps LocationSection
+│       ├── Contact.tsx         # Wraps ContactSection
+│       └── Developer.tsx       # Developer profile page
+│
+├── firebase-applet-config.json  # Firebase service account
+├── firebase-blueprint.json
+├── firestore.rules
+└── metadata.json
 ```
