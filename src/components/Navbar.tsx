@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Globe, Sun, Moon, Menu, X, Landmark, LogOut } from 'lucide-react';
+import { Globe, Sun, Moon, Menu, X, Landmark } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language, translations } from '../translations';
-import { useAuth } from '../context/AuthContext';
-import AuthModal from './AuthModal';
 
 interface NavbarProps {
   lang: Language;
@@ -13,29 +11,11 @@ interface NavbarProps {
   toggleTheme: () => void;
 }
 
-const navAuthTranslations = {
-  en: {
-    signIn: 'Sign In',
-    signUp: 'Sign Up',
-    signOut: 'Sign Out',
-    welcome: 'Welcome'
-  },
-  am: {
-    signIn: 'ግባ',
-    signUp: 'ተመዝገብ',
-    signOut: 'ውጣ',
-    welcome: 'ሰላምታ'
-  }
-};
-
 const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme }) => {
   const t = translations[lang];
-  const authTrans = navAuthTranslations[lang];
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showFeastPopup, setShowFeastPopup] = useState(false);
-  const { user, logout } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -103,42 +83,6 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
             <button className="bg-church-gold text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-church-gold/90 transition-all shadow-lg shadow-church-gold/20 cursor-pointer">
               {t.nav.donation}
             </button>
-
-            {/* User Profile / Auth Desk Menu */}
-            {user ? (
-              <div className="flex items-center gap-3 pl-4 border-l border-church-gold/20">
-                <div className="flex items-center gap-2" title={user.email || ''}>
-                  <div className="w-8 h-8 rounded-full bg-church-gold/15 dark:bg-church-gold/25 border border-church-gold/30 flex items-center justify-center text-church-gold font-bold text-xs">
-                    {user.displayName ? user.displayName.charAt(0).toUpperCase() : (user.email ? user.email.charAt(0).toUpperCase() : '?')}
-                  </div>
-                  <span className="text-xs font-semibold text-church-blue/85 dark:text-gray-300 max-w-[100px] truncate">
-                    {user.displayName || user.email?.split('@')[0]}
-                  </span>
-                </div>
-                <button
-                  onClick={() => logout()}
-                  className="p-1.5 text-church-blue/65 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-all cursor-pointer"
-                  title={authTrans.signOut}
-                >
-                  <LogOut className="w-4 h-4" />
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 pl-4 border-l border-church-gold/20">
-                <button
-                  onClick={() => setIsAuthOpen(true)}
-                  className="text-church-blue dark:text-gray-300 hover:text-church-gold dark:hover:text-church-gold px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
-                >
-                  {authTrans.signIn}
-                </button>
-                <button
-                  onClick={() => setIsAuthOpen(true)}
-                  className="bg-church-gold text-white hover:bg-church-gold/90 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer"
-                >
-                  {authTrans.signUp}
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
@@ -219,57 +163,6 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
                   ))}
                 </div>
 
-                {/* Mobile Auth Area */}
-                <div className="border-t border-church-gold/10 pt-6 px-2 flex flex-col gap-4">
-                  {user ? (
-                    <div className="flex items-center justify-between p-3.5 bg-church-gold/10 dark:bg-church-gold/5 rounded-2xl border border-church-gold/15">
-                      <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-full bg-church-gold/15 dark:bg-church-gold/25 border border-church-gold/30 flex items-center justify-center text-church-gold font-bold text-sm">
-                          {user.displayName ? user.displayName.charAt(0).toUpperCase() : (user.email ? user.email.charAt(0).toUpperCase() : '?')}
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-sm font-bold text-church-blue dark:text-white">
-                            {user.displayName || user.email?.split('@')[0]}
-                          </span>
-                          <span className="text-[10px] text-church-blue/50 dark:text-gray-400 font-mono truncate max-w-[160px]">
-                            {user.email}
-                          </span>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => {
-                          setIsOpen(false);
-                          logout();
-                        }}
-                        className="p-2.5 bg-red-50 dark:bg-red-950/15 text-red-600 dark:text-red-400 hover:text-red-700 rounded-xl transition-all cursor-pointer"
-                      >
-                        <LogOut className="w-4 h-4" />
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-2 gap-3">
-                      <button
-                        onClick={() => {
-                          setIsOpen(false);
-                          setIsAuthOpen(true);
-                        }}
-                        className="w-full text-church-blue dark:text-white border border-church-gold/30 font-semibold py-3.5 rounded-2xl text-xs uppercase tracking-wider text-center cursor-pointer"
-                      >
-                        {authTrans.signIn}
-                      </button>
-                      <button
-                        onClick={() => {
-                          setIsOpen(false);
-                          setIsAuthOpen(true);
-                        }}
-                        className="w-full bg-church-gold text-white font-semibold py-3.5 rounded-2xl text-xs uppercase tracking-wider text-center cursor-pointer shadow-md"
-                      >
-                        {authTrans.signUp}
-                      </button>
-                    </div>
-                  )}
-                </div>
-
                 {/* Mobile Donation Call to action */}
                 <div className="border-t border-church-gold/10 pt-6 px-2">
                   <button 
@@ -293,13 +186,6 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
           </>
         )}
       </AnimatePresence>
-
-      {/* Auth Modal Trigger popup */}
-      <AuthModal 
-        isOpen={isAuthOpen} 
-        onClose={() => setIsAuthOpen(false)} 
-        lang={lang} 
-      />
 
       {/* Feast Info Popup */}
       <AnimatePresence>

@@ -13,7 +13,6 @@ import ContactPage from './pages/Contact';
 import DeveloperPage from './pages/Developer';
 import NotFoundPage from './pages/NotFound';
 import { Language } from './translations';
-import { AuthProvider } from './context/AuthContext';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -82,7 +81,6 @@ function App() {
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
 
   return (
-    <AuthProvider>
       <Router>
         <ScrollToTop />
         <div className={`min-h-screen bg-church-cream dark:bg-slate-950 transition-colors duration-500 selection:bg-church-gold selection:text-white overflow-x-hidden flex flex-col ${lang === 'am' ? 'lang-am' : ''}`}>
@@ -101,7 +99,6 @@ function App() {
           <Footer lang={lang} />
         </div>
       </Router>
-    </AuthProvider>
   );
 }
 
