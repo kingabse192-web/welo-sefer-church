@@ -34,6 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showFeastPopup, setShowFeastPopup] = useState(false);
   const { user, logout } = useAuth();
 
   useEffect(() => {
@@ -42,6 +43,12 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!showFeastPopup) return;
+    const timer = setTimeout(() => setShowFeastPopup(false), 10000);
+    return () => clearTimeout(timer);
+  }, [showFeastPopup]);
+
   return (
     <nav className={`fixed top-0 w-full z-50 px-6 py-4 transition-all duration-300 ${
       scrolled
@@ -49,12 +56,14 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
         : 'bg-transparent border-transparent'
     }`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <NavLink to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-          <div className="w-10 h-10 overflow-hidden rounded-full border-2 border-church-gold shadow-sm">
-            <img src="logo.png" alt="Church Logo" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-          </div>
-          <span className="font-serif font-bold text-xl tracking-tight text-church-blue dark:text-church-gold transition-colors">Welo Sefer Church</span>
-        </NavLink>
+        <div className="flex items-center gap-3">
+          <button onClick={() => setShowFeastPopup(true)} className="w-10 h-10 overflow-hidden rounded-full border-2 border-church-gold shadow-sm cursor-pointer flex-shrink-0 hover:ring-2 hover:ring-church-gold/50 transition-all">
+            <img src="logo-profile.png" alt="Church Logo" className="w-full h-full object-cover rounded-full" referrerPolicy="no-referrer" />
+          </button>
+          <NavLink to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+            <span className="font-serif font-bold text-xl tracking-tight text-church-blue dark:text-church-gold transition-colors">Welo Sefer Church</span>
+          </NavLink>
+        </div>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8 font-sans text-sm font-medium text-church-blue/70 dark:text-gray-400">
@@ -291,6 +300,90 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
         onClose={() => setIsAuthOpen(false)} 
         lang={lang} 
       />
+
+      {/* Feast Info Popup */}
+      <AnimatePresence>
+        {showFeastPopup && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
+              onClick={() => setShowFeastPopup(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: -30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -30 }}
+              transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+              className="fixed top-24 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-lg bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-church-blue/20 dark:shadow-black/40 border border-church-gold/20 overflow-hidden"
+            >
+              <div className="bg-gradient-to-r from-church-gold/10 to-church-blue/5 dark:from-church-gold/10 dark:to-church-blue/10 p-6 border-b border-church-gold/10">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] uppercase font-bold text-church-gold tracking-[0.3em]">
+                    {lang === 'am' ? 'ወርሃዊ የንግሥ በዓላት' : 'Monthly Feast Schedule'}
+                  </span>
+                  <button 
+                    onClick={() => setShowFeastPopup(false)}
+                    className="p-1.5 hover:bg-church-gold/10 rounded-full transition-colors cursor-pointer"
+                  >
+                    <X className="w-4 h-4 text-church-blue/50 dark:text-gray-400" />
+                  </button>
+                </div>
+                <h3 className="font-serif font-bold text-lg text-church-blue dark:text-church-gold">
+                  {lang === 'am' ? 'የቅዱስ ገብርኤል እና የቅድስት ማርያም ወርሃዊ በዓላት' : 'Monthly Feasts of St. Gabriel & St. Mary'}
+                </h3>
+              </div>
+              <div className="p-6 space-y-5">
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-xl bg-church-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-church-gold font-bold text-sm">19</span>
+                  </div>
+                  <div>
+                    <h4 className="font-sans font-bold text-church-blue dark:text-white text-sm mb-1">
+                      {lang === 'am' ? 'የቅዱስ ገብርኤል በዓል' : 'Feast of St. Gabriel'}
+                    </h4>
+                    <p className="text-xs text-church-blue/65 dark:text-gray-400 leading-relaxed">
+                      {lang === 'am'
+                        ? 'በየወሩ በ19 (በተለይም የታህሳስ 19 እና የሃምሌ 19 ዓመታዊ በዓላት በጣም ደማቅ ናቸው)።'
+                        : 'Every month on the 19th (especially Tahsas 19 and Hamle 19 are celebrated with great grandeur).'}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="w-10 h-10 rounded-xl bg-church-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-church-gold font-bold text-sm">21</span>
+                  </div>
+                  <div>
+                    <h4 className="font-sans font-bold text-church-blue dark:text-white text-sm mb-1">
+                      {lang === 'am' ? 'የቅድስት ማርያም በዓል' : 'Feast of St. Mary'}
+                    </h4>
+                    <p className="text-xs text-church-blue/65 dark:text-gray-400 leading-relaxed">
+                      {lang === 'am'
+                        ? 'በየወሩ በ21 (በተለይም የህዳር 21 ጽዮን ማርያም እና የግንቦት 21 ደማቅ በዓላት ናቸው)።'
+                        : 'Every month on the 21st (especially Hidar 21 Zion Mary and Ginbot 21 are grand celebrations).'}
+                    </p>
+                  </div>
+                </div>
+                <div className="pt-3 border-t border-church-gold/10 flex items-center justify-between">
+                  <span className="text-[10px] text-church-blue/40 dark:text-gray-500 font-sans">
+                    {lang === 'am' ? 'መረጃው ከ10 ሰከንድ በኋላ ይዘጋል' : 'Auto-closes in 10s'}
+                  </span>
+                  <div className="w-20 h-1.5 bg-church-gold/10 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: '100%' }}
+                      animate={{ width: '0%' }}
+                      transition={{ duration: 10, ease: 'linear' }}
+                      className="h-full bg-church-gold rounded-full"
+                    />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
