@@ -92,12 +92,12 @@ export const translations = {
       locationLabel: 'Location',
       list: [
         {
-          title: "Sunday Holy Liturgy (Kidase)",
-          date: "Every Sunday",
-          time: "6:00 AM - 9:00 AM",
+          title: "Feast of St. Mary (Ginbot 21)",
+          date: "May 30 (Ginbot 21)",
+          time: "5:30 AM - 10:00 AM",
           location: "St. Mary Sanctuary",
-          category: "Regular",
-          description: "Join us for the central act of worship in the Ethiopian Orthodox Tewahedo Church. The Holy Liturgy is a divine service of praise, prayer, and communion, bringing the community together in spiritual unity and tradition."
+          category: "Major Feast",
+          description: "The monthly feast of the Holy Virgin Mary according to the Ethiopian calendar. A special day of extended hymns, intercessory prayers, and Holy Liturgy drawing the faithful together in devotion."
         },
         {
           title: "Feast of St. Gabriel",
@@ -106,6 +106,14 @@ export const translations = {
           location: "St. Gabriel Cathedral",
           category: "Major Feast",
           description: "One of the most significant annual celebrations at our church. Thousands of pilgrims and local faithful gather to honor the Archangel Gabriel. The day includes special liturgical services, colorful processions with the Tabot, and communal festivities."
+        },
+        {
+          title: "Sunday Holy Liturgy (Kidase)",
+          date: "Every Sunday",
+          time: "6:00 AM - 9:00 AM",
+          location: "St. Mary Sanctuary",
+          category: "Regular",
+          description: "Join us for the central act of worship in the Ethiopian Orthodox Tewahedo Church. The Holy Liturgy is a divine service of praise, prayer, and communion, bringing the community together in spiritual unity and tradition."
         },
         {
           title: "St. Mary's Monthly Feast",
@@ -138,14 +146,6 @@ export const translations = {
           location: "Church Hall",
           category: "Regular",
           description: "An in-depth exploration of Holy Scripture led by experienced teachers. This interactive session allows the community to deepen their understanding of spiritual texts and apply their wisdom to modern life."
-        },
-        {
-          title: "Feast of St. Mary (Ginbot 21)",
-          date: "May 30 (Ginbot 21)",
-          time: "5:30 AM - 10:00 AM",
-          location: "St. Mary Sanctuary",
-          category: "Major Feast",
-          description: "The monthly feast of the Holy Virgin Mary according to the Ethiopian calendar. A special day of extended hymns, intercessory prayers, and Holy Liturgy drawing the faithful together in devotion."
         },
         {
           title: "Meskel — The Finding of the True Cross",
@@ -323,12 +323,12 @@ export const translations = {
       locationLabel: 'ቦታ',
       list: [
         {
-          title: "የእሁድ ቅዳሴ",
-          date: "በየሳምንቱ እሁድ",
-          time: "ከጠዋቱ 12:00 - 3:00",
+          title: "የቅድስት ማርያም በዓል (ግንቦት ፳፩)",
+          date: "ግንቦት 21",
+          time: "ከጠዋቱ 11:30 - 4:00",
           location: "በቅድስት ማርያም መቅደስ",
-          category: "Regular",
-          description: "በኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን ማዕከላዊ የአምልኮ ሥርዓት። ቅዳሴው የምስጋና፣ የጸሎት እና የቁርባን አገልግሎት ሲሆን ማህበረሰቡን በመንፈሳዊ አንድነት እና በወግ ያገናኛል።"
+          category: "Major Feast",
+          description: "በኢትዮጵያ ዘመን አቆጣጠር የቅድስት ድንግል ማርያም ወርሃዊ በዓል። ልዩ የማህሌት አገልግሎት፣ የአማላጅነት ጸሎት እና ቅዱስ ቅዳሴ የሚቀርብበት የእምነት ቀን።"
         },
         {
           title: "የቅዱስ ገብርኤል ዓመታዊ በዓል",
@@ -337,6 +337,14 @@ export const translations = {
           location: "በቅዱስ ገብርኤል ካቴድራል",
           category: "Major Feast",
           description: "በቤተ ክርስቲያናችን ውስጥ ካሉ ትልልቅ ዓመታዊ በዓላት አንዱ። በሺዎች የሚቆጠሩ ምዕመናን የመላእክቱን አለቃ ቅዱስ ገብርኤልን ለማክበር ይሰበሰባሉ። ዕለቱ ልዩ የቅዳሴ አገልግሎት፣ የታቦት ንግሥ እና የማህበረሰብ በዓላትን ያጠቃልላል።"
+        },
+        {
+          title: "የእሁድ ቅዳሴ",
+          date: "በየሳምንቱ እሁድ",
+          time: "ከጠዋቱ 12:00 - 3:00",
+          location: "በቅድስት ማርያም መቅደስ",
+          category: "Regular",
+          description: "በኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን ማዕከላዊ የአምልኮ ሥርዓት። ቅዳሴው የምስጋና፣ የጸሎት እና የቁርባን አገልግሎት ሲሆን ማህበረሰቡን በመንፈሳዊ አንድነት እና በወግ ያገናኛል።"
         },
         {
           title: "የወርሃዊ ቅድስት ማርያም በዓል",
@@ -369,14 +377,6 @@ export const translations = {
           location: "በአዳራሹ",
           category: "Regular",
           description: "ልምድ ባላቸው መምህራን የሚመራ ጥልቅ የመጽሐፍ ቅዱስ ምርምር። ይህ መርሃ ግብር ማህበረሰቡ ስለ መንፈሳዊ ጽሑፎች ያላቸውን ግንዛቤ እንዲያሳድጉ እና ጥበባቸውን በዘመናዊ ሕይወት ውስጥ እንዲተገብሩ ያስችላቸዋል።"
-        },
-        {
-          title: "የቅድስት ማርያም በዓል (ግንቦት ፳፩)",
-          date: "ግንቦት 21",
-          time: "ከጠዋቱ 11:30 - 4:00",
-          location: "በቅድስት ማርያም መቅደስ",
-          category: "Major Feast",
-          description: "በኢትዮጵያ ዘመን አቆጣጠር የቅድስት ድንግል ማርያም ወርሃዊ በዓል። ልዩ የማህሌት አገልግሎት፣ የአማላጅነት ጸሎት እና ቅዱስ ቅዳሴ የሚቀርብበት የእምነት ቀን።"
         },
         {
           title: "መስቀል — የእውነተኛው መስቀል መገኘት",
