@@ -195,17 +195,22 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
               onClick={() => setShowFeastPopup(false)}
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: -30 }}
+              initial={{ opacity: 0, scale: 0.9, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: -30 }}
-              transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-              className="fixed top-24 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-lg bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-church-blue/20 dark:shadow-black/40 border border-church-gold/20 overflow-hidden"
+              exit={{ opacity: 0, scale: 0.9, y: 40 }}
+              transition={{ type: 'spring', damping: 22, stiffness: 280 }}
+              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-lg bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-church-blue/20 dark:shadow-black/40 border border-church-gold/20 overflow-hidden"
             >
-              <div className="bg-gradient-to-r from-church-gold/10 to-church-blue/5 dark:from-church-gold/10 dark:to-church-blue/10 p-6 border-b border-church-gold/10">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.4, ease: 'easeOut' }}
+                className="bg-gradient-to-r from-church-gold/10 to-church-blue/5 dark:from-church-gold/10 dark:to-church-blue/10 p-6 border-b border-church-gold/10"
+              >
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[10px] uppercase font-bold text-church-gold tracking-[0.3em]">
                     {lang === 'am' ? 'ወርሃዊ የንግሥ በዓላት' : 'Monthly Feast Schedule'}
@@ -220,9 +225,14 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
                 <h3 className="font-serif font-bold text-lg text-church-blue dark:text-church-gold">
                   {lang === 'am' ? 'የቅዱስ ገብርኤል እና የቅድስት ማርያም ወርሃዊ በዓላት' : 'Monthly Feasts of St. Gabriel & St. Mary'}
                 </h3>
-              </div>
+              </motion.div>
               <div className="p-6 space-y-5">
-                <div className="flex gap-4 items-start">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.4, ease: 'easeOut' }}
+                  className="flex gap-4 items-start"
+                >
                   <div className="w-10 h-10 rounded-xl bg-church-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-church-gold font-bold text-sm">19</span>
                   </div>
@@ -236,8 +246,13 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
                         : 'Every month on the 19th (especially Tahsas 19 and Hamle 19 are celebrated with great grandeur).'}
                     </p>
                   </div>
-                </div>
-                <div className="flex gap-4 items-start">
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35, duration: 0.4, ease: 'easeOut' }}
+                  className="flex gap-4 items-start"
+                >
                   <div className="w-10 h-10 rounded-xl bg-church-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <span className="text-church-gold font-bold text-sm">21</span>
                   </div>
@@ -251,8 +266,13 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
                         : 'Every month on the 21st (especially Hidar 21 Zion Mary and Ginbot 21 are grand celebrations).'}
                     </p>
                   </div>
-                </div>
-                <div className="pt-3 border-t border-church-gold/10 flex items-center justify-between">
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.3 }}
+                  className="pt-3 border-t border-church-gold/10 flex items-center justify-between"
+                >
                   <span className="text-[10px] text-church-blue/40 dark:text-gray-500 font-sans">
                     {lang === 'am' ? 'መረጃው ከ10 ሰከንድ በኋላ ይዘጋል' : 'Auto-closes in 10s'}
                   </span>
@@ -264,7 +284,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
                       className="h-full bg-church-gold rounded-full"
                     />
                   </div>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           </>
