@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
-import AnnouncementBanner from './components/AnnouncementBanner';
 import Footer from './components/Footer';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import Home from './pages/Home';
@@ -91,7 +90,6 @@ function App() {
             toggleLang={toggleLang} 
             toggleTheme={toggleTheme} 
           />
-          <AnnouncementBanner lang={lang} />
           
           <main className="flex-grow">
             <AnimatedRoutes lang={lang} />
