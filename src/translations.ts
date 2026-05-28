@@ -138,6 +138,54 @@ export const translations = {
           location: "Church Hall",
           category: "Regular",
           description: "An in-depth exploration of Holy Scripture led by experienced teachers. This interactive session allows the community to deepen their understanding of spiritual texts and apply their wisdom to modern life."
+        },
+        {
+          title: "Feast of St. Mary (Ginbot 21)",
+          date: "May 30 (Ginbot 21)",
+          time: "5:30 AM - 10:00 AM",
+          location: "St. Mary Sanctuary",
+          category: "Major Feast",
+          description: "The monthly feast of the Holy Virgin Mary according to the Ethiopian calendar. A special day of extended hymns, intercessory prayers, and Holy Liturgy drawing the faithful together in devotion."
+        },
+        {
+          title: "Meskel — The Finding of the True Cross",
+          date: "September 27 (Meskerem 17)",
+          time: "All Day",
+          location: "Church Compound",
+          category: "Major Feast",
+          description: "One of the most beloved festivals in the Ethiopian Orthodox Church, commemorating the discovery of the True Cross by Empress Helena (Queen Eleni). The day features the iconic Demera (bonfire) ceremony, colorful processions, and a vibrant community gathering."
+        },
+        {
+          title: "Hidar Zion — Arrival of the Ark of the Covenant",
+          date: "November 30 (Hidar 21)",
+          time: "All Day",
+          location: "Main Cathedral",
+          category: "Major Feast",
+          description: "A solemn feast commemorating the arrival of the Ark of the Covenant (Tabote Tsiyon) in Axum. This holy day is marked with special liturgical services, processions, and prayers honoring the most sacred relic of the Ethiopian Orthodox faith."
+        },
+        {
+          title: "Genna — Ethiopian Christmas",
+          date: "January 7 (Tahsas 29)",
+          time: "All Day",
+          location: "St. Mary Sanctuary",
+          category: "Major Feast",
+          description: "The celebration of the Nativity of Jesus Christ according to the Ethiopian calendar. A joyous occasion featuring a midnight Divine Liturgy (Hosanna), traditional hymns, and festive gatherings with family and community."
+        },
+        {
+          title: "Timkat — Ethiopian Epiphany",
+          date: "January 19 (Ter 11)",
+          time: "All Day",
+          location: "Church Compound",
+          category: "Major Feast",
+          description: "The celebration of the Baptism of Christ in the Jordan River. The highlight is the blessing of holy water (Tsebel) and the magnificent procession of the Tabot to a nearby body of water, re-enacting Christ's baptism. A deeply spiritual and colorful celebration."
+        },
+        {
+          title: "Hosanna — Palm Sunday",
+          date: "April 12 (Megabit 27)",
+          time: "6:00 AM - 10:00 AM",
+          location: "St. Mary Sanctuary",
+          category: "Major Feast",
+          description: "Commemorating Christ's triumphant entry into Jerusalem. The faithful carry palm branches and participate in a vibrant procession around the church, singing hymns of praise. This feast marks the beginning of Holy Week (Hosanna Week) leading to Easter."
         }
       ]
     },
@@ -159,12 +207,12 @@ export const translations = {
       message: 'Message',
       send: 'Send Message',
       devProfile: 'Developer Profile',
-      devRole: 'Web UI Designer',
-      devTeam: 'SEMERGETA BELAYNEH',
+      devRole: 'Full-Stack Developer',
+      devTeam: 'D/N ABSALEW BELAYNEH',
       devAge: 'Age',
       devExperience: 'Experience',
-      devAgeValue: '19 Years',
-      devExpValue: '2+ Years',
+      devAgeValue: '17 Years',
+      devExpValue: '3+ Years',
       devToolsTitle: 'Built With Professional Tools',
       devHub: 'Developer Hub',
       devQuote: 'Crafting digital experiences rooted in tradition and propelled by modern technology.',
@@ -321,6 +369,54 @@ export const translations = {
           location: "በአዳራሹ",
           category: "Regular",
           description: "ልምድ ባላቸው መምህራን የሚመራ ጥልቅ የመጽሐፍ ቅዱስ ምርምር። ይህ መርሃ ግብር ማህበረሰቡ ስለ መንፈሳዊ ጽሑፎች ያላቸውን ግንዛቤ እንዲያሳድጉ እና ጥበባቸውን በዘመናዊ ሕይወት ውስጥ እንዲተገብሩ ያስችላቸዋል።"
+        },
+        {
+          title: "የቅድስት ማርያም በዓል (ግንቦት ፳፩)",
+          date: "ግንቦት 21",
+          time: "ከጠዋቱ 11:30 - 4:00",
+          location: "በቅድስት ማርያም መቅደስ",
+          category: "Major Feast",
+          description: "በኢትዮጵያ ዘመን አቆጣጠር የቅድስት ድንግል ማርያም ወርሃዊ በዓል። ልዩ የማህሌት አገልግሎት፣ የአማላጅነት ጸሎት እና ቅዱስ ቅዳሴ የሚቀርብበት የእምነት ቀን።"
+        },
+        {
+          title: "መስቀል — የእውነተኛው መስቀል መገኘት",
+          date: "መስከረም 17",
+          time: "ቀኑን ሙሉ",
+          location: "በቤተ ክርስቲያኑ ግቢ",
+          category: "Major Feast",
+          description: "በኢትዮጵያ ኦርቶዶክስ ተዋሕዶ ቤተ ክርስቲያን ውስጥ በጣም ተወዳጅ ከሆኑት በዓላት አንዱ፣ እውነተኛውን መስቀል በንግሥት እሌኒ መገኘቱን የሚዘክር። ዕለቱ ድምራ (የእሳት ቃጠሎ) ሥነ ሥርዓት፣ ደማቅ ስነ ስርዓተ ንግሥ እና የማህበረሰብ በዓልን ያካትታል።"
+        },
+        {
+          title: "ሕዳር ጽዮን — የታቦተ ሕጉ መምጣት",
+          date: "ሕዳር 21",
+          time: "ቀኑን ሙሉ",
+          location: "በዋናው ካቴድራል",
+          category: "Major Feast",
+          description: "የታቦተ ጽዮን ወደ አክሱም መምጣትን የሚዘክር ቅዱስ በዓል። ዕለቱ በልዩ የቅዳሴ አገልግሎት፣ በስነ ስርዓተ ንግሥ እና የኢትዮጵያ ኦርቶዶክስ እምነት ቅዱስ ቅርስን በሚያከብሩ ጸሎቶች ይከበራል።"
+        },
+        {
+          title: "ገና — የኢትዮጵያ ገና",
+          date: "ታህሳስ 29",
+          time: "ቀኑን ሙሉ",
+          location: "በቅድስት ማርያም መቅደስ",
+          category: "Major Feast",
+          description: "የጌታችን የኢየሱስ ክርስቶስ ልደት በኢትዮጵያ ዘመን አቆጣጠር የሚከበርበት ደማቅ በዓል። የእሩምታ ቅዳሴ (ሆሣዕና)፣ ባህላዊ መዝሙሮች እና ከቤተሰብ እና ማህበረሰብ ጋር የሚደረግ ደስተኛ ስብሰባ ያሳያል።"
+        },
+        {
+          title: "ጥምቀት — የኢትዮጵያ ጥምቀት",
+          date: "ጥር 11",
+          time: "ቀኑን ሙሉ",
+          location: "በቤተ ክርስቲያኑ ግቢ",
+          category: "Major Feast",
+          description: "የጌታችን የኢየሱስ ክርስቶስ በዮርዳኖስ ወንዝ መጠመቅን የሚዘክር በዓል። ዋናው ክፍል የጸበል በረከት እና የታቦት ንግሥ ወደ ውኃ በመሄድ የክርስቶስን ጥምቀት የሚያሳይ ነው። ጥልቅ መንፈሳዊ እና ደማቅ በዓል ነው።"
+        },
+        {
+          title: "ሆሣዕና — የዘንባባ እሁድ",
+          date: "መጋቢት 27",
+          time: "ከጠዋቱ 12:00 - 4:00",
+          location: "በቅድስት ማርያም መቅደስ",
+          category: "Major Feast",
+          description: "ጌታችን ኢየሱስ ክርስቶስ በድል ወደ ኢየሩሳሌም መግባቱን የሚዘክር። ምዕመናን የዘንባባ ቅጠል ይዘው በደማቅ ስነ ስርዓት ቤተ ክርስቲያኑን ይዞራሉ። ይህ በዓል የሆሣዕና ሳምንትን ይከፍታል።"
         }
       ]
     },
@@ -342,12 +438,12 @@ export const translations = {
       message: 'መልእክት',
       send: 'መልእክት ይላኩ',
       devProfile: 'የዲዛይነሩ መገለጫ',
-      devRole: 'የድረ-ገጽ ዲዛይነር',
-      devTeam: 'ሰመርጌታ በላይነህ',
+      devRole: 'ፈጣን የድረ-ገጽ አልሚ',
+      devTeam: 'D/N አብሳለው በላይነህ',
       devAge: 'ዕድሜ',
       devExperience: 'የስራ ልምድ',
-      devAgeValue: '19 ዓመት',
-      devExpValue: '2+ ዓመታት',
+      devAgeValue: '17 ዓመት',
+      devExpValue: '3+ ዓመታት',
       devToolsTitle: 'በሙያዊ መሣሪያዎች የተገነባ',
       devHub: 'የአልሚው ማዕከል',
       devQuote: '',

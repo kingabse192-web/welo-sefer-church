@@ -105,7 +105,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowLoader(false), 1500);
+    const timer = setTimeout(() => setShowLoader(false), 200);
     return () => clearTimeout(timer);
   }, []);
   
