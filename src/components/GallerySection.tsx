@@ -102,12 +102,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
   const [cols, setCols] = useState(4);
-  const [showLoader, setShowLoader] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowLoader(false), 200);
-    return () => clearTimeout(timer);
-  }, []);
+  const [showLoader, setShowLoader] = useState(false);
   
   useEffect(() => {
     const updateColumns = () => {
