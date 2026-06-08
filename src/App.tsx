@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTopButton from './components/ScrollToTopButton';
+import ScrollProgressBar from './components/ScrollProgressBar';
 import Home from './pages/Home';
 import HistoryPage from './pages/History';
 import GalleryPage from './pages/Gallery';
@@ -95,6 +96,7 @@ function App() {
             <AnimatedRoutes lang={lang} />
           </main>
 
+          <ScrollProgressBar />
           <ScrollToTopButton />
           <Footer lang={lang} />
         </div>
