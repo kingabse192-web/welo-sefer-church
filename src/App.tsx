@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import ScrollProgressBar from './components/ScrollProgressBar';
+import WelcomeSplash from './components/WelcomeSplash';
 import Home from './pages/Home';
 import HistoryPage from './pages/History';
 import GalleryPage from './pages/Gallery';
@@ -80,10 +81,12 @@ function App() {
 
   const toggleLang = () => setLang(prev => prev === 'en' ? 'am' : 'en');
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  const [splashDone, setSplashDone] = useState(false);
 
   return (
       <Router>
         <ScrollToTop />
+        {!splashDone && <WelcomeSplash lang={lang} onFinish={() => setSplashDone(true)} />}
         <div className={`min-h-screen bg-church-cream dark:bg-slate-950 transition-colors duration-500 selection:bg-church-gold selection:text-white overflow-x-hidden flex flex-col ${lang === 'am' ? 'lang-am' : ''}`}>
           <Navbar 
             lang={lang} 
