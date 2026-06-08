@@ -224,7 +224,20 @@ export const translations = {
       devPhone: '+251 961 634 343',
       donationTitle: 'Support Our Church (Donations)',
       cbeTitle: 'Commercial Bank of Ethiopia (CBE)',
-      abayTitle: 'Abay Bank'
+      abayTitle: 'Abay Bank',
+      scheduleTitle: 'Weekly Service Schedule',
+      sundaySchool: 'Sunday School',
+      sundaySchoolTime: '9:00 AM - 10:30 AM',
+      mainService: 'Main Service (Qurban)',
+      mainServiceTime: '10:30 AM - 1:00 PM',
+      eveningPrayer: 'Evening Prayer',
+      eveningPrayerTime: '3:00 PM - 5:00 PM',
+      wednesdayPrayer: 'Wednesday Prayer',
+      wednesdayPrayerTime: '2:00 PM - 4:00 PM',
+      fridayPrayer: 'Friday Prayer',
+      fridayPrayerTime: '2:00 PM - 4:00 PM',
+      saturdayService: 'Saturday Mahber',
+      saturdayServiceTime: '8:00 AM - 10:00 AM'
     },
     footer: {
       desc: 'Serving the spiritual needs of our community through tradition, prayer, and social outreach. Join us as we walk the path of faith together.',
@@ -455,7 +468,20 @@ export const translations = {
       devPhone: '+251 961 634 343',
       donationTitle: 'ቤተ ክርስቲያናችንን ይደግፉ (ልገሳ)',
       cbeTitle: 'የኢትዮጵያ ንግድ ባንክ (CBE)',
-      abayTitle: 'የዓባይ ባንክ'
+      abayTitle: 'የዓባይ ባንክ',
+      scheduleTitle: 'የሳምንት መርሐ ግብር',
+      sundaySchool: 'የሰንበት ትምህርት ቤት',
+      sundaySchoolTime: '9፡00 ጥዋት - 10፡30 ጥዋት',
+      mainService: 'ቅዳሴ',
+      mainServiceTime: '10፡30 ጥዋት - 1፡00 ቀትር',
+      eveningPrayer: 'የማታ ጸሎት',
+      eveningPrayerTime: '3፡00 ከሰአት - 5፡00 ከሰአት',
+      wednesdayPrayer: 'የረቡዕ ጸሎት',
+      wednesdayPrayerTime: '2፡00 ከሰአት - 4፡00 ከሰአት',
+      fridayPrayer: 'የዓርብ ጸሎት',
+      fridayPrayerTime: '2፡00 ከሰአት - 4፡00 ከሰአት',
+      saturdayService: 'የቅዳሜ መህበር',
+      saturdayServiceTime: '8፡00 ጥዋት - 10፡00 ጥዋት'
     },
     footer: {
       desc: 'በወግ፣ በጸሎት እና በማህበራዊ አገልግሎት የማህበረሰባችንን መንፈሳዊ ፍላጎቶች ማገልገል። የእምነትን መንገድ አብረን ስንጓዝ ይቀላቀሉን።',

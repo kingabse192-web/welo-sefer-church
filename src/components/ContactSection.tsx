@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Landmark, Copy, Check, AlertTriangle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Landmark, Copy, Check, AlertTriangle, Clock, CalendarDays, ExternalLink } from 'lucide-react';
 import { Language, translations } from '../translations';
 
 interface ContactSectionProps {
@@ -309,6 +309,95 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                 </motion.p>
               )}
             </form>
+          </motion.div>
+        </div>
+
+        {/* Map & Schedule Grid */}
+        <div className="max-w-5xl mx-auto mt-16 grid md:grid-cols-2 gap-10">
+          {/* Map */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <MapPin className="w-5 h-5 text-church-gold" />
+              <h3 className="text-lg font-serif font-bold text-church-blue dark:text-church-gold">
+                {lang === 'am' ? 'የቤተ ክርስቲያኑ መገኛ' : 'Our Location'}
+              </h3>
+            </div>
+            <div className="w-full h-[280px] rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+              <iframe
+                src="https://maps.google.com/maps?q=8.988558,38.773642&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+                title="Welo Sefer Church Location"
+              />
+            </div>
+            <a
+              href="https://maps.google.com/maps?q=8.988558,38.773642"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-1.5 text-xs text-church-gold hover:text-white font-medium transition-colors"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              {lang === 'am' ? 'በጉግል ካርታ ክፈቱ' : 'Open in Google Maps'}
+            </a>
+          </motion.div>
+
+          {/* Schedule */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <CalendarDays className="w-5 h-5 text-church-gold" />
+              <h3 className="text-lg font-serif font-bold text-church-blue dark:text-church-gold">
+                {(t as Record<string, string>).scheduleTitle || 'Weekly Service Schedule'}
+              </h3>
+            </div>
+            <div className="bg-white dark:bg-slate-800/60 rounded-2xl border border-white/10 divide-y divide-white/5 overflow-hidden">
+              {[
+                { day: lang === 'am' ? 'እሁድ' : 'Sunday', items: [
+                  { label: t.sundaySchool || 'Sunday School', time: (t as Record<string, string>).sundaySchoolTime || '9:00 AM - 10:30 AM' },
+                  { label: t.mainService || 'Main Service (Qurban)', time: (t as Record<string, string>).mainServiceTime || '10:30 AM - 1:00 PM' },
+                  { label: t.eveningPrayer || 'Evening Prayer', time: (t as Record<string, string>).eveningPrayerTime || '3:00 PM - 5:00 PM' },
+                ]},
+                { day: lang === 'am' ? 'ረቡዕ' : 'Wednesday', items: [
+                  { label: t.wednesdayPrayer || 'Wednesday Prayer', time: (t as Record<string, string>).wednesdayPrayerTime || '2:00 PM - 4:00 PM' },
+                ]},
+                { day: lang === 'am' ? 'ዓርብ' : 'Friday', items: [
+                  { label: t.fridayPrayer || 'Friday Prayer', time: (t as Record<string, string>).fridayPrayerTime || '2:00 PM - 4:00 PM' },
+                ]},
+                { day: lang === 'am' ? 'ቅዳሜ' : 'Saturday', items: [
+                  { label: t.saturdayService || 'Saturday Mahber', time: (t as Record<string, string>).saturdayServiceTime || '8:00 AM - 10:00 AM' },
+                ]},
+              ].map((dayBlock) => (
+                <div key={dayBlock.day} className="px-5 py-4">
+                  <p className="text-[10px] uppercase tracking-widest font-bold text-church-gold mb-2 font-sans">
+                    {dayBlock.day}
+                  </p>
+                  <div className="space-y-2">
+                    {dayBlock.items.map((item) => (
+                      <div key={item.label} className="flex items-center justify-between gap-4">
+                        <span className="text-sm text-church-blue dark:text-gray-200 font-sans">{item.label}</span>
+                        <span className="text-xs text-gray-400 dark:text-gray-500 font-mono whitespace-nowrap flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {item.time}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
