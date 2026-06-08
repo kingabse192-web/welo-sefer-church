@@ -99,50 +99,16 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
     { url: '', title: items.moreComing.title, description: items.moreComing.desc, isComingSoon: true },
   ];
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
-  const [cols, setCols] = useState(4);
   const [showLoader, setShowLoader] = useState(false);
-  
+
   useEffect(() => {
-    const updateColumns = () => {
-      const width = window.innerWidth;
-      if (width < 640) {
-        setCols(1); // mobile
-      } else if (width < 1024) {
-        setCols(2); // sm / md
-      } else if (width < 1280) {
-        setCols(3); // lg
-      } else {
-        setCols(4); // xl
-      }
-    };
-    
-    updateColumns();
-    window.addEventListener('resize', updateColumns);
-    return () => window.removeEventListener('resize', updateColumns);
-  }, []);
-  
-  const itemsPerPage = 12;
-
-  const totalPages = Math.ceil(galleryImages.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentImages = galleryImages.slice(startIndex, endIndex);
-
-  // Distribute images programmatically among column slots to implement stable horizontal chronological masonry layout
-  const columnsData = Array.from({ length: cols }, (): typeof galleryImages => []);
-  currentImages.forEach((image, i) => {
-    columnsData[i % cols].push(image);
-  });
-
-  const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage);
-    const section = document.getElementById('gallery');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+    const timer = setInterval(() => {
+      setCurrentIndex(prev => (prev + 1) % (galleryImages.length - 1));
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [galleryImages.length]);
 
   const handleSelectImage = (image: typeof galleryImages[0] | null) => {
     setSelectedImage(image);
@@ -170,97 +136,121 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
           </div>
         ) : (
         <div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start">
-                {columnsData.map((colItems, colIdx) => (
-                  <div key={colIdx} className="flex flex-col gap-6">
-                    {colItems.map((image) => {
-                      const globalIdx = galleryImages.indexOf(image);
-                      return (
-                        <motion.div
-                          key={globalIdx}
-                          initial={{ opacity: 0, scale: 0.94, y: 35 }}
-                          whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                          viewport={{ once: true, margin: '-80px' }}
-                          transition={{ 
-                            type: 'spring',
-                            stiffness: 75,
-                            damping: 14,
-                            mass: 0.9,
-                            delay: (globalIdx % cols) * 0.05
-                          }}
-                          className={`relative group overflow-hidden rounded-2xl cursor-pointer shadow-md hover:shadow-xl dark:shadow-black/20 transition-all duration-500 border dark:border-slate-800 ${
-                            image.isComingSoon 
-                              ? 'bg-church-blue/5 dark:bg-white/5 border-2 border-dashed border-church-gold/30 min-h-[220px]' 
-                              : 'bg-white dark:bg-slate-900 border-gray-100'
-                          }`}
-                          onClick={() => handleSelectImage(image)}
-                        >
-                          {image.isComingSoon ? (
-                            <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
-                              <div className="w-12 h-12 rounded-full bg-church-gold/10 flex items-center justify-center mb-4 text-church-gold">
-                                 <ChevronRight className="w-6 h-6" />
-                              </div>
-                              <h4 className="text-church-blue dark:text-church-gold font-serif font-bold text-lg mb-2">{image.title}</h4>
-                              <p className="text-church-blue/50 dark:text-white/40 text-xs hidden md:block">{image.description}</p>
-                            </div>
-                          ) : (
-                            <LazyGalleryImage 
-                              image={image}
-                              lang={lang}
-                            />
-                          )}
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
+          <div className="relative w-full max-w-5xl mx-auto perspective-[1200px]" style={{ height: 'min(70vh, 520px)' }}>
+            <button
+              onClick={() => setCurrentIndex(prev => (prev - 1 + galleryImages.length - 1) % (galleryImages.length - 1))}
+              className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-church-gold hover:border-church-gold transition-all shadow-lg"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <div className="relative w-full h-full flex items-center justify-center" style={{ transformStyle: 'preserve-3d' }}>
+              {galleryImages.slice(0, 17).map((image, i) => {
+                const isActive = i === currentIndex;
+                const isPrev = i === (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+                const isNext = i === (currentIndex + 1) % galleryImages.length;
+                const isFarPrev = i === (currentIndex - 2 + galleryImages.length) % galleryImages.length;
+                const isFarNext = i === (currentIndex + 2) % galleryImages.length;
 
-              {totalPages > 1 && (
-                <div className="mt-16 flex items-center justify-center gap-4">
-                  <button
-                    onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                    className={`p-3 rounded-full border transition-all ${
-                      currentPage === 1 
-                      ? 'border-gray-200 text-gray-300 cursor-not-allowed dark:border-gray-800' 
-                      : 'border-church-gold text-church-gold hover:bg-church-gold hover:text-white'
-                    }`}
+                let transform = '';
+                let zIndex = 0;
+                let opacity = 0;
+                let pointerEvents: 'auto' | 'none' = 'none';
+
+                if (isActive) {
+                  transform = 'translateZ(120px) scale(1)';
+                  zIndex = 10;
+                  opacity = 1;
+                  pointerEvents = 'auto';
+                } else if (isNext) {
+                  transform = 'translateX(280px) translateZ(-40px) rotateY(-20deg) scale(0.8)';
+                  zIndex = 5;
+                  opacity = 0.7;
+                } else if (isPrev) {
+                  transform = 'translateX(-280px) translateZ(-40px) rotateY(20deg) scale(0.8)';
+                  zIndex = 5;
+                  opacity = 0.7;
+                } else if (isFarNext) {
+                  transform = 'translateX(480px) translateZ(-180px) rotateY(-30deg) scale(0.55)';
+                  zIndex = 1;
+                  opacity = 0.3;
+                } else if (isFarPrev) {
+                  transform = 'translateX(-480px) translateZ(-180px) rotateY(30deg) scale(0.55)';
+                  zIndex = 1;
+                  opacity = 0.3;
+                } else {
+                  transform = 'translateZ(-300px) scale(0.3)';
+                  opacity = 0;
+                }
+
+                return (
+                  <motion.div
+                    key={i}
+                    animate={{ transform, opacity, zIndex }}
+                    transition={{ type: 'spring', stiffness: 100, damping: 20, mass: 1.2 }}
+                    style={{ 
+                      transformStyle: 'preserve-3d',
+                      pointerEvents,
+                      position: 'absolute',
+                      cursor: pointerEvents === 'auto' ? 'pointer' : 'default',
+                      WebkitTapHighlightColor: 'transparent',
+                    }}
+                    className="rounded-2xl overflow-hidden shadow-2xl dark:shadow-black/50 select-none"
+                    onClick={() => {
+                      if (isActive) {
+                        handleSelectImage(image);
+                      } else {
+                        setCurrentIndex(i);
+                      }
+                    }}
                   >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-
-                  <div className="flex items-center gap-2">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-                      <button
-                        key={pageNum}
-                        onClick={() => handlePageChange(pageNum)}
-                        className={`w-12 h-12 rounded-full font-bold transition-all ${
-                          currentPage === pageNum
-                          ? 'bg-church-gold text-white shadow-lg shadow-church-gold/20'
-                          : 'text-church-blue dark:text-church-gold hover:bg-church-gold/10'
-                        }`}
-                      >
-                        {pageNum}
-                      </button>
-                    ))}
-                  </div>
-
-                  <button
-                    onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
-                    disabled={currentPage === totalPages}
-                    className={`p-3 rounded-full border transition-all ${
-                      currentPage === totalPages 
-                      ? 'border-gray-200 text-gray-300 cursor-not-allowed dark:border-gray-800' 
-                      : 'border-church-gold text-church-gold hover:bg-church-gold hover:text-white'
-                    }`}
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                </div>
-              )}
+                    <div className="w-[280px] md:w-[320px] aspect-[4/3] bg-church-blue/10 dark:bg-slate-800">
+                      {image.url ? (
+                        <img
+                          src={image.url}
+                          alt={image.title}
+                          className="w-full h-full object-cover"
+                          draggable={false}
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-church-gold/40">
+                          <ChevronRight className="w-16 h-16" />
+                        </div>
+                      )}
+                    </div>
+                    {isActive && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5">
+                        <h4 className="text-white font-serif font-bold text-lg leading-tight">{image.title}</h4>
+                        <p className="text-white/70 text-xs mt-1 line-clamp-2">{image.description}</p>
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
             </div>
-          )}
+
+            <button
+              onClick={() => setCurrentIndex(prev => (prev + 1) % (galleryImages.length - 1))}
+              className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-church-gold hover:border-church-gold transition-all shadow-lg"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
+              {galleryImages.slice(0, 17).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    i === currentIndex
+                      ? 'bg-church-gold w-6'
+                      : 'bg-gray-300 dark:bg-gray-600 hover:bg-church-gold/50'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
       </div>
 
       <AnimatePresence>
@@ -275,7 +265,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
             />
             
             <motion.div
-              layoutId={`${currentPage}-${galleryImages.indexOf(selectedImage)}`}
+              layoutId={`${currentIndex}-${galleryImages.indexOf(selectedImage)}`}
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
