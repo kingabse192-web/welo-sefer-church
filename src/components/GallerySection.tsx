@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X, ZoomIn, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
 
 import { Language, translations } from '../translations';
 
@@ -112,8 +112,6 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
   const [particles, setParticles] = useState<Particle[]>([]);
-  const [mouseX, setMouseX] = useState(0);
-  const [mouseY, setMouseY] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
@@ -154,13 +152,12 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
     setSelectedImage(image);
   };
 
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMouseX(((e.clientX - rect.left) / rect.width - 0.5) * 2);
-    setMouseY(((e.clientY - rect.top) / rect.height - 0.5) * 2);
-  }, []);
-
   const images = galleryImages.slice(0, 17);
+
+  const next = () => setCurrentIndex(prev => (prev + 1) % images.length);
+  const prev = () => setCurrentIndex(prev => (prev - 1 + images.length) % images.length);
+
+  const getIndex = (offset: number) => (currentIndex + offset + images.length) % images.length;
 
   return (
     <section id="gallery" className="py-32 bg-white dark:bg-slate-950 transition-colors duration-500 relative overflow-hidden">
@@ -183,123 +180,86 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
             <div className="loader" />
           </div>
         ) : (
-        <div>
-          <div
-            className="relative w-full max-w-5xl mx-auto overflow-visible"
-            style={{ height: 'min(75vh, 560px)' }}
-            onMouseMove={handleMouseMove}
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => { setIsHovering(false); setMouseX(0); setMouseY(0); }}
-          >
-            <button
-              onClick={() => setCurrentIndex(prev => (prev - 1 + images.length) % images.length)}
-              className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-church-gold hover:border-church-gold transition-all shadow-lg"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-
-            <div className="relative w-full h-full flex items-center justify-center" style={{ perspective: '1400px' }}>
-              {images.map((image, i) => {
-                const offset = i - currentIndex;
-                const absOffset = Math.abs(offset);
-                const isActive = offset === 0;
-
-                const rotateY = offset * -15 + mouseX * 3;
-                const rotateX = mouseY * -2;
-                const translateZ = isActive ? 180 : -Math.abs(offset) * 100;
-                const translateX = offset * 280;
-                const scale = isActive ? 1 : Math.max(0.5, 1 - absOffset * 0.18);
-                const zIdx = isActive ? 10 : Math.max(1, 10 - absOffset);
-                const op = isActive ? 1 : Math.max(0.15, 1 - absOffset * 0.25);
-
-                return (
-                  <motion.div
-                    key={i}
-                    animate={{
-                      transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(${scale})`,
-                      opacity: op,
-                      zIndex: zIdx,
-                    }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 85,
-                      damping: 18,
-                      mass: 1.1,
-                    }}
-                    style={{
-                      position: 'absolute',
-                      transformStyle: 'preserve-3d',
-                      cursor: isActive ? 'pointer' : 'pointer',
-                      WebkitTapHighlightColor: 'transparent',
-                    }}
-                    className="rounded-2xl overflow-hidden shadow-2xl dark:shadow-black/60 select-none"
-                    onClick={() => {
-                      if (isActive) {
-                        handleSelectImage(image);
-                      } else {
-                        setCurrentIndex(i);
-                      }
-                    }}
-                  >
-                    <div className="relative w-[280px] md:w-[340px] aspect-[4/3] bg-church-blue/10 dark:bg-slate-800">
-                      {image.url ? (
-                        <img
-                          src={image.url}
-                          alt={image.title}
-                          className="w-full h-full object-cover"
-                          draggable={false}
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-church-gold/40">
-                          <ChevronRight className="w-16 h-16" />
-                        </div>
-                      )}
-                      <div className={`absolute inset-0 transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`}
-                        style={{
-                          background: 'radial-gradient(circle at center, rgba(207,181,59,0.15) 0%, transparent 70%)',
-                          pointerEvents: 'none',
-                        }}
-                      />
-                      {isActive && (
-                        <>
-                          <div
-                            className="absolute -inset-[3px] rounded-2xl pointer-events-none"
-                            style={{
-                              border: '1.5px solid rgba(207,181,59,0.4)',
-                              boxShadow: '0 0 30px rgba(207,181,59,0.15), inset 0 0 30px rgba(207,181,59,0.05)',
-                            }}
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5">
-                            <h4 className="text-white font-serif font-bold text-lg leading-tight">{image.title}</h4>
-                            <p className="text-white/70 text-xs mt-1 line-clamp-2">{image.description}</p>
-                          </div>
-                        </>
-                      )}
+        <div
+          className="relative w-full max-w-5xl mx-auto"
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
+          <div className="relative overflow-hidden rounded-3xl" style={{ height: 'min(65vh, 500px)' }}>
+            <AnimatePresence mode="popLayout">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, scale: 0.92, rotateY: 15 }}
+                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                exit={{ opacity: 0, scale: 0.92, rotateY: -15 }}
+                transition={{ type: 'spring', stiffness: 80, damping: 18, mass: 1 }}
+                className="absolute inset-0 cursor-pointer"
+                style={{ perspective: '1200px' }}
+                onClick={() => handleSelectImage(images[currentIndex])}
+              >
+                <div className="w-full h-full bg-church-blue/10 dark:bg-slate-800 rounded-3xl overflow-hidden">
+                  {images[currentIndex].url ? (
+                    <img
+                      src={images[currentIndex].url}
+                      alt={images[currentIndex].title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-church-gold/40">
+                      <ChevronRight className="w-20 h-20" />
                     </div>
-                  </motion.div>
-                );
-              })}
-            </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8">
+                    <h4 className="text-white font-serif font-bold text-2xl leading-tight">{images[currentIndex].title}</h4>
+                    <p className="text-white/70 text-sm mt-1 max-w-lg">{images[currentIndex].description}</p>
+                  </div>
+                  <div
+                    className="absolute -inset-[2px] rounded-3xl pointer-events-none"
+                    style={{
+                      border: '1.5px solid rgba(207,181,59,0.3)',
+                      boxShadow: '0 0 40px rgba(207,181,59,0.1), inset 0 0 40px rgba(207,181,59,0.03)',
+                    }}
+                  />
+                </div>
+              </motion.div>
+            </AnimatePresence>
 
-            <button
-              onClick={() => setCurrentIndex(prev => (prev + 1) % images.length)}
-              className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-church-gold hover:border-church-gold transition-all shadow-lg"
-            >
-              <ChevronRight className="w-6 h-6" />
+            <button onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/30 backdrop-blur-sm border border-white/20 text-white hover:bg-church-gold hover:border-church-gold transition-all">
+              <ChevronLeft className="w-5 h-5" />
             </button>
+            <button onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-black/30 backdrop-blur-sm border border-white/20 text-white hover:bg-church-gold hover:border-church-gold transition-all">
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`rounded-full transition-all ${
+                    i === currentIndex ? 'bg-church-gold w-7 h-2 shadow-lg shadow-church-gold/30' : 'bg-white/40 hover:bg-white/70 w-2 h-2'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
-          <div className="flex items-center justify-center mt-10 gap-2">
-            {images.map((_, i) => (
+          <div className="flex justify-center gap-2 mt-6">
+            {[getIndex(-2), getIndex(-1), getIndex(0), getIndex(1), getIndex(2)].map((imgIdx) => (
               <button
-                key={i}
-                onClick={() => setCurrentIndex(i)}
-                className={`rounded-full transition-all duration-500 ${
-                  i === currentIndex
-                    ? 'bg-church-gold w-8 h-2.5 shadow-lg shadow-church-gold/30'
-                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-church-gold/50 w-2 h-2.5'
+                key={imgIdx}
+                onClick={() => setCurrentIndex(imgIdx)}
+                className={`relative overflow-hidden rounded-xl border-2 transition-all duration-300 ${
+                  imgIdx === currentIndex
+                    ? 'border-church-gold scale-105 shadow-lg shadow-church-gold/20'
+                    : 'border-transparent opacity-60 hover:opacity-90'
                 }`}
-              />
+                style={{ width: imgIdx === currentIndex ? '80px' : '60px', height: '50px' }}
+              >
+                {images[imgIdx]?.url && (
+                  <img src={images[imgIdx].url} alt="" className="w-full h-full object-cover" />
+                )}
+              </button>
             ))}
           </div>
         </div>
