@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
 import { Language, translations } from '../translations';
 import { Link } from 'react-router-dom';
+import ParallaxHero from '../components/ParallaxHero';
 
 interface HomeProps {
   lang: Language;
@@ -12,50 +12,8 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
   const t = translations[lang];
 
   return (
-    <div className="pt-20">
-      <section className="relative h-[85vh] flex items-center justify-center bg-church-blue dark:bg-black overflow-hidden transition-colors duration-500">
-        <div className="absolute inset-0 z-0">
-          <img src="new church.jpg" alt="Church Foreground" className="w-full h-full object-cover opacity-40 mix-blend-overlay" referrerPolicy="no-referrer" loading="lazy" />
-          <div className="absolute inset-0 bg-gradient-to-b from-church-blue/80 via-church-blue/50 to-church-blue dark:from-black/90 dark:via-black/70 dark:to-black transition-colors"></div>
-        </div>
-        
-        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cross-stripes.png')] pointer-events-none"></div>
-
-        <div className="relative z-10 text-center px-6">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <h1 className="text-5xl md:text-8xl font-serif font-black text-white leading-tight mb-6 hero-title">
-               <span className="text-church-gold italic block md:inline tracking-tight">{t.hero.strength}</span> {t.hero.inFaith} 
-               <br />
-               <span className="block md:inline tracking-tight">{t.hero.peace} {t.hero.inPrayer}</span>
-            </h1>
-            <p className="max-w-2xl mx-auto text-lg md:text-xl text-church-cream/80 dark:text-gray-400 font-sans font-light leading-relaxed mb-10 transition-colors">
-              {t.hero.subtitle}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/events" className="bg-church-gold text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform duration-300 shadow-xl shadow-church-gold/30">
-                {t.hero.ctaServices}
-              </Link>
-              <Link to="/history" className="border border-white/30 text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all duration-300">
-                {t.hero.ctaHistory}
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-
-        <motion.div 
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/40"
-        >
-          <ChevronDown className="w-8 h-8" />
-        </motion.div>
-      </section>
-
-
+    <div>
+      <ParallaxHero lang={lang} />
 
       {/* Featured Sections Quick Access */}
       <section className="py-24 px-6 bg-church-cream dark:bg-slate-950 transition-colors">

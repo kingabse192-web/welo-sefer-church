@@ -1,10 +1,10 @@
 import React from 'react';
-import GallerySection from '../components/GallerySection';
+import BayWindowSlider from '../components/BayWindowSlider';
 import { Language } from '../translations';
 
 const GalleryPage: React.FC<{ lang: Language }> = ({ lang }) => (
-  <div className="pt-24 pb-12">
-    <GallerySection lang={lang} />
+  <div className="pt-16">
+    <BayWindowSlider lang={lang} />
   </div>
 );
 
