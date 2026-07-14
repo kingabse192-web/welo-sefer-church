@@ -90,26 +90,52 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
         <div className="md:hidden flex items-center gap-3">
           <button 
             onClick={toggleTheme}
-            className="p-2.5 text-church-blue dark:text-church-gold bg-church-gold/10 rounded-full transition-all active:scale-95 cursor-pointer animate-fade-in"
+            className="w-11 h-11 flex items-center justify-center text-church-gold bg-church-gold/15 rounded-xl transition-all active:scale-90 cursor-pointer hover:bg-church-gold hover:text-white shadow-md"
             aria-label="Toggle Theme"
           >
-            {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+            {theme === 'light' ? <Moon className="w-[18px] h-[18px]" strokeWidth={2} /> : <Sun className="w-[18px] h-[18px]" strokeWidth={2} />}
           </button>
           <button 
             onClick={toggleLang}
-            className="flex items-center gap-1 text-church-blue dark:text-church-gold font-bold px-3 py-2 bg-church-gold/10 rounded-full active:scale-95 cursor-pointer"
+            className="h-11 flex items-center gap-1.5 text-church-gold font-bold px-3.5 bg-church-gold/15 rounded-xl active:scale-90 cursor-pointer hover:bg-church-gold hover:text-white transition-all shadow-md"
             aria-label="Toggle Language"
           >
-            <Globe className="w-4 h-4" />
-            <span className="uppercase text-[11px]">{lang === 'en' ? 'AM' : 'EN'}</span>
+            <Globe className="w-[18px] h-[18px]" strokeWidth={2} />
+            <span className="uppercase text-[11px] font-extrabold">{lang === 'en' ? 'አማ' : 'EN'}</span>
           </button>
           
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2.5 text-church-blue dark:text-church-gold hover:bg-church-gold/10 rounded-full transition-all active:scale-95 cursor-pointer border border-church-gold/20"
+            className={`relative w-11 h-11 flex items-center justify-center rounded-xl transition-all duration-300 active:scale-90 cursor-pointer shadow-md ${
+              isOpen
+                ? 'bg-church-gold text-white shadow-church-gold/30 rotate-90'
+                : 'bg-church-gold/15 text-church-gold hover:bg-church-gold hover:text-white hover:shadow-church-gold/20'
+            }`}
             aria-label="Menu"
           >
-            {isOpen ? <X className="w-5 h-5 text-church-gold" /> : <Menu className="w-5 h-5" />}
+            <AnimatePresence mode="wait">
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="w-5.5 h-5.5" strokeWidth={2.5} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className="w-5.5 h-5.5" strokeWidth={2.5} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </button>
         </div>
       </div>
