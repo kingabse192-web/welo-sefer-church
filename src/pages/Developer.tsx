@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Send, Code2, Instagram } from 'lucide-react';
 import { Language, translations } from '../translations';
@@ -12,6 +12,11 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => { if (statusTimerRef.current) clearTimeout(statusTimerRef.current); };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +83,8 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
       }
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => {
+      if (statusTimerRef.current) clearTimeout(statusTimerRef.current);
+      statusTimerRef.current = setTimeout(() => {
         setStatus('');
       }, 5000);
     }

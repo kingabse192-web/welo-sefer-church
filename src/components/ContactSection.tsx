@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Landmark, Copy, Check, AlertTriangle } from 'lucide-react';
 import { Language, translations } from '../translations';
@@ -36,6 +36,11 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [copiedBank, setCopiedBank] = useState<string | null>(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => { if (statusTimerRef.current) clearTimeout(statusTimerRef.current); };
+  }, []);
 
   const copyToClipboard = (text: string, bankId: string) => {
     navigator.clipboard.writeText(text);
@@ -115,7 +120,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
       }
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setStatus(''), 5000);
+      if (statusTimerRef.current) clearTimeout(statusTimerRef.current);
+      statusTimerRef.current = setTimeout(() => setStatus(''), 5000);
     }
   };
 
@@ -337,7 +343,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
               <div className="absolute top-0 right-0 w-32 h-32 bg-church-gold/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
 
               {/* Header Icon */}
-              <div className="mx-auto w-14 h-14 bg-church-gold/10 rounded-full flex items-center justify-center text-church-gold border border-church-gold/20 mb-6 flex items-center justify-center">
+              <div className="mx-auto w-14 h-14 bg-church-gold/10 rounded-full flex items-center justify-center text-church-gold border border-church-gold/20 mb-6">
                 <AlertTriangle className="w-7 h-7" />
               </div>
 

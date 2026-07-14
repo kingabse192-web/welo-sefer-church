@@ -36,8 +36,14 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
     { type: "Spiritual", image: "new church.jpg" },
     { type: "Spiritual", image: "1galery.PNG" },
     { type: "Spiritual", image: "old church.jpg" },
-    { type: "Community", image: "2comuniy.jpg" },
-    { type: "Spiritual", image: "2galery.PNG" },
+    { type: "Spiritual", image: "2comuniy.jpg" },
+    { type: "Community", image: "2galery.PNG" },
+    { type: "Community", image: "3comuniy.jpg" },
+    { type: "Spiritual", image: "5galery.PNG" },
+    { type: "Spiritual", image: "galery.PNG" },
+    { type: "Spiritual", image: "3galery.PNG" },
+    { type: "Spiritual", image: "hosaena.jpg" },
+    { type: "Spiritual", image: "comuniy.jpg" },
   ];
 
   const translatedEvents = (t.list || []).map((e, index) => {

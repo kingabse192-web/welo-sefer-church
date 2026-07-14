@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Language } from '../translations';
 
-const WelcomeSplash: React.FC<{ lang: string; onFinish: () => void }> = ({ lang, onFinish }) => {
+const WelcomeSplash: React.FC<{ lang: Language; onFinish: () => void }> = ({ lang, onFinish }) => {
   const [showLogo, setShowLogo] = useState(false);
   const [show, setShow] = useState(true);
 

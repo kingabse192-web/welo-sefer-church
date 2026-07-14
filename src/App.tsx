@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
@@ -82,11 +82,12 @@ function App() {
   const toggleLang = () => setLang(prev => prev === 'en' ? 'am' : 'en');
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
   const [splashDone, setSplashDone] = useState(false);
+  const handleSplashFinish = useCallback(() => setSplashDone(true), []);
 
   return (
       <Router>
         <ScrollToTop />
-        {!splashDone && <WelcomeSplash lang={lang} onFinish={() => setSplashDone(true)} />}
+        {!splashDone && <WelcomeSplash lang={lang} onFinish={handleSplashFinish} />}
         <div className={`min-h-screen bg-church-cream dark:bg-slate-950 transition-colors duration-500 selection:bg-church-gold selection:text-white overflow-x-hidden flex flex-col ${lang === 'am' ? 'lang-am' : ''}`}>
           <Navbar 
             lang={lang} 

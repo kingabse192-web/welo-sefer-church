@@ -1,74 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 import { Language, translations } from '../translations';
-
-interface LazyGalleryImageProps {
-  image: { url: string; title: string; description: string };
-  lang: Language;
-}
-
-const LazyGalleryImage: React.FC<LazyGalleryImageProps> = ({ image, lang }) => {
-  const [inView, setInView] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
-  const imgUrl = image.url;
-
-  useEffect(() => {
-    if (!('IntersectionObserver' in window)) {
-      setInView(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setInView(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { rootMargin: '150px 0px', threshold: 0.01 }
-    );
-
-    const currentElem = elementRef.current;
-    if (currentElem) observer.observe(currentElem);
-
-    return () => observer.disconnect();
-  }, [imgUrl]);
-
-  return (
-    <div 
-      ref={elementRef}
-      className="relative w-full overflow-hidden rounded-2xl bg-gray-50 dark:bg-slate-900/40 min-h-[220px]"
-    >
-      {inView ? (
-        <img 
-          src={image.url} 
-          alt={image.title} 
-          loading="lazy"
-          className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
-          referrerPolicy="no-referrer"
-        />
-      ) : (
-        <div className="w-full h-[220px] aspect-[4/3]" />
-      )}
-      {inView && (
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-900/45 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6">
-          <div className="translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-black/45 backdrop-blur-xs p-4 rounded-xl border border-white/10">
-            <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-bold text-church-gold tracking-widest mb-1">
-              <ZoomIn className="w-3.5 h-3.5" />
-              {lang === 'am' ? 'ዝርዝር ለመመልከት ክሊክ ያድርጉ' : 'Click to View'}
-            </span>
-            <h4 className="text-white font-serif text-lg font-bold leading-tight mt-0.5">{image.title}</h4>
-            <p className="text-white/80 font-sans text-xs mt-1 leading-snug line-clamp-2">{image.description}</p>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
 
 interface Particle {
   id: number;
@@ -102,7 +36,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
     { url: 'hosaena galery  (3).jpg', title: items.hosaenaIcon.title, description: items.hosaenaIcon.desc },
     { url: 'hosaena galery  (4).jpg', title: items.hosaenaPalm.title, description: items.hosaenaPalm.desc },
     { url: 'hosaena.jpg', title: items.hosaenaCelebration.title, description: items.hosaenaCelebration.desc },
-    { url: 'speritual time-1.jpg', title: items.spiritualHymns2.title, description: items.spiritualHymns2.desc },
+    { url: 'speritual time-1.jpg', title: items.spiritualTime.title, description: items.spiritualTime.desc },
     { url: 'best church person.jpg', title: items.bestChurchPerson.title, description: items.bestChurchPerson.desc },
     { url: 'power of together.jpg', title: items.powerOfTogether.title, description: items.powerOfTogether.desc },
     { url: 'suterday seremony.jpg', title: items.saturdayCeremony.title, description: items.saturdayCeremony.desc },
@@ -175,11 +109,6 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
           <div className="w-24 h-1.5 bg-church-gold mx-auto rounded-full"></div>
         </motion.div>
 
-        {showLoader ? (
-          <div className="flex items-center justify-center py-32 min-h-[400px]">
-            <div className="loader" />
-          </div>
-        ) : (
         <div
           className="relative w-full max-w-5xl mx-auto"
           onMouseEnter={() => setIsHovering(true)}
@@ -263,7 +192,6 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
             ))}
           </div>
         </div>
-      )}
       </div>
 
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
