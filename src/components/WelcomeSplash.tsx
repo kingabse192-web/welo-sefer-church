@@ -44,7 +44,7 @@ const WelcomeSplash: React.FC<{ lang: Language; onFinish: () => void }> = ({ lan
                 className="mt-8"
               >
                 <img
-                  src="logo-profile.png"
+                  src="logo.png"
                   alt="Church Logo"
                   className="w-24 h-24 md:w-32 md:h-32 object-contain drop-shadow-2xl"
                 />
