@@ -446,7 +446,7 @@ export const translations = {
       devExpValue: '3+ ዓመታት',
       devToolsTitle: 'በሙያዊ መሣሪያዎች የተገነባ',
       devHub: 'የአልሚው ማዕከል',
-      devQuote: '',
+      devQuote: 'በባህል የመነጨ እና በዘመናዊ ቴክኖሎጂ የሚመራ ዲጂታል ልምዶችን መፍጠር።',
       sendMessage: 'መልእክት ይላኩ',
       messagePlaceholder: 'ስለ ፕሮጀክትዎ ወይም ጥያቄዎ ይግለጹ...',
       sendApplication: 'መልእክቱን ላክ',

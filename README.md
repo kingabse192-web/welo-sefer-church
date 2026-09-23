@@ -1,7 +1,7 @@
 # Welo Sefer St. Mary & St. Gabriel Church Community Hub
 
 <div align="center">
-  <img width="1200" height="475" alt="GHBanner" src="curent church.PNG" />
+  <img width="1200" height="475" alt="GHBanner" src="public/curent church.PNG" />
 </div>
 
 <br />
@@ -28,7 +28,6 @@ This project is built using modern web technologies:
 * **TypeScript:** Type-safe JavaScript for reliable code.
 * **Vite:** Fast build tool and development server.
 * **Tailwind CSS:** Utility-first CSS framework for responsive design.
-* **Firebase:** Backend services for authentication and data storage.
 * **Framer Motion:** Animation library for smooth transitions.
 
 ## 🌐 Live Demo
@@ -45,12 +44,9 @@ welo-sefer-church/
 ├── index.html / vite.config.ts / tailwind.config.js / tsconfig.json
 ├── public/             # Static images (gallery, hero, icons)
 ├── src/
-│   ├── main.tsx / App.tsx / index.css / firebase.ts / translations.ts
-│   ├── context/
-│   │   └── AuthContext.tsx
+│   ├── main.tsx / App.tsx / index.css / translations.ts
 │   ├── components/
-│   │   ├── Navbar.tsx / Footer.tsx / AuthModal.tsx
-│   │   ├── ContactSection.tsx / EventCalendar.tsx
+│   │   ├── Navbar.tsx / Footer.tsx / ContactSection.tsx
 │   │   ├── GallerySection.tsx / HistorySection.tsx / LocationSection.tsx
 │   └── pages/
 │       ├── Home.tsx / History.tsx / Gallery.tsx / Events.tsx

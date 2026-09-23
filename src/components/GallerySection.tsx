@@ -76,7 +76,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       if (!isHovering) {
-        setCurrentIndex(prev => (prev + 1) % (galleryImages.length - 1));
+        setCurrentIndex(prev => (prev + 1) % galleryImages.length);
       }
     }, 4000);
     return () => clearInterval(timer);
@@ -86,7 +86,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
     setSelectedImage(image);
   };
 
-  const images = galleryImages.slice(0, 17);
+  const images = galleryImages;
 
   const next = () => setCurrentIndex(prev => (prev + 1) % images.length);
   const prev = () => setCurrentIndex(prev => (prev - 1 + images.length) % images.length);

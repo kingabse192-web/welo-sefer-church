@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Globe, Sun, Moon, Menu, X, Landmark } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language, translations } from '../translations';
 
@@ -16,6 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showFeastPopup, setShowFeastPopup] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -80,7 +81,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
               <Globe className="w-4 h-4" />
               <span className="uppercase text-xs">{lang === 'en' ? 'AM' : 'EN'}</span>
             </button>
-            <button className="bg-church-gold text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-church-gold/90 transition-all shadow-lg shadow-church-gold/20 cursor-pointer">
+            <button onClick={() => navigate('/contact')} className="bg-church-gold text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-church-gold/90 transition-all shadow-lg shadow-church-gold/20 cursor-pointer">
               {t.nav.donation}
             </button>
           </div>
@@ -122,7 +123,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
                   exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <X className="w-5.5 h-5.5" strokeWidth={2.5} />
+                  <X className="w-5 h-5" strokeWidth={2.5} />
                 </motion.div>
               ) : (
                 <motion.div
@@ -132,7 +133,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
                   exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Menu className="w-5.5 h-5.5" strokeWidth={2.5} />
+                  <Menu className="w-5 h-5" strokeWidth={2.5} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -194,12 +195,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
                   <button 
                     onClick={() => {
                       setIsOpen(false);
-                      const contactSection = document.getElementById('contact');
-                      if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' });
-                      } else {
-                        window.location.href = '/contact';
-                      }
+                      navigate('/contact');
                     }}
                     className="w-full bg-church-gold text-white font-serif py-4 rounded-2xl text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2.5 shadow-lg shadow-church-gold/20 hover:bg-church-gold/90 transition-all active:scale-95 cursor-pointer"
                   >
