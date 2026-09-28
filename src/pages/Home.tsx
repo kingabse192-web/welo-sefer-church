@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Language, translations } from '../translations';
 import { Link } from 'react-router-dom';
-import { ScrollText, CalendarDays, Images, ArrowRight } from 'lucide-react';
+import { CalendarDays, Images, MapPin, Mail, ArrowRight, ScrollText } from 'lucide-react';
 import ParallaxHero from '../components/ParallaxHero';
 import GallerySection from '../components/GallerySection';
 
@@ -13,21 +13,11 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ lang }) => {
   const t = translations[lang];
 
-  const secondary = [
-    {
-      n: '02',
-      title: t.nav.events,
-      link: '/events',
-      icon: CalendarDays,
-      desc: t.hero.subtitle.substring(0, 80) + '...',
-    },
-    {
-      n: '03',
-      title: t.nav.gallery,
-      link: '/gallery',
-      icon: Images,
-      desc: t.gallery.tag,
-    },
+  const sections = [
+    { n: '01', title: t.nav.events, link: '/events', icon: CalendarDays },
+    { n: '02', title: t.nav.gallery, link: '/gallery', icon: Images },
+    { n: '03', title: t.nav.location, link: '/location', icon: MapPin },
+    { n: '04', title: t.nav.contact, link: '/contact', icon: Mail },
   ];
 
   return (
@@ -35,84 +25,62 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <ParallaxHero lang={lang} />
 
       <section className="py-24 md:py-28 px-6 bg-church-cream dark:bg-slate-950 transition-colors duration-500">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-5 md:gap-6">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-7"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4"
           >
-            <Link
-              to="/history"
-              className="group block h-full overflow-hidden rounded-2xl border border-church-gold/15 bg-white dark:bg-slate-900 transition-all hover:border-church-gold/40 hover:shadow-xl hover:shadow-church-blue/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
-            >
-              <div className="relative overflow-hidden aspect-[16/10]">
-                <img
-                  src="curent church.PNG"
-                  alt={t.nav.history}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                />
-                <span className="absolute left-5 top-5 font-serif text-sm font-bold tracking-[0.2em] text-church-gold drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">
-                  01
-                </span>
-              </div>
-              <div className="p-6 md:p-7">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <ScrollText className="w-5 h-5 text-church-gold shrink-0" />
-                    <h3 className="font-serif text-2xl md:text-3xl font-bold uppercase tracking-wide text-church-blue dark:text-church-gold">
-                      {t.nav.history}
-                    </h3>
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-church-gold transition-transform duration-300 group-hover:translate-x-1.5" />
+            {sections.map((item, i) => (
+              <Link
+                key={item.n}
+                to={item.link}
+                className="group relative flex min-h-[150px] flex-col justify-between rounded-2xl border border-church-gold/15 bg-white dark:bg-slate-900 p-5 md:p-6 transition-all hover:border-church-gold/40 hover:bg-church-gold/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
+                style={{ transitionDelay: `${i * 30}ms` }}
+              >
+                <div className="flex items-start justify-between">
+                  <span className="font-serif text-xs font-bold tracking-[0.2em] text-church-gold">{item.n}</span>
+                  <ArrowRight className="w-4 h-4 text-church-gold/60 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-church-gold" />
                 </div>
-                <div className="mt-3 h-px w-16 bg-church-gold" />
-                <p className="mt-4 text-sm leading-relaxed text-church-blue/60 dark:text-gray-400 line-clamp-3">
-                  {t.footer.desc.substring(0, 80) + '...'}
-                </p>
-              </div>
-            </Link>
+                <div>
+                  <item.icon className="w-5 h-5 text-church-gold mb-3" />
+                  <h3 className="font-serif text-lg md:text-xl font-bold uppercase tracking-wide text-church-blue dark:text-church-gold leading-snug">
+                    {item.title}
+                  </h3>
+                </div>
+              </Link>
+            ))}
           </motion.div>
 
-          <div className="md:col-span-5 flex flex-col">
-            {secondary.map((item, i) => (
-              <motion.div
-                key={item.n}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
-                className={i === 0 ? 'flex-1' : 'flex-1 mt-5 md:mt-6'}
-              >
-                <Link
-                  to={item.link}
-                  className="group flex h-full flex-col justify-between rounded-2xl border border-church-gold/15 bg-white dark:bg-slate-900 p-6 md:p-7 transition-all hover:border-church-gold/40 hover:bg-church-gold/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-3">
-                        <span className="font-serif text-sm font-bold tracking-[0.2em] text-church-gold">
-                          {item.n}
-                        </span>
-                        <item.icon className="w-5 h-5 text-church-gold" />
-                      </div>
-                      <ArrowRight className="w-5 h-5 text-church-gold transition-transform duration-300 group-hover:translate-x-1.5" />
-                    </div>
-                    <h3 className="mt-4 font-serif text-xl md:text-2xl font-bold uppercase tracking-wide text-church-blue dark:text-church-gold">
-                      {item.title}
-                    </h3>
-                    <div className="mt-3 h-px w-12 bg-church-gold" />
-                    <p className="mt-4 text-sm leading-relaxed text-church-blue/60 dark:text-gray-400 line-clamp-3">
-                      {item.desc}
-                    </p>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
+          {/* Small foundation note */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mt-8 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-t border-church-gold/20 pt-6"
+          >
+            <div className="flex items-start gap-3 max-w-2xl">
+              <ScrollText className="w-4 h-4 text-church-gold mt-1 shrink-0" />
+              <div>
+                <h3 className="font-serif text-sm font-bold uppercase tracking-[0.15em] text-church-blue dark:text-church-gold">
+                  {t.nav.history}
+                </h3>
+                <p className="mt-1.5 text-xs leading-relaxed text-church-blue/60 dark:text-gray-400">
+                  {t.footer.desc}
+                </p>
+              </div>
+            </div>
+            <Link
+              to="/history"
+              className="group inline-flex items-center gap-2 text-church-gold text-xs font-bold uppercase tracking-[0.2em] border-b border-church-gold/40 pb-1 hover:border-church-gold transition-colors"
+            >
+              Learn More
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
