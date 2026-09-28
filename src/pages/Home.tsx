@@ -2,9 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Language, translations } from '../translations';
 import { Link } from 'react-router-dom';
-import { CalendarDays, Images, MapPin, Mail, ArrowRight, ScrollText } from 'lucide-react';
-import ParallaxHero from '../components/ParallaxHero';
-import GallerySection from '../components/GallerySection';
+import { ArrowUpRight } from 'lucide-react';
+import WelcomeHero from '../components/WelcomeHero';
 
 interface HomeProps {
   lang: Language;
@@ -13,78 +12,80 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ lang }) => {
   const t = translations[lang];
 
-  const sections = [
-    { n: '01', title: t.nav.events, link: '/events', icon: CalendarDays },
-    { n: '02', title: t.nav.gallery, link: '/gallery', icon: Images },
-    { n: '03', title: t.nav.location, link: '/location', icon: MapPin },
-    { n: '04', title: t.nav.contact, link: '/contact', icon: Mail },
+  const links = [
+    { label: t.nav.history, to: '/history' },
+    { label: t.nav.gallery, to: '/gallery' },
+    { label: t.nav.events, to: '/events' },
+    { label: t.nav.location, to: '/location' },
+    { label: t.nav.contact, to: '/contact' },
+    { label: t.nav.donation, to: '/contact' },
   ];
+
+  const intro = t.footer.desc;
+  const [first, ...rest] = intro.split(' ');
 
   return (
     <div>
-      <ParallaxHero lang={lang} />
+      <WelcomeHero lang={lang} />
 
-      <section className="py-24 md:py-28 px-6 bg-church-cream dark:bg-slate-950 transition-colors duration-500">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4"
-          >
-            {sections.map((item, i) => (
-              <Link
-                key={item.n}
-                to={item.link}
-                className="group relative flex min-h-[150px] flex-col justify-between rounded-2xl border border-church-gold/15 bg-white dark:bg-slate-900 p-5 md:p-6 transition-all hover:border-church-gold/40 hover:bg-church-gold/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
-                style={{ transitionDelay: `${i * 30}ms` }}
-              >
-                <div className="flex items-start justify-between">
-                  <span className="font-serif text-xs font-bold tracking-[0.2em] text-church-gold">{item.n}</span>
-                  <ArrowRight className="w-4 h-4 text-church-gold/60 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-church-gold" />
-                </div>
-                <div>
-                  <item.icon className="w-5 h-5 text-church-gold mb-3" />
-                  <h3 className="font-serif text-lg md:text-xl font-bold uppercase tracking-wide text-church-blue dark:text-church-gold leading-snug">
-                    {item.title}
-                  </h3>
-                </div>
-              </Link>
-            ))}
-          </motion.div>
-
-          {/* Small foundation note */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="mt-8 flex flex-wrap items-center justify-between gap-x-8 gap-y-4 border-t border-church-gold/20 pt-6"
-          >
-            <div className="flex items-start gap-3 max-w-2xl">
-              <ScrollText className="w-4 h-4 text-church-gold mt-1 shrink-0" />
-              <div>
-                <h3 className="font-serif text-sm font-bold uppercase tracking-[0.15em] text-church-blue dark:text-church-gold">
-                  {t.nav.history}
-                </h3>
-                <p className="mt-1.5 text-xs leading-relaxed text-church-blue/60 dark:text-gray-400">
-                  {t.footer.desc}
-                </p>
-              </div>
-            </div>
-            <Link
-              to="/history"
-              className="group inline-flex items-center gap-2 text-church-gold text-xs font-bold uppercase tracking-[0.2em] border-b border-church-gold/40 pb-1 hover:border-church-gold transition-colors"
-            >
-              Learn More
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </motion.div>
+      {/* Website introduction */}
+      <section className="relative py-24 md:py-32 px-6 bg-church-cream dark:bg-slate-950 overflow-hidden transition-colors duration-500">
+        {/* Watermark: oversized ghost wordmark */}
+        <div
+          className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          <span className="font-serif font-black uppercase text-church-blue/[0.04] dark:text-white/[0.03] text-[16vw] leading-none tracking-tight whitespace-nowrap">
+            Welo Sefer
+          </span>
         </div>
-      </section>
 
-      <GallerySection lang={lang} />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="relative max-w-7xl mx-auto grid md:grid-cols-12 gap-10 md:gap-12 items-start"
+        >
+          <div className="md:col-span-7">
+            <span className="block w-10 h-px bg-church-gold mb-8" />
+            <p className="font-serif text-xl sm:text-2xl md:text-3xl leading-[1.5] text-church-blue dark:text-gray-200">
+              <span className="float-left mr-3 mt-1 font-serif font-black text-5xl md:text-6xl leading-[0.8] text-church-gold">
+                {first}
+              </span>
+              {rest.join(' ')}
+            </p>
+            <div className="mt-8 flex items-center gap-4">
+              <img
+                src="logo.png"
+                alt="Welo Sefer St. Maryam"
+                loading="lazy"
+                className="w-11 h-11 object-contain"
+              />
+              <span className="h-px flex-1 max-w-[120px] bg-church-gold/30" />
+            </div>
+          </div>
+
+          <nav className="md:col-span-5 md:pl-8 md:border-l md:border-church-gold/20" aria-label="Quick Links">
+            <span className="block text-church-gold font-sans font-bold tracking-[0.3em] uppercase text-xs">
+              {t.footer.quickLinks}
+            </span>
+            <ul className="mt-6 space-y-0">
+              {links.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.to}
+                    className="group flex items-center justify-between py-3.5 border-b border-church-gold/15 text-church-blue dark:text-gray-200 hover:text-church-gold transition-colors focus-visible:outline-none focus-visible:text-church-gold"
+                  >
+                    <span className="font-serif text-base md:text-lg">{link.label}</span>
+                    <ArrowUpRight className="w-4 h-4 text-church-gold/50 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-church-gold" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </motion.div>
+      </section>
     </div>
   );
 };
