@@ -16,19 +16,35 @@ const WelcomeHero: React.FC<Props> = ({ lang }) => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: 'linear-gradient(180deg, #0a1628 0%, #0f2440 45%, #002366 100%)' }}
     >
-      {/* Watermark: giant ghost wordmark */}
-      <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-        aria-hidden="true"
-      >
-        <span className="font-serif italic font-black text-church-gold/[0.06] text-[22vw] leading-none whitespace-nowrap">
+      {/* Overlapping watermark composition — outline + filled wordmarks + cross */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
+        {/* Back layer: oversized filled wordmark, bleeds off edges */}
+        <span
+          className="absolute left-1/2 top-1/2 font-serif font-black italic text-[26vw] leading-none whitespace-nowrap"
+          style={{
+            color: 'rgba(207,181,59,0.07)',
+            transform: 'translate(-58%, -72%) rotate(-8deg)',
+          }}
+        >
           Welo Sefer
         </span>
-      </div>
-
-      {/* Static cross watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
-        <svg width="300" height="480" viewBox="0 0 300 480" className="w-[32vw] max-w-[300px] opacity-[0.05]">
+        {/* Front layer: outlined wordmark crossing the back layer */}
+        <span
+          className="absolute left-1/2 top-1/2 font-serif font-black italic text-[17vw] leading-none whitespace-nowrap"
+          style={{
+            color: 'rgba(207,181,59,0.03)',
+            WebkitTextStroke: '1.5px rgba(207,181,59,0.20)',
+            transform: 'translate(-42%, -24%) rotate(5deg)',
+          }}
+        >
+          Welo Sefer
+        </span>
+        {/* Cross intersecting the wordmark crossing point */}
+        <svg
+          className="absolute left-1/2 top-1/2 w-[34vw] max-w-[320px]"
+          viewBox="0 0 300 480"
+          style={{ transform: 'translate(-72%, -55%) rotate(-8deg)', opacity: 0.06 }}
+        >
           <rect x="125" y="0" width="50" height="480" fill="#CFB53B" />
           <rect x="40" y="130" width="220" height="50" fill="#CFB53B" />
         </svg>
