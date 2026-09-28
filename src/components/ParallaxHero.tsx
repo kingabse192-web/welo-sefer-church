@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Language, translations } from '../translations';
 
 interface Props { lang: Language }
@@ -33,7 +34,7 @@ const ParallaxHero: React.FC<Props> = ({ lang }) => {
   const furtherOpacity = Math.min(1, Math.max(0, (scrollY - 0.3) * 3));
 
   return (
-    <div ref={containerRef} style={{ height: '250vh', position: 'relative' }}>
+    <div ref={containerRef} style={{ height: '200vh', position: 'relative' }}>
       <div className="sticky top-0 h-screen overflow-hidden bg-[#111b29]">
         <div className="relative w-full max-w-[1200px] h-full mx-auto">
           {/* Sky */}
@@ -155,27 +156,39 @@ const ParallaxHero: React.FC<Props> = ({ lang }) => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
             >
-              <h1 className="text-5xl md:text-8xl font-serif font-black text-white leading-tight text-center hero-title">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-[1.1] text-center">
                 <span className="text-church-gold italic block md:inline">{t.strength}</span> {t.inFaith}
                 <br />
                 <span className="block md:inline">{t.peace} {t.inPrayer}</span>
               </h1>
-              <p className="max-w-2xl mx-auto text-lg md:text-xl text-white/70 font-sans font-light leading-relaxed mt-8 text-center">
+              <p className="max-w-xl mx-auto text-base md:text-lg text-white/70 font-sans font-light leading-relaxed mt-6 text-center">
                 {t.subtitle}
               </p>
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
+                {[
+                  { label: translations[lang].nav.history, to: '/history' },
+                  { label: translations[lang].nav.gallery, to: '/gallery' },
+                  { label: translations[lang].nav.events, to: '/events' },
+                ].map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/60 border-b border-transparent pb-1 hover:text-church-gold hover:border-church-gold transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </motion.div>
           </div>
 
-          {/* "EXPLORE" text that fades in */}
+          {/* Quiet scroll cue that fades in */}
           <div
-            className="absolute inset-0 flex flex-col items-center justify-center z-20"
+            className="absolute inset-x-0 bottom-10 flex justify-center z-20"
             style={{ opacity: furtherOpacity }}
           >
-            <h2 className="text-5xl md:text-7xl font-serif font-black text-church-gold/90 text-center tracking-wider">
-              EXPLORE
-            </h2>
-            <div className="mt-4 animate-bounce">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-church-gold">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-church-gold/50 text-church-gold">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 5v14M5 12l7 7 7-7" />
               </svg>
             </div>
