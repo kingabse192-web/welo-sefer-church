@@ -70,7 +70,13 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
           className="relative max-w-7xl mx-auto grid md:grid-cols-12 gap-10 md:gap-12 items-start"
         >
           <div className="md:col-span-7">
-            <span className="block w-10 h-px bg-church-gold mb-8" />
+            <motion.span
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="block w-10 h-px bg-church-gold mb-8 origin-left"
+            />
             <p className="font-serif text-xl sm:text-2xl md:text-3xl leading-[1.5] text-church-blue dark:text-gray-200">
               <span className="float-left mr-3 mt-1 font-serif font-black text-5xl md:text-6xl leading-[0.8] text-church-gold">
                 {first}
@@ -93,16 +99,22 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
               {t.footer.quickLinks}
             </span>
             <ul className="mt-6 space-y-0">
-              {links.map((link) => (
-                <li key={link.label}>
+              {links.map((link, i) => (
+                <motion.li
+                  key={link.label}
+                  initial={{ opacity: 0, x: -18 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <Link
                     to={link.to}
-                    className="group flex items-center justify-between py-3.5 border-b border-church-gold/15 text-church-blue dark:text-gray-200 hover:text-church-gold transition-colors focus-visible:outline-none focus-visible:text-church-gold"
+                    className="group flex items-center justify-between py-3.5 border-b border-church-gold/15 text-church-blue dark:text-gray-200 hover:text-church-gold hover:pl-2 transition-all duration-300 focus-visible:outline-none focus-visible:text-church-gold"
                   >
                     <span className="font-serif text-base md:text-lg">{link.label}</span>
                     <ArrowUpRight className="w-4 h-4 text-church-gold/50 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-church-gold" />
                   </Link>
-                </li>
+                </motion.li>
               ))}
             </ul>
           </nav>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Cross, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Language, translations } from '../translations';
@@ -12,7 +13,13 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
 
   return (
     <footer className="bg-church-cream dark:bg-slate-900 border-t border-church-gold/10 py-16 px-6 transition-colors duration-500">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-church-blue/60 dark:text-gray-400 font-sans text-sm transition-colors">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-church-blue/60 dark:text-gray-400 font-sans text-sm transition-colors"
+      >
         <div className="space-y-6">
           <div className="flex items-center gap-2">
             <Cross className="text-church-gold w-6 h-6" />
@@ -48,10 +55,22 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
         <div className="space-y-6">
           <h4 className="font-serif font-bold text-church-blue dark:text-church-gold text-lg uppercase tracking-widest transition-colors">{t.footer.quickLinks}</h4>
           <ul className="space-y-3">
-            <li><Link to="/history" className="hover:text-church-gold transition-colors">{t.nav.history}</Link></li>
-            <li><Link to="/events" className="hover:text-church-gold transition-colors">{t.nav.events}</Link></li>
-            <li><Link to="/location" className="hover:text-church-gold transition-colors">{t.nav.location}</Link></li>
-            <li><Link to="/contact" className="hover:text-church-gold transition-colors">{t.nav.contact}</Link></li>
+            {[t.nav.history, t.nav.events, t.nav.location, t.nav.contact].map((label, i) => (
+              <motion.li
+                key={label}
+                initial={{ opacity: 0, x: -14 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <Link
+                  to={['/history', '/events', '/location', '/contact'][i]}
+                  className="inline-block hover:text-church-gold hover:translate-x-1.5 transition-all duration-300"
+                >
+                  {label}
+                </Link>
+              </motion.li>
+            ))}
           </ul>
         </div>
 
@@ -64,9 +83,15 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
             <p className="text-[10px] leading-tight dark:text-gray-400 transition-colors uppercase tracking-wider">{t.contact.devRole}<br/><span className="text-church-blue dark:text-church-gold font-bold transition-colors">{t.contact.devTeam}</span></p>
           </Link>
         </div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-church-gold/10 text-center space-y-3">
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        className="max-w-7xl mx-auto mt-16 pt-8 border-t border-church-gold/10 text-center space-y-3"
+      >
           <p className="text-xs font-bold text-church-blue dark:text-church-gold uppercase tracking-wider">
             {t.footer.copyright}
           </p>
@@ -77,7 +102,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
               <>I ABSALEW BELAYNEH, will update this website every 7 days — stay updated.</>
             )}
           </p>
-      </div>
+      </motion.div>
     </footer>
   );
 };

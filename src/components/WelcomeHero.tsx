@@ -1,8 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Language, translations } from '../translations';
 
 interface Props { lang: Language }
+
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.13, delayChildren: 0.25 } },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 26 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
+};
 
 const WelcomeHero: React.FC<Props> = ({ lang }) => {
   const t = translations[lang].hero;
@@ -86,14 +96,10 @@ const WelcomeHero: React.FC<Props> = ({ lang }) => {
       />
 
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="block w-12 h-px bg-church-gold mx-auto mb-9" />
+        <motion.div variants={container} initial="hidden" animate="show">
+          <motion.span variants={item} className="block w-12 h-px bg-church-gold mx-auto mb-9" />
 
-          <h1 className="font-serif leading-[1.08]">
+          <motion.h1 variants={item} className="font-serif leading-[1.08]">
             {lang === 'am' ? (
               <span className="block text-3xl sm:text-4xl md:text-5xl font-bold text-white">{welcome}</span>
             ) : (
@@ -106,17 +112,20 @@ const WelcomeHero: React.FC<Props> = ({ lang }) => {
                 </span>
               </>
             )}
-          </h1>
+          </motion.h1>
 
-          <div className="mt-7 flex items-center justify-center gap-4 text-church-gold/80">
+          <motion.div variants={item} className="mt-7 flex items-center justify-center gap-4 text-church-gold/80">
             <span className="font-serif italic text-base md:text-lg">{t.strength} {t.inFaith}</span>
             <span className="h-4 w-px bg-church-gold/40" />
             <span className="font-serif italic text-base md:text-lg">{t.peace} {t.inPrayer}</span>
-          </div>
+          </motion.div>
 
-          <p className="max-w-xl mx-auto mt-7 text-sm md:text-base text-white/65 font-sans font-light leading-relaxed">
+          <motion.p
+            variants={item}
+            className="max-w-xl mx-auto mt-7 text-sm md:text-base text-white/65 font-sans font-light leading-relaxed"
+          >
             {t.subtitle}
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div

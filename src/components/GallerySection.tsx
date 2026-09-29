@@ -51,12 +51,16 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
           className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
         >
           {photos.map((photo, i) => (
-            <button
+            <motion.button
               key={photo.url}
               type="button"
               onClick={() => setOpenIndex(i)}
               aria-label={`${t.clickToView}: ${photo.title}`}
-              className={`group relative overflow-hidden rounded-xl border border-church-gold/15 bg-church-blue/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 ${
+              initial={{ opacity: 0, scale: 0.92 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              className={`group relative overflow-hidden rounded-xl border border-church-gold/15 bg-church-blue/10 transition-colors duration-300 hover:border-church-gold/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 ${
                 i === 0
                   ? 'col-span-2 aspect-[4/3] md:row-span-2 md:aspect-square'
                   : 'aspect-square'
@@ -75,7 +79,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
                   {photo.title}
                 </span>
               </span>
-            </button>
+            </motion.button>
           ))}
         </motion.div>
       </div>

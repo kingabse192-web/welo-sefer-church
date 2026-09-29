@@ -37,12 +37,16 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ lang }) => {
 
         <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4">
           {photos.map((photo, i) => (
-            <button
+            <motion.button
               key={photo.url}
               type="button"
               onClick={() => setOpenIndex(i)}
               aria-label={`${t.clickToView}: ${photo.title}`}
-              className="group relative mb-3 md:mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl border border-church-gold/15 bg-white dark:bg-slate-900 text-left shadow-sm transition-shadow hover:shadow-lg hover:shadow-church-blue/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
+              initial={{ opacity: 0, y: 36 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '0px 0px -40px 0px' }}
+              transition={{ duration: 0.55, delay: (i % 6) * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative mb-3 md:mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl border border-church-gold/15 bg-white dark:bg-slate-900 text-left shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-church-blue/10 hover:border-church-gold/50 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
             >
               <img
                 src={photo.url}
@@ -53,17 +57,23 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ lang }) => {
               />
               <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
               <span className="pointer-events-none absolute inset-x-0 bottom-0 p-3 md:p-4">
-                <span className="block font-serif text-sm md:text-base font-semibold text-white leading-snug drop-shadow">
+                <span className="block font-serif text-sm md:text-base font-semibold text-white leading-snug drop-shadow transition-transform duration-500 group-hover:-translate-y-0.5">
                   {photo.title}
                 </span>
               </span>
-              <span className="pointer-events-none absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/45 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+              <span className="pointer-events-none absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/45 text-white opacity-0 scale-75 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 group-focus-visible:opacity-100 group-focus-visible:scale-100">
                 <Search className="w-4 h-4" />
               </span>
-            </button>
+            </motion.button>
           ))}
 
-          <div className="mb-3 md:mb-4 break-inside-avoid rounded-xl border border-dashed border-church-gold/40 bg-church-gold/5 dark:bg-church-gold/10 p-5 md:p-6">
+          <motion.div
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '0px 0px -40px 0px' }}
+            transition={{ duration: 0.55, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-3 md:mb-4 break-inside-avoid rounded-xl border border-dashed border-church-gold/40 bg-church-gold/5 dark:bg-church-gold/10 p-5 md:p-6 transition-all duration-300 hover:border-church-gold/70 hover:shadow-lg hover:shadow-church-gold/10"
+          >
             <Sparkles className="w-5 h-5 text-church-gold mb-3" />
             <p className="font-serif font-bold text-base text-church-blue dark:text-church-gold leading-snug">
               {t.items.moreComing.title}
@@ -71,7 +81,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ lang }) => {
             <p className="mt-2 text-xs leading-relaxed text-church-blue/60 dark:text-gray-400">
               {t.items.moreComing.desc}
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
 
