@@ -233,7 +233,7 @@ const DeveloperPage: React.FC<DeveloperPageProps> = ({ lang }) => {
                 
                 <div className="text-center">
                   <h2 className="text-2xl font-serif font-bold text-church-blue dark:text-white mb-1">
-                    {lang === 'am' ? 'ሰመርጌታ በላይነህ' : 'SEMERGETA BELAYNEH'}
+                    {lang === 'am' ? 'D/N ሰመርጌታ በላይነህ' : 'D/N SEMERGETA BELAYNEH'}
                   </h2>
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <span className="w-6 h-px bg-church-gold/40"></span>

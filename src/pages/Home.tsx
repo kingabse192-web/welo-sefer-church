@@ -23,6 +23,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
 
   const intro = t.footer.desc;
   const [first, ...rest] = intro.split(' ');
+  const word = lang === 'am' ? 'ወሎ ሰፈር' : 'Welo Sefer';
 
   return (
     <div>
@@ -41,14 +42,14 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
               transform: 'translateX(26%) rotate(5deg)',
             }}
           >
-            Welo Sefer
+            {word}
           </span>
           {/* Bottom-left: filled wordmark, bleeds off the opposite corner */}
           <span
             className="absolute left-0 bottom-[6%] font-serif font-black uppercase text-[12vw] leading-none whitespace-nowrap text-[rgba(0,35,102,0.05)] dark:text-[rgba(255,255,255,0.045)]"
             style={{ transform: 'translateX(-24%) rotate(-5deg)' }}
           >
-            Welo Sefer
+            {word}
           </span>
           {/* Top-left: cross in the free zone */}
           <svg

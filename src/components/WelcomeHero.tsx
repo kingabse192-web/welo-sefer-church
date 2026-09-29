@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Language, translations } from '../translations';
 
@@ -10,37 +10,68 @@ const WelcomeHero: React.FC<Props> = ({ lang }) => {
     lang === 'am'
       ? 'እንኳን ወደ ወሎ ሰፈር ቅድስት ማርያም በደህና መጡ'
       : 'Welcome to Welo Sefer St. Maryam';
+  const word = lang === 'am' ? 'ወሎ ሰፈር' : 'Welo Sefer';
+
+  const heroRef = useRef<HTMLElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = heroRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      setProgress(Math.min(1, Math.max(0, -rect.top / rect.height)));
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <section
+      ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: 'linear-gradient(180deg, #0a1628 0%, #0f2440 45%, #002366 100%)' }}
     >
-      {/* Watermarks in separate corner zones — no layer overlaps another */}
+      {/* Watermark zones — language-aware, no layer overlaps another */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
-        {/* Top-left: filled wordmark, bleeds off the corner */}
+        {/* Top center: masthead watermark */}
         <span
-          className="absolute left-0 top-[7%] font-serif font-black italic text-[12vw] leading-none whitespace-nowrap"
-          style={{ color: 'rgba(207,181,59,0.09)', transform: 'translateX(-24%) rotate(-6deg)' }}
+          className="absolute left-1/2 top-[13%] font-serif font-black italic text-[7vw] leading-none whitespace-nowrap"
+          style={{
+            color: 'rgba(207,181,59,0.04)',
+            WebkitTextStroke: '1.5px rgba(207,181,59,0.25)',
+            transform: 'translateX(-50%)',
+          }}
         >
-          Welo Sefer
+          {word}
+        </span>
+        {/* Bottom-left: filled wordmark, bleeds off the corner */}
+        <span
+          className="absolute left-0 bottom-[7%] font-serif font-black italic text-[11vw] leading-none whitespace-nowrap"
+          style={{ color: 'rgba(207,181,59,0.08)', transform: 'translateX(-24%) rotate(-5deg)' }}
+        >
+          {word}
         </span>
         {/* Bottom-right: outlined wordmark, bleeds off the opposite corner */}
         <span
-          className="absolute right-0 bottom-[8%] font-serif font-black italic text-[10vw] leading-none whitespace-nowrap"
+          className="absolute right-0 bottom-[8%] font-serif font-black italic text-[9vw] leading-none whitespace-nowrap"
           style={{
             color: 'rgba(207,181,59,0.03)',
             WebkitTextStroke: '1.5px rgba(207,181,59,0.18)',
             transform: 'translateX(24%) rotate(4deg)',
           }}
         >
-          Welo Sefer
+          {word}
         </span>
-        {/* Top-right: cross in the free zone */}
+        {/* Big cross that drifts downward while scrolling */}
         <svg
-          className="absolute right-[4%] top-[10%] w-[11vw] max-w-[110px]"
+          className="absolute left-1/2 top-1/2 w-[42vw] max-w-[420px]"
           viewBox="0 0 300 480"
-          style={{ transform: 'rotate(6deg)', opacity: 0.07 }}
+          style={{
+            transform: `translate(-50%, calc(-50% + ${progress * 150}px)) scale(${1 + progress * 0.08})`,
+            opacity: 0.1,
+          }}
         >
           <rect x="125" y="0" width="50" height="480" fill="#CFB53B" />
           <rect x="40" y="130" width="220" height="50" fill="#CFB53B" />
