@@ -16,34 +16,31 @@ const WelcomeHero: React.FC<Props> = ({ lang }) => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: 'linear-gradient(180deg, #0a1628 0%, #0f2440 45%, #002366 100%)' }}
     >
-      {/* Overlapping watermark composition — outline + filled wordmarks + cross */}
+      {/* Watermarks in separate corner zones — no layer overlaps another */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
-        {/* Back layer: oversized filled wordmark, bleeds off edges */}
+        {/* Top-left: filled wordmark, bleeds off the corner */}
         <span
-          className="absolute left-1/2 top-1/2 font-serif font-black italic text-[26vw] leading-none whitespace-nowrap"
-          style={{
-            color: 'rgba(207,181,59,0.07)',
-            transform: 'translate(-58%, -72%) rotate(-8deg)',
-          }}
+          className="absolute left-0 top-[7%] font-serif font-black italic text-[12vw] leading-none whitespace-nowrap"
+          style={{ color: 'rgba(207,181,59,0.09)', transform: 'translateX(-24%) rotate(-6deg)' }}
         >
           Welo Sefer
         </span>
-        {/* Front layer: outlined wordmark crossing the back layer */}
+        {/* Bottom-right: outlined wordmark, bleeds off the opposite corner */}
         <span
-          className="absolute left-1/2 top-1/2 font-serif font-black italic text-[17vw] leading-none whitespace-nowrap"
+          className="absolute right-0 bottom-[8%] font-serif font-black italic text-[10vw] leading-none whitespace-nowrap"
           style={{
             color: 'rgba(207,181,59,0.03)',
-            WebkitTextStroke: '1.5px rgba(207,181,59,0.20)',
-            transform: 'translate(-42%, -24%) rotate(5deg)',
+            WebkitTextStroke: '1.5px rgba(207,181,59,0.18)',
+            transform: 'translateX(24%) rotate(4deg)',
           }}
         >
           Welo Sefer
         </span>
-        {/* Cross intersecting the wordmark crossing point */}
+        {/* Top-right: cross in the free zone */}
         <svg
-          className="absolute left-1/2 top-1/2 w-[34vw] max-w-[320px]"
+          className="absolute right-[4%] top-[10%] w-[11vw] max-w-[110px]"
           viewBox="0 0 300 480"
-          style={{ transform: 'translate(-72%, -55%) rotate(-8deg)', opacity: 0.06 }}
+          style={{ transform: 'rotate(6deg)', opacity: 0.07 }}
         >
           <rect x="125" y="0" width="50" height="480" fill="#CFB53B" />
           <rect x="40" y="130" width="220" height="50" fill="#CFB53B" />

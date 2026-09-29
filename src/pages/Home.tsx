@@ -30,31 +30,31 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
 
       {/* Website introduction */}
       <section className="relative py-24 md:py-32 px-6 bg-church-cream dark:bg-slate-950 overflow-hidden transition-colors duration-500">
-        {/* Overlapping watermark composition — same language as the hero */}
+        {/* Watermarks in separate corner zones — no layer overlaps another */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
-          {/* Back layer: filled wordmark bleeding off the top-left */}
+          {/* Top-right: outlined wordmark, bleeds off the corner */}
           <span
-            className="absolute left-1/2 top-1/2 font-serif font-black uppercase text-[20vw] leading-none whitespace-nowrap text-[rgba(0,35,102,0.05)] dark:text-[rgba(255,255,255,0.04)]"
-            style={{ transform: 'translate(-70%, -78%) rotate(-6deg)' }}
-          >
-            Welo Sefer
-          </span>
-          {/* Front layer: gold outline crossing it at the opposite angle */}
-          <span
-            className="absolute left-1/2 top-1/2 font-serif font-black italic text-[15vw] leading-none whitespace-nowrap"
+            className="absolute right-0 top-[6%] font-serif font-black italic text-[11vw] leading-none whitespace-nowrap"
             style={{
               color: 'rgba(207,181,59,0.04)',
-              WebkitTextStroke: '1.5px rgba(207,181,59,0.32)',
-              transform: 'translate(-32%, -18%) rotate(6deg)',
+              WebkitTextStroke: '1.5px rgba(207,181,59,0.30)',
+              transform: 'translateX(26%) rotate(5deg)',
             }}
           >
             Welo Sefer
           </span>
-          {/* Cross at the crossing point */}
+          {/* Bottom-left: filled wordmark, bleeds off the opposite corner */}
+          <span
+            className="absolute left-0 bottom-[6%] font-serif font-black uppercase text-[12vw] leading-none whitespace-nowrap text-[rgba(0,35,102,0.05)] dark:text-[rgba(255,255,255,0.045)]"
+            style={{ transform: 'translateX(-24%) rotate(-5deg)' }}
+          >
+            Welo Sefer
+          </span>
+          {/* Top-left: cross in the free zone */}
           <svg
-            className="absolute left-1/2 top-1/2 w-[28vw] max-w-[280px]"
+            className="absolute left-[5%] top-[12%] w-[8vw] max-w-[90px]"
             viewBox="0 0 300 480"
-            style={{ transform: 'translate(-78%, -60%) rotate(-6deg)', opacity: 0.06 }}
+            style={{ transform: 'rotate(-6deg)', opacity: 0.07 }}
           >
             <rect x="125" y="0" width="50" height="480" fill="#CFB53B" />
             <rect x="40" y="130" width="220" height="50" fill="#CFB53B" />

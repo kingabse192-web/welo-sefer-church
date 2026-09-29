@@ -42,6 +42,7 @@ const PhotoLightbox: React.FC<PhotoLightboxProps> = ({ photos, index, lang, onCl
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ duration: 0.1 }}
       role="dialog"
       aria-modal="true"
       aria-label={photo.title}
@@ -58,7 +59,7 @@ const PhotoLightbox: React.FC<PhotoLightboxProps> = ({ photos, index, lang, onCl
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.98 }}
-        transition={{ duration: 0.2, ease: 'easeOut' }}
+        transition={{ duration: 0.12, ease: 'easeOut' }}
         className="relative z-10 flex max-h-full w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-church-gold/20 bg-white dark:bg-slate-900 shadow-2xl"
       >
         <div className="relative flex items-center justify-center bg-black/60 p-3 md:p-5">
