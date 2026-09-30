@@ -38,10 +38,10 @@ const LocationSection: React.FC<LocationSectionProps> = ({ lang }) => {
     <section className="py-16 px-6 md:px-12 bg-white dark:bg-slate-950 transition-colors duration-500">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -56 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <span className="text-amber-600 font-semibold tracking-wider text-sm uppercase">Our Location</span>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight mt-3 mb-4">
@@ -97,10 +97,10 @@ const LocationSection: React.FC<LocationSectionProps> = ({ lang }) => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: 56 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="w-full h-[350px] md:h-[400px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-lg relative"
         >
           <iframe

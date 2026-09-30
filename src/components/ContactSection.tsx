@@ -160,7 +160,14 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                 { icon: <Phone className="w-5 h-5" />, label: 'Phone', value: '+251 (11) 612 3456' },
                 { icon: <MapPin className="w-5 h-5" />, label: 'Location', value: translations[lang].location.addressValue }
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-5 group">
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 48 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '0px 0px -40px 0px' }}
+                  transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex items-center gap-5 group"
+                >
                   <div className="w-12 h-12 bg-church-blue dark:bg-slate-800 rounded-2xl flex items-center justify-center text-church-gold group-hover:bg-church-gold group-hover:text-white transition-all">
                     {item.icon}
                   </div>
@@ -168,7 +175,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                     <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest">{item.label}</p>
                     <p className="text-church-blue dark:text-gray-200 font-medium text-sm break-words">{item.value}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 

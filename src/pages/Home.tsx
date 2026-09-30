@@ -4,6 +4,7 @@ import { Language, translations } from '../translations';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import WelcomeHero from '../components/WelcomeHero';
+import SlideIn from '../components/SlideIn';
 
 interface HomeProps {
   lang: Language;
@@ -62,14 +63,8 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
           </svg>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative max-w-7xl mx-auto grid md:grid-cols-12 gap-10 md:gap-12 items-start"
-        >
-          <div className="md:col-span-7">
+        <div className="relative max-w-7xl mx-auto grid md:grid-cols-12 gap-10 md:gap-12 items-start">
+          <SlideIn direction="left" className="md:col-span-7">
             <motion.span
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -92,9 +87,10 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
               />
               <span className="h-px flex-1 max-w-[120px] bg-church-gold/30" />
             </div>
-          </div>
+          </SlideIn>
 
-          <nav className="md:col-span-5 md:pl-8 md:border-l md:border-church-gold/20" aria-label="Quick Links">
+          <SlideIn direction="right" delay={0.15} className="md:col-span-5">
+            <nav className="md:pl-8 md:border-l md:border-church-gold/20" aria-label="Quick Links">
             <span className="block text-church-gold font-sans font-bold tracking-[0.3em] uppercase text-xs">
               {t.footer.quickLinks}
             </span>
@@ -117,8 +113,9 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
                 </motion.li>
               ))}
             </ul>
-          </nav>
-        </motion.div>
+            </nav>
+          </SlideIn>
+        </div>
       </section>
     </div>
   );

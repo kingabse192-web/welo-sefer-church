@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { Language, translations } from '../translations';
+import PremiumButton from './PremiumButton';
 
 interface Props { lang: Language }
 
@@ -126,6 +128,17 @@ const WelcomeHero: React.FC<Props> = ({ lang }) => {
           >
             {t.subtitle}
           </motion.p>
+
+          <motion.div variants={item} className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <PremiumButton to="/events">
+              {t.ctaServices}
+              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+            </PremiumButton>
+            <PremiumButton to="/history" variant="ghost">
+              {t.ctaHistory}
+              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+            </PremiumButton>
+          </motion.div>
         </motion.div>
 
         <motion.div

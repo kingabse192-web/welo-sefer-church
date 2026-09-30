@@ -173,14 +173,14 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 min-h-[400px]">
           <AnimatePresence mode="popLayout">
-            {currentEvents.map((event) => (
+            {currentEvents.map((event, i) => (
               <motion.div 
                 layout
                 key={event.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, x: 48, scale: 0.94 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: 24, scale: 0.94 }}
+                transition={{ duration: 0.5, delay: Math.min(i, 6) * 0.06, ease: [0.22, 1, 0.36, 1] }}
                 className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all group flex flex-col cursor-pointer hover:border-church-gold/30"
                 onClick={() => setSelectedEvent(event)}
               >

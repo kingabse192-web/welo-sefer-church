@@ -3,6 +3,7 @@ import { Globe, Sun, Moon, Menu, X, Landmark } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language, translations } from '../translations';
+import PremiumButton from './PremiumButton';
 
 interface NavbarProps {
   lang: Language;
@@ -81,9 +82,9 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
               <Globe className="w-4 h-4" />
               <span className="uppercase text-xs">{lang === 'en' ? 'AM' : 'EN'}</span>
             </button>
-            <button onClick={() => navigate('/contact')} className="bg-church-gold text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-church-gold/90 transition-all shadow-lg shadow-church-gold/20 cursor-pointer">
+            <PremiumButton onClick={() => navigate('/contact')} className="!px-5 !py-2 !text-[10px]">
               {t.nav.donation}
-            </button>
+            </PremiumButton>
           </div>
         </div>
 
@@ -192,16 +193,17 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
 
                 {/* Mobile Donation Call to action */}
                 <div className="border-t border-church-gold/10 pt-6 px-2">
-                  <button 
+                  <PremiumButton
+                    shape="soft"
+                    fullWidth
                     onClick={() => {
                       setIsOpen(false);
                       navigate('/contact');
                     }}
-                    className="w-full bg-church-gold text-white font-serif py-4 rounded-2xl text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2.5 shadow-lg shadow-church-gold/20 hover:bg-church-gold/90 transition-all active:scale-95 cursor-pointer"
                   >
                     <Landmark className="w-4 h-4" />
                     <span>{t.nav.donation}</span>
-                  </button>
+                  </PremiumButton>
                 </div>
               </div>
             </motion.div>

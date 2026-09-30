@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PremiumButton from '../components/PremiumButton';
 import { motion } from 'framer-motion';
 import { Home } from 'lucide-react';
 import { Language } from '../translations';
@@ -28,13 +28,10 @@ const NotFound: React.FC<NotFoundProps> = ({ lang }) => {
             ? 'የሚፈልጉት ገፅ የለም ወይም ተወግዷል። ወደ መነሻ ገፅ ይመለሱ።'
             : 'The page you\'re looking for doesn\'t exist or has been moved. Return home and explore from there.'}
         </p>
-        <Link
-          to="/"
-          className="inline-flex items-center gap-3 bg-church-gold text-white font-bold px-8 py-4 rounded-2xl shadow-xl shadow-church-gold/20 hover:scale-[1.03] active:scale-[0.97] transition-all duration-300"
-        >
+        <PremiumButton to="/">
           <Home className="w-5 h-5" />
-          {lang === 'am' ? 'ወደ መነሻ ገፅ' : 'Back to Home'}
-        </Link>
+          {lang === 'am' ? 'ወደ መነሻ ገጽ' : 'Back to Home'}
+        </PremiumButton>
       </motion.div>
     </div>
   );
