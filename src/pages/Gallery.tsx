@@ -2,12 +2,65 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Sparkles } from 'lucide-react';
 import { Language, translations } from '../translations';
-import { getGalleryPhotos } from '../galleryPhotos';
+import { getGalleryPhotos, Photo } from '../galleryPhotos';
 import PhotoLightbox from '../components/PhotoLightbox';
 
 interface GalleryPageProps {
   lang: Language;
 }
+
+const GalleryCard: React.FC<{ photo: Photo; index: number; label: string; onOpen: () => void }> = ({
+  photo,
+  index,
+  label,
+  onOpen,
+}) => {
+  const [loaded, setLoaded] = useState(false);
+  const eager = index < 8;
+
+  return (
+    <motion.button
+      type="button"
+      onClick={onOpen}
+      aria-label={`${label}: ${photo.title}`}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '0px 0px -40px 0px' }}
+      transition={{ duration: 0.4, delay: Math.min(index, 8) * 0.03, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative mb-3 md:mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl border border-church-gold/15 bg-white dark:bg-slate-900 text-left shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-church-blue/10 hover:border-church-gold/50 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
+      style={
+        photo.lqip
+          ? { backgroundImage: `url(${photo.lqip})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+          : undefined
+      }
+    >
+      <img
+        src={photo.url}
+        alt={photo.title}
+        width={photo.width}
+        height={photo.height}
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+        className={
+          'w-full transition-all duration-500 ease-out ' +
+          (loaded ? 'opacity-100' : 'opacity-0') +
+          ' group-hover:scale-[1.04]'
+        }
+      />
+      <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+      <span className="pointer-events-none absolute inset-x-0 bottom-0 p-3 md:p-4">
+        <span className="block font-serif text-sm md:text-base font-semibold text-white leading-snug drop-shadow transition-transform duration-500 group-hover:-translate-y-0.5">
+          {photo.title}
+        </span>
+      </span>
+      <span className="pointer-events-none absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/45 text-white opacity-0 scale-75 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 group-focus-visible:opacity-100 group-focus-visible:scale-100">
+        <Search className="w-4 h-4" />
+      </span>
+    </motion.button>
+  );
+};
 
 const GalleryPage: React.FC<GalleryPageProps> = ({ lang }) => {
   const t = translations[lang].gallery;
@@ -20,7 +73,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ lang }) => {
         <motion.header
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.35 }}
           className="max-w-2xl mb-12 md:mb-16"
         >
           <span className="text-church-gold font-sans font-bold tracking-[0.3em] uppercase text-xs">
@@ -37,34 +90,13 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ lang }) => {
 
         <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4">
           {photos.map((photo, i) => (
-            <motion.button
+            <GalleryCard
               key={photo.url}
-              type="button"
-              onClick={() => setOpenIndex(i)}
-              aria-label={`${t.clickToView}: ${photo.title}`}
-              initial={{ opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '0px 0px -40px 0px' }}
-              transition={{ duration: 0.55, delay: (i % 6) * 0.07, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative mb-3 md:mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl border border-church-gold/15 bg-white dark:bg-slate-900 text-left shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-church-blue/10 hover:border-church-gold/50 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
-            >
-              <img
-                src={photo.url}
-                alt={photo.title}
-                loading="lazy"
-                decoding="async"
-                className="w-full transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-              />
-              <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
-              <span className="pointer-events-none absolute inset-x-0 bottom-0 p-3 md:p-4">
-                <span className="block font-serif text-sm md:text-base font-semibold text-white leading-snug drop-shadow transition-transform duration-500 group-hover:-translate-y-0.5">
-                  {photo.title}
-                </span>
-              </span>
-              <span className="pointer-events-none absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-black/45 text-white opacity-0 scale-75 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 group-focus-visible:opacity-100 group-focus-visible:scale-100">
-                <Search className="w-4 h-4" />
-              </span>
-            </motion.button>
+              photo={photo}
+              index={i}
+              label={t.clickToView}
+              onOpen={() => setOpenIndex(i)}
+            />
           ))}
 
           <motion.div

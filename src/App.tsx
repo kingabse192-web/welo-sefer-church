@@ -15,6 +15,7 @@ import ContactPage from './pages/Contact';
 import DeveloperPage from './pages/Developer';
 import NotFoundPage from './pages/NotFound';
 import { Language } from './translations';
+import { prefetchGalleryPhotos } from './galleryPhotos';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -33,7 +34,7 @@ function AnimatedRoutes({ lang }: { lang: Language }) {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8 }}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
         <Routes location={location}>
           <Route path="/" element={<Home lang={lang} />} />
@@ -78,6 +79,10 @@ function App() {
   useEffect(() => {
     localStorage.setItem('lang', lang);
   }, [lang]);
+
+  useEffect(() => {
+    prefetchGalleryPhotos();
+  }, []);
 
   const toggleLang = () => setLang(prev => prev === 'en' ? 'am' : 'en');
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');

@@ -62,10 +62,20 @@ const PhotoLightbox: React.FC<PhotoLightboxProps> = ({ photos, index, lang, onCl
         transition={{ duration: 0.12, ease: 'easeOut' }}
         className="relative z-10 flex max-h-full w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-church-gold/20 bg-white dark:bg-slate-900 shadow-2xl"
       >
-        <div className="relative flex items-center justify-center bg-black/60 p-3 md:p-5">
+        <div
+          className="relative flex items-center justify-center bg-black/60 p-3 md:p-5"
+          style={
+            photo.lqip
+              ? { backgroundImage: `url(${photo.lqip})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+              : undefined
+          }
+        >
           <img
             src={photo.url}
             alt={photo.title}
+            width={photo.width}
+            height={photo.height}
+            decoding="async"
             className="max-h-[62vh] w-auto max-w-full rounded-lg object-contain"
             referrerPolicy="no-referrer"
           />
