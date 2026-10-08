@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Landmark, Copy, Check, AlertTriangle } from 'lucide-react';
 import { Language, translations } from '../translations';
+import SectionHeader from './SectionHeader';
 
 interface ContactSectionProps {
   lang: Language;
@@ -129,18 +130,12 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
   return (
     <section id="contact" className="py-24 bg-church-cream dark:bg-slate-900 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block bg-white dark:bg-white/10 px-4 py-1 rounded-full text-church-gold font-sans font-bold tracking-[0.3em] uppercase text-xs mb-6 transition-colors">{t.tag}</span>
-          <h2 className="text-5xl md:text-6xl font-serif font-bold text-church-blue dark:text-church-gold mb-6 transition-colors">
-            {t.title}
-          </h2>
-          <div className="w-24 h-1.5 bg-church-gold mx-auto rounded-full"></div>
-        </motion.div>
+        <SectionHeader
+          align="center"
+          tag={t.tag}
+          title={t.title}
+          className="mb-16"
+        />
 
         <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-12 items-start">
           {/* Contact Info & Donations */}

@@ -5,6 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Language, translations } from '../translations';
 import PremiumButton from './PremiumButton';
 
+const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+  isActive
+    ? 'px-3.5 -my-1 rounded-full font-semibold text-church-gold bg-church-gold/15 transition-colors'
+    : 'px-3.5 -my-1 rounded-full text-church-blue/70 dark:text-gray-400 hover:text-church-gold hover:bg-church-gold/10 transition-colors';
+
 interface NavbarProps {
   lang: Language;
   theme: 'light' | 'dark';
@@ -48,39 +53,31 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
         </div>
         
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8 font-sans text-sm font-medium text-church-blue/70 dark:text-gray-400">
-          <NavLink to="/history" className={({ isActive }) => isActive ? "text-church-gold font-bold relative after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-full after:bg-church-gold" : "relative after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-px after:w-0 after:bg-church-gold after:transition-all after:duration-300 hover:after:w-full hover:text-church-blue dark:hover:text-white transition-colors"}>{t.nav.history}</NavLink>
-          <NavLink to="/gallery" className={({ isActive }) => isActive ? "text-church-gold font-bold relative after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-full after:bg-church-gold" : "relative after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-px after:w-0 after:bg-church-gold after:transition-all after:duration-300 hover:after:w-full hover:text-church-blue dark:hover:text-white transition-colors"}>{t.nav.gallery}</NavLink>
-          <NavLink to="/events" className={({ isActive }) => isActive ? "text-church-gold font-bold relative after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-full after:bg-church-gold" : "relative after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-px after:w-0 after:bg-church-gold after:transition-all after:duration-300 hover:after:w-full hover:text-church-blue dark:hover:text-white transition-colors"}>{t.nav.events}</NavLink>
-          <NavLink to="/location" className={({ isActive }) => isActive ? "text-church-gold font-bold relative after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-full after:bg-church-gold" : "relative after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-px after:w-0 after:bg-church-gold after:transition-all after:duration-300 hover:after:w-full hover:text-church-blue dark:hover:text-white transition-colors"}>{t.nav.location}</NavLink>
-          <NavLink to="/contact" className={({ isActive }) => isActive ? "text-church-gold font-bold relative after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-full after:bg-church-gold" : "relative after:content-[''] after:absolute after:left-0 after:-bottom-1.5 after:h-px after:w-0 after:bg-church-gold after:transition-all after:duration-300 hover:after:w-full hover:text-church-blue dark:hover:text-white transition-colors"}>{t.nav.contact}</NavLink>
-          <NavLink to="/developer" className={({ isActive }) => isActive ? "text-church-gold font-bold border-l border-church-gold/20 pl-4" : "hover:text-church-blue dark:hover:text-white transition-colors border-l border-church-gold/20 pl-4"}>{t.contact.devProfile}</NavLink>
-          
-          <div className="flex items-center gap-4 pl-4 border-l border-church-gold/20">
-            <button 
+        <div className="hidden md:flex items-center gap-1 font-sans text-sm font-medium text-church-blue/70 dark:text-gray-400">
+          <NavLink to="/history" className={navLinkClass}>{t.nav.history}</NavLink>
+          <NavLink to="/gallery" className={navLinkClass}>{t.nav.gallery}</NavLink>
+          <NavLink to="/events" className={navLinkClass}>{t.nav.events}</NavLink>
+          <NavLink to="/location" className={navLinkClass}>{t.nav.location}</NavLink>
+          <NavLink to="/contact" className={navLinkClass}>{t.nav.contact}</NavLink>
+          <NavLink to="/developer" className={navLinkClass}>{t.contact.devProfile}</NavLink>
+
+          <div className="flex items-center gap-2 pl-4 ml-2 border-l border-church-gold/20">
+            <button
               onClick={toggleTheme}
-              className="p-2 text-church-blue dark:text-church-gold hover:bg-church-gold/10 rounded-full transition-all flex items-center gap-2 pr-4 cursor-pointer"
+              className="w-9 h-9 flex items-center justify-center text-church-blue dark:text-church-gold hover:bg-church-gold/10 rounded-xl transition-colors cursor-pointer"
               title={theme === 'light' ? 'Switch to Night' : 'Switch to Day'}
+              aria-label={theme === 'light' ? 'Switch to Night' : 'Switch to Day'}
             >
-              {theme === 'light' ? (
-                <>
-                  <Moon className="w-4 h-4 ml-2" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest hidden lg:inline">Night Mode</span>
-                </>
-              ) : (
-                <>
-                  <Sun className="w-4 h-4 ml-2" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest hidden lg:inline">Day Mode</span>
-                </>
-              )}
+              {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
             </button>
-            <button 
+            <button
               onClick={toggleLang}
-              className="flex items-center gap-2 text-church-blue dark:text-gray-300 font-bold hover:text-church-gold transition-colors cursor-pointer"
+              className="h-9 px-3 flex items-center gap-1.5 text-church-blue dark:text-gray-300 text-xs font-bold uppercase tracking-wider hover:text-church-gold hover:bg-church-gold/10 rounded-xl transition-colors cursor-pointer"
               title="Change Language"
+              aria-label="Change Language"
             >
               <Globe className="w-4 h-4" />
-              <span className="uppercase text-xs">{lang === 'en' ? 'AM' : 'EN'}</span>
+              <span>{lang === 'en' ? 'AM' : 'EN'}</span>
             </button>
             <PremiumButton onClick={() => navigate('/contact')} className="!px-5 !py-2 !text-[10px]">
               {t.nav.donation}

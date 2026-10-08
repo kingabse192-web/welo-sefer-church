@@ -4,6 +4,7 @@ import { Search, Sparkles } from 'lucide-react';
 import { Language, translations } from '../translations';
 import { getGalleryPhotos, Photo } from '../galleryPhotos';
 import PhotoLightbox from '../components/PhotoLightbox';
+import SectionHeader from '../components/SectionHeader';
 
 interface GalleryPageProps {
   lang: Language;
@@ -70,23 +71,13 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ lang }) => {
   return (
     <div className="pt-28 pb-24 bg-church-cream dark:bg-slate-950 min-h-screen transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.header
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35 }}
-          className="max-w-2xl mb-12 md:mb-16"
-        >
-          <span className="text-church-gold font-sans font-bold tracking-[0.3em] uppercase text-xs">
-            {t.tag}
-          </span>
-          <h1 className="mt-4 font-serif font-bold text-4xl md:text-5xl text-church-blue dark:text-church-gold leading-tight">
-            {t.title}
-          </h1>
-          <div className="mt-5 h-px w-full bg-church-gold/30" />
-          <p className="mt-4 text-sm text-church-blue/60 dark:text-gray-400 font-sans">
-            {t.clickToView}
-          </p>
-        </motion.header>
+        <SectionHeader
+          level="h1"
+          tag={t.tag}
+          title={t.title}
+          lead={t.clickToView}
+          className="mb-12 md:mb-16"
+        />
 
         <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4">
           {photos.map((photo, i) => (

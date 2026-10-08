@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar as CalendarIcon, Clock, Users, ShieldCheck, Filter, X, ChevronLeft, ChevronRight, Search } from 'lucide-react';
 
 import { Language, translations } from '../translations';
+import SectionHeader from './SectionHeader';
 
 interface EventItem {
   title: string;
@@ -84,19 +85,12 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-church-gold/5 dark:bg-church-gold/10 rounded-full blur-3xl transition-colors"></div>
 
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <SectionHeader
+            tone="light"
+            title={t.title}
+            lead={t.subtitle}
             className="flex-1"
-          >
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-church-gold mb-6 transition-colors">
-              {t.title}
-            </h2>
-            <p className="max-w-xl text-lg text-church-cream/70 dark:text-gray-400 font-sans transition-colors">
-              {t.subtitle}
-            </p>
-          </motion.div>
+          />
 
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

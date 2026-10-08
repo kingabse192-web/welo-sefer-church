@@ -12,13 +12,14 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = translations[lang];
 
   return (
-    <footer className="bg-church-cream dark:bg-slate-900 border-t border-church-gold/10 py-16 px-6 transition-colors duration-500">
+    <footer className="relative bg-church-cream dark:bg-slate-900 border-t border-church-gold/10 py-16 px-6 transition-colors duration-500">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-church-gold/60 to-transparent" />
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-church-blue/60 dark:text-gray-400 font-sans text-sm transition-colors"
+        className="max-w-7xl mx-auto grid md:grid-cols-[1.5fr_1fr_1fr] gap-x-16 gap-y-12 text-church-blue/65 dark:text-gray-400 font-sans text-sm transition-colors"
       >
         <div className="space-y-6">
           <div className="flex items-center gap-2">
@@ -53,7 +54,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
         </div>
         
         <div className="space-y-6">
-          <h4 className="font-serif font-bold text-church-blue dark:text-church-gold text-lg uppercase tracking-widest transition-colors">{t.footer.quickLinks}</h4>
+          <h4 className="font-sans font-bold uppercase text-[11px] tracking-[0.3em] text-church-gold transition-colors">{t.footer.quickLinks}</h4>
           <ul className="space-y-3">
             {[t.nav.history, t.nav.events, t.nav.location, t.nav.contact].map((label, i) => (
               <motion.li
@@ -75,7 +76,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
         </div>
 
         <div className="space-y-6">
-          <h4 className="font-serif font-bold text-church-blue dark:text-church-gold text-lg uppercase tracking-widest transition-colors">{t.nav.contact}</h4>
+          <h4 className="font-sans font-bold uppercase text-[11px] tracking-[0.3em] text-church-gold transition-colors">{t.nav.contact}</h4>
           <p>{t.location.addressValue}</p>
           <p>Email: info@weloseferchurch.org<br />Tel: +251 (11) 612 3456</p>
           <Link to="/developer" className="flex items-center gap-4 pt-4 border-t border-church-gold/10 hover:opacity-80 transition-opacity">
@@ -90,7 +91,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="max-w-7xl mx-auto mt-16 pt-8 border-t border-church-gold/10 text-center space-y-3"
+        className="max-w-7xl mx-auto mt-16 pt-8 border-t border-church-gold/10 flex flex-col md:flex-row md:items-center md:justify-between gap-3"
       >
           <p className="text-xs font-bold text-church-blue dark:text-church-gold uppercase tracking-wider">
             {t.footer.copyright}

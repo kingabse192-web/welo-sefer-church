@@ -4,6 +4,8 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -13,9 +15,26 @@ html {
   --font-amharic-serif: "Noto Serif Ethiopic", serif;
 }
 
+::selection {
+  background: rgba(207, 181, 59, 0.3);
+  color: #001a4d;
+}
+
 @layer base {
   body {
-    @apply font-sans antialiased bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-800 dark:text-slate-200;
+    @apply font-sans antialiased bg-church-cream dark:bg-slate-950 transition-colors duration-500 text-slate-800 dark:text-slate-200;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 2px solid #CFB53B;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
   }
   
   .lang-am {
@@ -105,3 +124,14 @@ html {
   transition: color 0.2s ease;
 }
 
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

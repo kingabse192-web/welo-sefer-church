@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Compass, Sparkles, BookOpen, Music, Droplet, Heart, Users } from 'lucide-react';
 
 import { Language, translations } from '../translations';
+import SectionHeader from './SectionHeader';
 
 interface HistorySectionProps {
   lang: Language;
@@ -16,21 +17,12 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
     <section id="history" className="py-24 bg-church-cream dark:bg-slate-900 transition-colors duration-500 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-church-gold font-sans font-bold tracking-[0.3em] uppercase text-xs mb-4 block underline decoration-church-gold/30 underline-offset-8 transition-colors">
-            {t.tag}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-church-blue dark:text-church-gold mb-6 transition-colors">
-            {t.title}
-          </h2>
-          <div className="w-24 h-1.5 bg-church-gold mx-auto rounded-full mb-12"></div>
-        </motion.div>
+        <SectionHeader
+          align="center"
+          tag={t.tag}
+          title={t.title}
+          className="mb-16"
+        />
 
         {/* Tab Controls */}
         <div className="flex flex-wrap justify-center gap-4 mb-16 max-w-3xl mx-auto">

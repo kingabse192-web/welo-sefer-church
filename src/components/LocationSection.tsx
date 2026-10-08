@@ -43,11 +43,14 @@ const LocationSection: React.FC<LocationSectionProps> = ({ lang }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="text-amber-600 font-semibold tracking-wider text-sm uppercase">Our Location</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight mt-3 mb-4">
-            ወደ እኛ ለመምጣት <br /><span className="text-amber-600">Visit Us</span>
+          <span className="inline-flex items-center gap-3 text-church-gold font-sans font-bold uppercase text-[11px] tracking-[0.32em]">
+            <span className="h-px w-7 bg-church-gold/70" />
+            Our Location
+          </span>
+          <h2 className="font-serif font-bold text-3xl md:text-4xl text-church-blue dark:text-church-gold leading-[1.1] tracking-tight mt-4 mb-4">
+            ወደ እኛ ለመምጣት <br /><span className="text-church-gold">Visit Us</span>
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 leading-relaxed max-w-md mb-8">
+          <p className="text-church-blue/65 dark:text-slate-400 leading-relaxed max-w-md mb-8">
             Our church community hub is located in the heart of Welo Sefer, Bole sub-city, Addis Ababa. We are easily accessible by public transport and welcome everyone to join our services and community events.
           </p>
 
