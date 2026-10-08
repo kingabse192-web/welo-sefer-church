@@ -135,3 +135,13 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Deep gold for small text on light surfaces (WCAG contrast) */
+@layer utilities {
+  .text-gold-deep {
+    color: #8a6d1b;
+  }
+  .dark .text-gold-deep {
+    color: #CFB53B;
+  }
+}

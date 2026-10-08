@@ -7,7 +7,7 @@ import PremiumButton from './PremiumButton';
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   isActive
-    ? 'px-3.5 -my-1 rounded-full font-semibold text-church-gold bg-church-gold/15 transition-colors'
+    ? 'px-3.5 -my-1 rounded-full font-semibold text-gold-deep bg-church-gold/15 transition-colors'
     : 'px-3.5 -my-1 rounded-full text-church-blue/70 dark:text-gray-400 hover:text-church-gold hover:bg-church-gold/10 transition-colors';
 
 interface NavbarProps {

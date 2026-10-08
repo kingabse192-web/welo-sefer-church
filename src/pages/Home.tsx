@@ -91,7 +91,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
 
           <SlideIn direction="right" delay={0.15} className="md:col-span-5">
             <nav className="md:pl-8 md:border-l md:border-church-gold/20" aria-label="Quick Links">
-            <span className="block text-church-gold font-sans font-bold tracking-[0.3em] uppercase text-xs">
+            <span className="block text-gold-deep font-sans font-bold tracking-[0.3em] uppercase text-xs">
               {t.footer.quickLinks}
             </span>
             <ul className="mt-6 space-y-0">

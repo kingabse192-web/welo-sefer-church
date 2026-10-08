@@ -34,7 +34,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {tag && (
         <span className={`inline-flex items-center gap-3 ${centered ? 'justify-center' : ''}`}>
           <span className="h-px w-7 bg-church-gold/70" />
-          <span className="font-sans font-bold uppercase text-[11px] tracking-[0.32em] text-church-gold">
+          <span className="font-sans font-bold uppercase text-[11px] tracking-[0.32em] text-gold-deep">
             {tag}
           </span>
         </span>

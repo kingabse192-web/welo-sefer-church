@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTopButton from './components/ScrollToTopButton';
@@ -14,7 +14,7 @@ import LocationPage from './pages/Location';
 import ContactPage from './pages/Contact';
 import DeveloperPage from './pages/Developer';
 import NotFoundPage from './pages/NotFound';
-import { Language } from './translations';
+import { Language, translations } from './translations';
 import { prefetchGalleryPhotos } from './galleryPhotos';
 
 function ScrollToTop() {
@@ -22,6 +22,34 @@ function ScrollToTop() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+  return null;
+}
+
+function RouteMeta({ lang }: { lang: Language }) {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const t = translations[lang];
+    const brand = lang === 'am' ? 'ወሎ ሰፈር ቅድስት ማርያም' : 'Welo Sefer St. Maryam';
+    const titles: Record<string, string> = {
+      '/history': t.history.title,
+      '/gallery': t.gallery.title,
+      '/events': t.events.title,
+      '/location': t.nav.location,
+      '/contact': t.contact.title,
+      '/developer': t.contact.devProfile,
+    };
+    const full =
+      pathname === '/' ? brand : `${titles[pathname] || brand} | ${brand}`;
+    document.title = full;
+    const desc = t.hero.subtitle;
+    const setMeta = (sel: string, content: string) => {
+      const el = document.querySelector<HTMLMetaElement>(sel);
+      if (el) el.setAttribute('content', content);
+    };
+    setMeta('meta[name="description"]', desc);
+    setMeta('meta[property="og:title"]', full);
+    setMeta('meta[property="og:description"]', desc);
+  }, [pathname, lang]);
   return null;
 }
 
@@ -84,14 +112,21 @@ function App() {
     prefetchGalleryPhotos();
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = lang === 'am' ? 'am' : 'en';
+    document.documentElement.classList.toggle('lang-am', lang === 'am');
+  }, [lang]);
+
   const toggleLang = () => setLang(prev => prev === 'en' ? 'am' : 'en');
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
   const [splashDone, setSplashDone] = useState(false);
   const handleSplashFinish = useCallback(() => setSplashDone(true), []);
 
   return (
+    <MotionConfig reducedMotion="user">
       <Router>
         <ScrollToTop />
+        <RouteMeta lang={lang} />
         {!splashDone && <WelcomeSplash lang={lang} onFinish={handleSplashFinish} />}
         <div className={`min-h-screen bg-church-cream dark:bg-slate-950 transition-colors duration-500 selection:bg-church-gold selection:text-white overflow-x-hidden flex flex-col ${lang === 'am' ? 'lang-am' : ''}`}>
           <Navbar 
@@ -110,6 +145,7 @@ function App() {
           <Footer lang={lang} />
         </div>
       </Router>
+    </MotionConfig>
   );
 }
 
