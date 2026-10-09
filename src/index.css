@@ -6,6 +6,12 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
   -webkit-tap-highlight-color: transparent;
+  background-color: #FDFCF6;
+  transition: background-color 0.5s ease;
+}
+
+html.dark {
+  background-color: #050d1f;
 }
 
 :root {
@@ -25,6 +31,7 @@ html {
     @apply font-sans antialiased bg-church-cream dark:bg-church-night transition-colors duration-500 text-slate-800 dark:text-slate-200;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
+    font-optical-sizing: auto;
   }
 
   :where(a, button, input, textarea, select, [tabindex]):focus-visible {
@@ -143,5 +150,43 @@ html {
   }
   .dark .text-gold-deep {
     color: #CFB53B;
+  }
+
+  /* Refined gold-tinted scrollbars */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(207, 181, 59, 0.28);
+    border-radius: 9999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(207, 181, 59, 0.5);
+    background-clip: padding-box;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(207, 181, 59, 0.32) transparent;
+  }
+
+  /* Soft breathing gold glow (reduced-motion override handled globally) */
+  @keyframes gold-pulse {
+    0%, 100% {
+      opacity: 0.32;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: translate(-50%, -50%) scale(1.07);
+    }
+  }
+  .animate-gold-pulse {
+    animation: gold-pulse 7s ease-in-out infinite;
   }
 }

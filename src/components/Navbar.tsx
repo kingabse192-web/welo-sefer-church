@@ -7,8 +7,8 @@ import PremiumButton from './PremiumButton';
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   isActive
-    ? 'px-3.5 -my-1 rounded-full font-semibold text-gold-deep bg-church-gold/15 transition-colors'
-    : 'px-3.5 -my-1 rounded-full text-church-blue/70 dark:text-gray-400 hover:text-church-gold hover:bg-church-gold/10 transition-colors';
+    ? 'px-3.5 -my-1 rounded-full font-semibold text-gold-deep bg-church-gold/15 transition-all hover:scale-[1.03] active:scale-95'
+    : 'px-3.5 -my-1 rounded-full text-church-blue/70 dark:text-gray-400 hover:text-church-gold hover:bg-church-gold/10 transition-all active:scale-95';
 
 interface NavbarProps {
   lang: Language;
@@ -70,7 +70,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
     }`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex items-center gap-3 min-w-0">
-          <button onClick={() => setShowFeastPopup(true)} className="w-10 h-10 overflow-hidden rounded-full border-2 border-church-gold shadow-sm cursor-pointer flex-shrink-0 hover:ring-2 hover:ring-church-gold/50 transition-all">
+          <button onClick={() => setShowFeastPopup(true)} className="w-10 h-10 overflow-hidden rounded-full border-2 border-church-gold shadow-sm cursor-pointer flex-shrink-0 active:scale-95 transition-all duration-200 hover:ring-2 hover:ring-church-gold/50">
             <img src="logo.png" alt="Church Logo" className="w-full h-full object-cover rounded-full" referrerPolicy="no-referrer" />
           </button>
           <NavLink to="/" className="flex items-center gap-3 min-w-0" onClick={closeDrawer}>

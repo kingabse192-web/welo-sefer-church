@@ -189,7 +189,7 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 exit={{ opacity: 0, x: 24, scale: 0.94 }}
                 transition={{ duration: 0.5, delay: Math.min(i, 6) * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all group flex flex-col cursor-pointer hover:border-church-gold/30 active:scale-[0.985]"
+                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-church-blue/25 transition-all duration-300 group flex flex-col cursor-pointer hover:border-church-gold/40 active:scale-[0.98]"
                 onClick={() => setSelectedEvent(event)}
               >
                 <div className="h-40 overflow-hidden relative">

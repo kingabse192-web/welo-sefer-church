@@ -36,7 +36,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
               href="https://www.instagram.com/welosefer_mareyam/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-church-blue/5 dark:bg-white/5 flex items-center justify-center border border-church-gold/20 text-church-blue/75 dark:text-church-gold hover:bg-church-gold hover:text-white dark:hover:text-slate-900 transition-all shadow-md group"
+              className="w-9 h-9 rounded-full bg-church-blue/5 dark:bg-white/5 flex items-center justify-center border border-church-gold/20 text-church-blue/75 dark:text-church-gold hover:bg-church-gold hover:text-white dark:hover:text-slate-900 hover:-translate-y-0.5 active:scale-95 transition-all duration-300 shadow-md group"
               aria-label="Instagram"
             >
               <Instagram className="w-4 h-4 group-hover:scale-110 transition-transform" />
@@ -45,7 +45,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
               href="https://www.tiktok.com/@beruk_lerics?is_from_webapp=1&sender_device=pc" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-full bg-church-blue/5 dark:bg-white/5 flex items-center justify-center border border-church-gold/20 text-church-blue/75 dark:text-church-gold hover:bg-church-gold hover:text-white dark:hover:text-slate-900 transition-all shadow-md group"
+              className="w-9 h-9 rounded-full bg-church-blue/5 dark:bg-white/5 flex items-center justify-center border border-church-gold/20 text-church-blue/75 dark:text-church-gold hover:bg-church-gold hover:text-white dark:hover:text-slate-900 hover:-translate-y-0.5 active:scale-95 transition-all duration-300 shadow-md group"
               aria-label="TikTok"
             >
               <svg className="w-4 h-4 fill-none stroke-current group-hover:scale-110 transition-transform" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -76,6 +76,11 @@ const WelcomeHero: React.FC<Props> = ({ lang }) => {
         >
           {word}
         </span>
+        {/* Soft breathing gold glow behind the emblem */}
+        <div
+          aria-hidden="true"
+          className="animate-gold-pulse pointer-events-none absolute left-1/2 top-1/2 h-[48vmin] w-[48vmin] rounded-full bg-church-gold/10 blur-[90px]"
+        />
         {/* Big cross that drifts downward while scrolling */}
         <svg
           className="absolute left-1/2 top-1/2 w-[42vw] max-w-[420px]"

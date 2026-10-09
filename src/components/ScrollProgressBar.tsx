@@ -17,13 +17,13 @@ const ScrollProgressBar: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-[3px] z-[9999] pointer-events-none">
+    <div className="fixed top-0 left-0 w-full h-[3px] z-[9999] pointer-events-none overflow-hidden">
       <div
-        className="h-full transition-[width] duration-150 ease-out"
+        className="h-full rounded-r-full transition-[width] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{
           width: `${progress}%`,
           background: 'linear-gradient(90deg, #CFB53B, #e8d06a, #CFB53B)',
-          boxShadow: '0 0 8px rgba(207,181,59,0.4)',
+          boxShadow: '0 0 8px rgba(207,181,59,0.45)',
         }}
       />
     </div>
