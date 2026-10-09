@@ -4,6 +4,7 @@ import { Calendar as CalendarIcon, Clock, Users, ShieldCheck, Filter, X, Chevron
 
 import { Language, translations } from '../translations';
 import SectionHeader from './SectionHeader';
+import NextFeastSpotlight from './NextFeastSpotlight';
 
 interface EventItem {
   title: string;
@@ -78,8 +79,10 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
     setCurrentPage(1); // Reset to first page on filter change
   };
 
+  const featuredFeast = translatedEvents.find(e => e.category === 'Major Feast') || translatedEvents[0];
+
   return (
-    <section id="events" className="py-24 bg-church-blue dark:bg-black text-white overflow-hidden transition-colors duration-500">
+    <section id="events" className="py-24 bg-church-blue dark:bg-church-nightDeep text-white overflow-hidden transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 relative">
         {/* Background Decorative Element */}
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-church-gold/5 dark:bg-church-gold/10 rounded-full blur-3xl transition-colors"></div>
@@ -164,6 +167,17 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
             )}
           </motion.div>
         </div>
+
+        {featuredFeast && (
+          <NextFeastSpotlight
+            lang={lang}
+            category={featuredFeast.displayCategory}
+            date={featuredFeast.date}
+            title={featuredFeast.title}
+            description={featuredFeast.description}
+            onOpen={() => setSelectedEvent(featuredFeast)}
+          />
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 min-h-[400px]">
           <AnimatePresence mode="popLayout">
@@ -300,7 +314,7 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-2xl bg-church-blue dark:bg-slate-900 border border-white/10 rounded-3xl overflow-hidden shadow-2xl z-10 flex flex-col max-h-[95vh]"
+              className="relative w-full max-w-2xl bg-church-blue dark:bg-church-nightCard border border-white/10 rounded-3xl overflow-hidden shadow-2xl z-10 flex flex-col max-h-[95vh]"
             >
               <button 
                 onClick={() => setSelectedEvent(null)}

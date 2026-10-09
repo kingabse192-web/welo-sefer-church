@@ -39,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
   return (
     <nav className={`fixed top-0 w-full z-50 px-6 py-4 transition-all duration-300 ${
       scrolled
-        ? 'bg-church-cream/85 dark:bg-slate-900/85 backdrop-blur-xl border-b border-church-gold/10 shadow-lg'
+        ? 'bg-church-cream/85 dark:bg-church-night/85 backdrop-blur-xl border-b border-church-gold/10 shadow-lg'
         : 'bg-transparent border-transparent'
     }`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -157,7 +157,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
               animate={{ opacity: 1, y: 0, height: 'auto' }}
               exit={{ opacity: 0, y: -20, height: 0 }}
               transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-              className="md:hidden absolute top-[73px] left-0 w-full bg-church-cream/95 dark:bg-slate-950/95 backdrop-blur-xl border-b border-church-gold/20 shadow-2xl z-40 overflow-hidden"
+              className="md:hidden absolute top-[73px] left-0 w-full bg-church-cream/95 dark:bg-church-night/95 backdrop-blur-xl border-b border-church-gold/20 shadow-2xl z-40 overflow-hidden"
             >
               <div className="px-6 py-8 flex flex-col gap-6 font-sans">
                 {/* Ordered Navigation Links */}
@@ -224,7 +224,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 40 }}
               transition={{ type: 'spring', damping: 22, stiffness: 280 }}
-              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-lg bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-church-blue/20 dark:shadow-black/40 border border-church-gold/20 overflow-hidden"
+              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-lg bg-white dark:bg-church-night rounded-3xl shadow-2xl shadow-church-blue/20 dark:shadow-black/40 border border-church-gold/20 overflow-hidden"
             >
               <motion.div
                 initial={{ opacity: 0, y: 30 }}

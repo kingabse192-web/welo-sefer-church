@@ -22,7 +22,7 @@ html {
 
 @layer base {
   body {
-    @apply font-sans antialiased bg-church-cream dark:bg-slate-950 transition-colors duration-500 text-slate-800 dark:text-slate-200;
+    @apply font-sans antialiased bg-church-cream dark:bg-church-night transition-colors duration-500 text-slate-800 dark:text-slate-200;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }

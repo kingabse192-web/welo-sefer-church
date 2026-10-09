@@ -14,7 +14,7 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
   const [activeTab, setActiveTab] = useState<'evolution' | 'miracles' | 'sundaySchool'>('evolution');
 
   return (
-    <section id="history" className="py-24 bg-church-cream dark:bg-slate-900 transition-colors duration-500 overflow-hidden">
+    <section id="history" className="py-24 bg-church-cream dark:bg-church-night transition-colors duration-500 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         
         <SectionHeader
@@ -40,7 +40,7 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
                 className={`flex items-center gap-2 px-6 py-3 rounded-full font-serif font-semibold text-sm transition-all duration-300 shadow-md ${
                   isActive 
                     ? 'bg-church-blue text-white dark:bg-church-gold dark:text-slate-950 scale-105'
-                    : 'bg-white dark:bg-slate-800 text-church-blue dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700'
+                    : 'bg-white dark:bg-church-nightCard text-church-blue dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700'
                 }`}
               >
                 <Icon className={`w-4 h-4 ${isActive ? 'text-church-gold dark:text-slate-950' : 'text-church-gold'}`} />
@@ -78,7 +78,7 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
                     <p className="font-sans text-gray-600 dark:text-gray-400 leading-relaxed">
                       {t.stage1Desc}
                     </p>
-                    <div className="p-6 border-l-4 border-church-gold bg-white dark:bg-slate-800 shadow-md rounded-r-2xl italic text-church-blue dark:text-gray-300 font-serif">
+                    <div className="p-6 border-l-4 border-church-gold bg-white dark:bg-church-nightCard shadow-md rounded-r-2xl italic text-church-blue dark:text-gray-300 font-serif">
                       "{t.stage1Quote}"
                     </div>
                   </div>
@@ -100,7 +100,7 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
                     <p className="font-sans text-gray-600 dark:text-gray-400 leading-relaxed">
                       {t.stage2Desc}
                     </p>
-                    <div className="p-6 border-l-4 border-church-blue dark:border-church-gold bg-white dark:bg-slate-800 shadow-md rounded-r-2xl italic text-church-blue dark:text-gray-300 font-serif">
+                    <div className="p-6 border-l-4 border-church-blue dark:border-church-gold bg-white dark:bg-church-nightCard shadow-md rounded-r-2xl italic text-church-blue dark:text-gray-300 font-serif">
                       "{t.stage2Quote}"
                     </div>
                   </div>
@@ -116,7 +116,7 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
                     <p className="font-sans text-gray-600 dark:text-gray-400 leading-relaxed">
                       {t.stage3Desc}
                     </p>
-                    <div className="p-6 border-l-4 border-church-gold bg-white dark:bg-slate-800 shadow-md rounded-r-2xl italic text-church-blue dark:text-gray-300 font-serif">
+                    <div className="p-6 border-l-4 border-church-gold bg-white dark:bg-church-nightCard shadow-md rounded-r-2xl italic text-church-blue dark:text-gray-300 font-serif">
                       "{t.stage3Quote}"
                     </div>
                   </div>
@@ -146,7 +146,7 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
                   {/* Water Miracle Card */}
                   <motion.div 
                     whileHover={{ y: -5 }}
-                    className="p-8 bg-white dark:bg-slate-800 rounded-3xl shadow-xl border-t-4 border-church-gold relative overflow-hidden transition-colors duration-500"
+                    className="p-8 bg-white dark:bg-church-nightCard rounded-3xl shadow-xl border-t-4 border-church-gold relative overflow-hidden transition-colors duration-500"
                   >
                     <div className="absolute top-0 right-0 w-32 h-32 bg-church-gold/5 rounded-full -mr-10 -mt-10"></div>
                     <div className="w-14 h-14 bg-church-gold/10 rounded-2xl flex items-center justify-center mb-6">
@@ -163,7 +163,7 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
                   {/* Vow Miracle Card */}
                   <motion.div 
                     whileHover={{ y: -5 }}
-                    className="p-8 bg-white dark:bg-slate-800 rounded-3xl shadow-xl border-t-4 border-church-blue dark:border-church-gold relative overflow-hidden transition-colors duration-500"
+                    className="p-8 bg-white dark:bg-church-nightCard rounded-3xl shadow-xl border-t-4 border-church-blue dark:border-church-gold relative overflow-hidden transition-colors duration-500"
                   >
                     <div className="absolute top-0 right-0 w-32 h-32 bg-church-blue/5 dark:bg-church-gold/5 rounded-full -mr-10 -mt-10"></div>
                     <div className="w-14 h-14 bg-church-blue/10 dark:bg-church-gold/10 rounded-2xl flex items-center justify-center mb-6">
@@ -189,10 +189,10 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
                 transition={{ duration: 0.4 }}
                 className="max-w-4xl mx-auto"
               >
-                <div className="bg-white dark:bg-slate-800 rounded-[2rem] shadow-2xl overflow-hidden border border-gray-100 dark:border-slate-700 transition-colors duration-500">
+                <div className="bg-white dark:bg-church-nightCard rounded-[2rem] shadow-2xl overflow-hidden border border-gray-100 dark:border-nightCard/70 transition-colors duration-500">
                   <div className="grid md:grid-cols-12">
                     {/* Visual Stats Block */}
-                    <div className="md:col-span-4 bg-church-blue dark:bg-slate-900 p-12 text-center flex flex-col justify-center items-center relative overflow-hidden">
+                    <div className="md:col-span-4 bg-church-blue dark:bg-church-night p-12 text-center flex flex-col justify-center items-center relative overflow-hidden">
                       <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/5 rounded-full"></div>
                       <span className="text-church-gold dark:text-church-gold font-sans font-extrabold text-7xl block mb-2 relative">
                         {t.youthStats}
@@ -212,7 +212,7 @@ const HistorySection: React.FC<HistorySectionProps> = ({ lang }) => {
                       </p>
 
                       {/* Detail points */}
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-gray-100 dark:border-slate-700">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-gray-100 dark:border-nightCard/70">
                         <div className="flex items-center gap-3">
                           <div className="w-8 h-8 rounded-full bg-church-gold/10 flex items-center justify-center">
                             <BookOpen className="w-4 h-4 text-church-gold" />

@@ -17,7 +17,7 @@ const GallerySection: React.FC<GallerySectionProps> = ({ lang }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="gallery" className="py-24 md:py-28 bg-white dark:bg-slate-900 transition-colors duration-500">
+    <section id="gallery" className="py-24 md:py-28 bg-white dark:bg-church-night transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

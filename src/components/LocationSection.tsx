@@ -35,7 +35,7 @@ const LocationSection: React.FC<LocationSectionProps> = ({ lang }) => {
   };
 
   return (
-    <section className="py-16 px-6 md:px-12 bg-white dark:bg-slate-950 transition-colors duration-500">
+    <section className="py-16 px-6 md:px-12 bg-white dark:bg-church-night transition-colors duration-500">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -56 }}

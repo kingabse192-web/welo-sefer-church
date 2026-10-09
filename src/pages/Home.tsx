@@ -31,7 +31,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       <WelcomeHero lang={lang} />
 
       {/* Website introduction */}
-      <section className="relative py-24 md:py-32 px-6 bg-church-cream dark:bg-slate-950 overflow-hidden transition-colors duration-500">
+      <section className="relative py-24 md:py-32 px-6 bg-church-cream dark:bg-church-night overflow-hidden transition-colors duration-500">
         {/* Watermarks in separate corner zones — no layer overlaps another */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none select-none" aria-hidden="true">
           {/* Top-right: outlined wordmark, bleeds off the corner */}

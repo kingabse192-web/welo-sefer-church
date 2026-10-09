@@ -12,6 +12,9 @@ export default {
           blue: '#002366', // Royal Blue
           gold: '#CFB53B', // Deep Gold
           cream: '#FDFCF6', // Warm White
+          night: '#0a1830', // Deep navy — dark section base
+          nightCard: '#101f3e', // Lighter navy — elevated dark surfaces
+          nightDeep: '#050d1f', // Deepest navy — roots and endpoints
         }
       },
       fontFamily: {

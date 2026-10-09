@@ -10,7 +10,7 @@ interface NotFoundProps {
 
 const NotFound: React.FC<NotFoundProps> = ({ lang }) => {
   return (
-    <div className="pt-20 min-h-screen flex items-center justify-center bg-church-cream dark:bg-slate-950 transition-colors duration-500 px-6">
+    <div className="pt-20 min-h-screen flex items-center justify-center bg-church-cream dark:bg-church-night transition-colors duration-500 px-6">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}

@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import ScrollProgressBar from './components/ScrollProgressBar';
 import WelcomeSplash from './components/WelcomeSplash';
+import AmbientBackground from './components/AmbientBackground';
 import Home from './pages/Home';
 import HistoryPage from './pages/History';
 import GalleryPage from './pages/Gallery';
@@ -128,7 +129,8 @@ function App() {
         <ScrollToTop />
         <RouteMeta lang={lang} />
         {!splashDone && <WelcomeSplash lang={lang} onFinish={handleSplashFinish} />}
-        <div className={`min-h-screen bg-church-cream dark:bg-slate-950 transition-colors duration-500 selection:bg-church-gold selection:text-white overflow-x-hidden flex flex-col ${lang === 'am' ? 'lang-am' : ''}`}>
+        <div className={`isolate min-h-screen bg-church-cream dark:bg-church-night transition-colors duration-500 selection:bg-church-gold selection:text-white overflow-x-hidden flex flex-col ${lang === 'am' ? 'lang-am' : ''}`}>
+          <AmbientBackground />
           <Navbar 
             lang={lang} 
             theme={theme} 

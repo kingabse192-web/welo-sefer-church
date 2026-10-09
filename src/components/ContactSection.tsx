@@ -128,7 +128,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
 
 
   return (
-    <section id="contact" className="py-24 bg-church-cream dark:bg-slate-900 transition-colors duration-500">
+    <section id="contact" className="py-24 bg-church-cream dark:bg-church-night transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           align="center"
@@ -163,7 +163,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                   transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                   className="flex items-center gap-5 group"
                 >
-                  <div className="w-12 h-12 bg-church-blue dark:bg-slate-800 rounded-2xl flex items-center justify-center text-church-gold group-hover:bg-church-gold group-hover:text-white transition-all">
+                  <div className="w-12 h-12 bg-church-blue dark:bg-church-nightCard rounded-2xl flex items-center justify-center text-church-gold group-hover:bg-church-gold group-hover:text-white transition-all">
                     {item.icon}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -184,7 +184,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
               </div>
               <div className="space-y-5">
                 {/* Bank 1 - CBE */}
-                <div className="p-6 bg-white dark:bg-slate-800/80 rounded-2xl border-2 border-purple-100 dark:border-purple-900/40 shadow-md flex flex-col justify-between gap-4 relative overflow-hidden transition-all hover:scale-[1.02] hover:shadow-xl group">
+                <div className="p-6 bg-white dark:bg-church-nightCard/80 rounded-2xl border-2 border-purple-100 dark:border-purple-900/40 shadow-md flex flex-col justify-between gap-4 relative overflow-hidden transition-all hover:scale-[1.02] hover:shadow-xl group">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/5 rounded-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
                   <div className="relative z-10">
                     <div className="flex items-center gap-2 mb-2">
@@ -216,7 +216,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                 </div>
 
                 {/* Bank 2 - Abay */}
-                <div className="p-6 bg-white dark:bg-slate-800/80 rounded-2xl border-2 border-amber-100 dark:border-amber-900/40 shadow-md flex flex-col justify-between gap-4 relative overflow-hidden transition-all hover:scale-[1.02] hover:shadow-xl group">
+                <div className="p-6 bg-white dark:bg-church-nightCard/80 rounded-2xl border-2 border-amber-100 dark:border-amber-900/40 shadow-md flex flex-col justify-between gap-4 relative overflow-hidden transition-all hover:scale-[1.02] hover:shadow-xl group">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
                   <div className="relative z-10">
                     <div className="flex items-center gap-2 mb-2">
@@ -255,7 +255,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="md:col-span-3 bg-church-blue dark:bg-black p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden order-1 md:order-2 self-stretch flex flex-col justify-between"
+            className="md:col-span-3 bg-church-blue dark:bg-church-nightCard p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden order-1 md:order-2 self-stretch flex flex-col justify-between"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-church-gold/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
             

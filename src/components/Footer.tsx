@@ -12,7 +12,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = translations[lang];
 
   return (
-    <footer className="relative bg-church-cream dark:bg-slate-900 border-t border-church-gold/10 py-16 px-6 transition-colors duration-500">
+    <footer className="relative bg-church-cream dark:bg-church-night border-t border-church-gold/10 py-16 px-6 transition-colors duration-500">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-church-gold/60 to-transparent" />
       <motion.div
         initial={{ opacity: 0, y: 24 }}

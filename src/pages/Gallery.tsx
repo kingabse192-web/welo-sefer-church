@@ -28,7 +28,7 @@ const GalleryCard: React.FC<{ photo: Photo; index: number; label: string; onOpen
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '0px 0px -40px 0px' }}
       transition={{ duration: 0.4, delay: Math.min(index, 8) * 0.03, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative mb-3 md:mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl border border-church-gold/15 bg-white dark:bg-slate-900 text-left shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-church-blue/10 hover:border-church-gold/50 hover:-translate-y-0.5 active:scale-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
+      className="group relative mb-3 md:mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl border border-church-gold/15 bg-white dark:bg-church-nightCard text-left shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-church-blue/10 hover:border-church-gold/50 hover:-translate-y-0.5 active:scale-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-church-gold focus-visible:ring-offset-2 dark:focus-visible:ring-offset-church-nightDeep"
       style={
         photo.lqip
           ? { backgroundImage: `url(${photo.lqip})`, backgroundSize: 'cover', backgroundPosition: 'center' }
@@ -69,7 +69,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ lang }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="pt-28 pb-24 bg-church-cream dark:bg-slate-950 min-h-screen transition-colors duration-500">
+    <div className="pt-28 pb-24 bg-church-cream dark:bg-church-nightDeep min-h-screen transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           level="h1"
