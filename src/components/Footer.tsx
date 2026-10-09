@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Cross, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Language, translations } from '../translations';
+import OrnamentDivider from './OrnamentDivider';
 
 interface FooterProps {
   lang: Language;
@@ -14,6 +15,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
   return (
     <footer className="relative bg-church-cream dark:bg-church-night border-t border-church-gold/10 py-16 px-6 transition-colors duration-500">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-church-gold/60 to-transparent" />
+      <OrnamentDivider className="mb-16 text-church-gold/80 dark:text-church-gold/90" />
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -193,7 +193,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                         {(t as Record<string, string>).cbeTitle || 'Commercial Bank of Ethiopia'}
                       </span>
                     </div>
-                    <span className="text-2xl md:text-3xl font-mono font-bold text-church-blue dark:text-white tracking-wider block selection:bg-church-gold selection:text-white mt-1">
+                    <span className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-church-blue dark:text-white tracking-wider block selection:bg-church-gold selection:text-white mt-1 leading-tight break-all">
                       1000562244167
                     </span>
                   </div>
@@ -225,7 +225,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ lang }) => {
                         {(t as Record<string, string>).abayTitle || 'Abay Bank'}
                       </span>
                     </div>
-                    <span className="text-2xl md:text-3xl font-mono font-bold text-church-blue dark:text-white tracking-wider block selection:bg-church-gold selection:text-white mt-1">
+                    <span className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-church-blue dark:text-white tracking-wider block selection:bg-church-gold selection:text-white mt-1 leading-tight break-all">
                       1722119984318015
                     </span>
                   </div>

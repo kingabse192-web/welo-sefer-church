@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Globe, Sun, Moon, Menu, X, Landmark } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -23,6 +23,18 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
   const [scrolled, setScrolled] = useState(false);
   const [showFeastPopup, setShowFeastPopup] = useState(false);
   const navigate = useNavigate();
+  const drawerCloseRef = useRef<HTMLButtonElement>(null);
+
+  const closeDrawer = useCallback(() => setIsOpen(false), []);
+
+  const navItems = [
+    { path: '/history', label: t.nav.history },
+    { path: '/gallery', label: t.nav.gallery },
+    { path: '/events', label: t.nav.events },
+    { path: '/location', label: t.nav.location },
+    { path: '/contact', label: t.nav.contact },
+    { path: '/developer', label: t.contact.devProfile },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -31,24 +43,38 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
   }, []);
 
   useEffect(() => {
+    if (!isOpen) return;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    drawerCloseRef.current?.focus();
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
     if (!showFeastPopup) return;
     const timer = setTimeout(() => setShowFeastPopup(false), 10000);
     return () => clearTimeout(timer);
   }, [showFeastPopup]);
 
   return (
-    <nav className={`fixed top-0 w-full z-50 px-6 py-4 transition-all duration-300 ${
+    <nav className={`fixed top-0 w-full z-50 px-4 sm:px-6 py-4 transition-all duration-300 ${
       scrolled
         ? 'bg-church-cream/85 dark:bg-church-night/85 backdrop-blur-xl border-b border-church-gold/10 shadow-lg'
         : 'bg-transparent border-transparent'
     }`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 min-w-0">
           <button onClick={() => setShowFeastPopup(true)} className="w-10 h-10 overflow-hidden rounded-full border-2 border-church-gold shadow-sm cursor-pointer flex-shrink-0 hover:ring-2 hover:ring-church-gold/50 transition-all">
             <img src="logo.png" alt="Church Logo" className="w-full h-full object-cover rounded-full" referrerPolicy="no-referrer" />
           </button>
-          <NavLink to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-            <span className="font-serif font-bold text-xl tracking-tight text-church-blue dark:text-church-gold transition-colors">Welo Sefer Church</span>
+          <NavLink to="/" className="flex items-center gap-3 min-w-0" onClick={closeDrawer}>
+            <span className="hidden min-[430px]:inline font-serif font-bold text-lg md:text-xl tracking-tight text-church-blue dark:text-church-gold truncate transition-colors">Welo Sefer Church</span>
           </NavLink>
         </div>
         
@@ -86,17 +112,17 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
         </div>
 
         {/* Mobile controls & Hamburger trigger */}
-        <div className="md:hidden flex items-center gap-3">
+        <div className="md:hidden flex items-center gap-2 sm:gap-3">
           <button 
             onClick={toggleTheme}
-            className="w-11 h-11 flex items-center justify-center text-church-gold bg-church-gold/15 rounded-xl transition-all active:scale-90 cursor-pointer hover:bg-church-gold hover:text-white shadow-md"
+            className="w-10 h-10 flex items-center justify-center text-church-gold bg-church-gold/15 rounded-xl transition-all active:scale-90 cursor-pointer hover:bg-church-gold hover:text-white shadow-md"
             aria-label="Toggle Theme"
           >
             {theme === 'light' ? <Moon className="w-[18px] h-[18px]" strokeWidth={2} /> : <Sun className="w-[18px] h-[18px]" strokeWidth={2} />}
           </button>
           <button 
             onClick={toggleLang}
-            className="h-11 flex items-center gap-1.5 text-church-gold font-bold px-3.5 bg-church-gold/15 rounded-xl active:scale-90 cursor-pointer hover:bg-church-gold hover:text-white transition-all shadow-md"
+            className="h-10 flex items-center gap-1.5 text-church-gold font-bold px-3 bg-church-gold/15 rounded-xl active:scale-90 cursor-pointer hover:bg-church-gold hover:text-white transition-all shadow-md"
             aria-label="Toggle Language"
           >
             <Globe className="w-[18px] h-[18px]" strokeWidth={2} />
@@ -105,7 +131,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
           
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`relative w-11 h-11 flex items-center justify-center rounded-xl transition-all duration-300 active:scale-90 cursor-pointer shadow-md ${
+            className={`relative w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 active:scale-90 cursor-pointer shadow-md ${
               isOpen
                 ? 'bg-church-gold text-white shadow-church-gold/30 rotate-90'
                 : 'bg-church-gold/15 text-church-gold hover:bg-church-gold hover:text-white hover:shadow-church-gold/20'
@@ -139,72 +165,139 @@ const Navbar: React.FC<NavbarProps> = ({ lang, theme, toggleLang, toggleTheme })
         </div>
       </div>
 
-      {/* Mobile Menu Drawer Overlay */}
+      {/* Mobile Brand Drawer */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            {/* Backdrop behind navigation menu content */}
+          <div
+            className="md:hidden fixed inset-0 z-[85]"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
+          >
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="md:hidden fixed inset-0 top-[73px] bg-slate-900/40 backdrop-blur-sm z-30"
-              onClick={() => setIsOpen(false)}
+              transition={{ duration: 0.25 }}
+              onClick={closeDrawer}
+              className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
             />
-            {/* Top-down Drawer Container */}
+
             <motion.div
-              initial={{ opacity: 0, y: -20, height: 0 }}
-              animate={{ opacity: 1, y: 0, height: 'auto' }}
-              exit={{ opacity: 0, y: -20, height: 0 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 280 }}
-              className="md:hidden absolute top-[73px] left-0 w-full bg-church-cream/95 dark:bg-church-night/95 backdrop-blur-xl border-b border-church-gold/20 shadow-2xl z-40 overflow-hidden"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              className="absolute right-0 top-0 flex h-full flex-col overflow-y-auto bg-gradient-to-b from-church-night via-[#0c1d3e] to-church-nightDeep text-white shadow-2xl"
+              style={{ width: 'min(88vw, 28rem)' }}
             >
-              <div className="px-6 py-8 flex flex-col gap-6 font-sans">
-                {/* Ordered Navigation Links */}
-                <div className="flex flex-col gap-1">
-                  {[
-                    { path: '/history', label: t.nav.history },
-                    { path: '/gallery', label: t.nav.gallery },
-                    { path: '/events', label: t.nav.events },
-                    { path: '/location', label: t.nav.location },
-                    { path: '/contact', label: t.nav.contact },
-                    { path: '/developer', label: t.contact.devProfile },
-                  ].map((item, idx) => (
-                    <NavLink
-                      key={idx}
-                      to={item.path}
-                      onClick={() => setIsOpen(false)}
-                      className={({ isActive }) => `
-                        w-full px-4 py-3.5 rounded-2xl flex items-center justify-between text-base font-semibold transition-all
-                        ${isActive 
-                          ? 'bg-church-gold/25 text-church-gold border-l-4 border-church-gold font-bold pl-3 shadow-inner' 
-                          : 'text-church-blue/80 dark:text-gray-300 hover:bg-church-gold/10 hover:text-church-gold dark:hover:bg-church-gold/5'
-                        }
-                      `}
-                    >
-                      <span>{item.label}</span>
-                      <span className="text-church-gold/40 text-xs font-mono font-bold">0{idx + 1}</span>
-                    </NavLink>
-                  ))}
+              <div className="relative overflow-hidden">
+                <div aria-hidden="true" className="pointer-events-none absolute -top-24 right-0 h-64 w-64 rounded-full bg-church-blue/50 blur-[100px]" />
+                <div aria-hidden="true" className="pointer-events-none absolute -bottom-20 -left-16 h-56 w-56 rounded-full bg-church-gold/15 blur-[90px]" />
+
+                <div className="relative flex items-center justify-between px-6 py-6 sm:px-8">
+                  <div className="flex items-center gap-3">
+                    <img src="logo.png" alt="" className="h-11 w-11 rounded-full border-2 border-church-gold/60 object-cover" referrerPolicy="no-referrer" />
+                    <div>
+                      <p className="font-serif font-bold text-lg leading-tight text-church-gold">
+                        {lang === 'am' ? 'ወሎ ሰፈር' : 'Welo Sefer'}
+                      </p>
+                      <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 leading-tight">
+                        {lang === 'am' ? 'ቅድስት ማርያም' : 'St. Maryam Church'}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    ref={drawerCloseRef}
+                    onClick={closeDrawer}
+                    aria-label={lang === 'am' ? 'ዝጋ' : 'Close menu'}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-white/80 ring-1 ring-white/15 transition-all hover:bg-church-gold hover:text-white active:scale-90"
+                  >
+                    <X className="w-5 h-5" strokeWidth={2.5} />
+                  </button>
                 </div>
 
-                {/* Mobile Donation Call to action */}
-                <div className="border-t border-church-gold/10 pt-6 px-2">
+                <div className="relative mx-6 h-px bg-gradient-to-r from-transparent via-church-gold/40 to-transparent sm:mx-8" />
+
+                <nav className="relative flex flex-col gap-1 px-4 py-6 sm:px-6" aria-label="Mobile navigation">
+                  {navItems.map((item, idx) => (
+                    <motion.div
+                      key={item.path}
+                      initial={{ opacity: 0, x: 32 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.42, delay: 0.12 + idx * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <NavLink
+                        to={item.path}
+                        onClick={closeDrawer}
+                        className={({ isActive }) => `
+                          flex items-center justify-between rounded-xl px-4 py-3.5 font-sans text-base font-semibold transition-all active:scale-[0.98]
+                          ${isActive
+                            ? 'border-l-2 border-church-gold bg-church-gold/15 text-church-gold pl-3.5'
+                            : 'text-white/75 hover:bg-white/5 hover:text-church-gold'
+                          }
+                        `}
+                      >
+                        <span>{item.label}</span>
+                        <span className="font-mono text-xs font-bold text-church-gold/40">0{idx + 1}</span>
+                      </NavLink>
+                    </motion.div>
+                  ))}
+                </nav>
+              </div>
+
+              <div className="mt-auto">
+                <div className="px-6 pb-6 sm:px-8">
+                  <div className="flex items-center justify-center gap-2 text-church-gold/40" aria-hidden="true">
+                    <span className="h-px flex-1 bg-church-gold/20" />
+                    <span className="font-serif text-lg leading-none">✦</span>
+                    <span className="h-px flex-1 bg-church-gold/20" />
+                  </div>
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-col gap-3 px-6 pb-10"
+                >
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => { toggleTheme(); }}
+                      className="flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-white/5 text-white/85 ring-1 ring-white/10 transition-all hover:bg-white/10 active:scale-95"
+                    >
+                      {theme === 'light' ? <Moon className="w-4 h-4 text-church-gold" /> : <Sun className="w-4 h-4 text-church-gold" />}
+                      <span className="text-xs font-semibold uppercase tracking-wider">
+                        {theme === 'light' ? (lang === 'am' ? 'ሌሊት' : 'Night') : (lang === 'am' ? 'ቀን' : 'Day')}
+                      </span>
+                    </button>
+                    <button
+                      onClick={() => { toggleLang(); }}
+                      className="flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-white/5 text-white/85 ring-1 ring-white/10 transition-all hover:bg-white/10 active:scale-95"
+                    >
+                      <Globe className="w-4 h-4 text-church-gold" />
+                      <span className="text-xs font-semibold uppercase tracking-wider">
+                        {lang === 'am' ? 'English' : 'አማርኛ'}
+                      </span>
+                    </button>
+                  </div>
                   <PremiumButton
                     shape="soft"
                     fullWidth
                     onClick={() => {
-                      setIsOpen(false);
+                      closeDrawer();
                       navigate('/contact');
                     }}
                   >
                     <Landmark className="w-4 h-4" />
                     <span>{t.nav.donation}</span>
                   </PremiumButton>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
-          </>
+          </div>
         )}
       </AnimatePresence>
 

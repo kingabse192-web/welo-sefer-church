@@ -341,7 +341,7 @@ const EventCalendar: React.FC<EventCalendarProps> = ({ lang }) => {
               </div>
 
               <div className="p-6 md:p-8 space-y-6 overflow-y-auto flex-1">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex items-center gap-3 text-white/70">
                     <div className="p-2 bg-white/5 rounded-lg">
                       <CalendarIcon className="w-5 h-5 text-church-gold" />
